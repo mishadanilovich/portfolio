@@ -1,3 +1,172 @@
 {
-  "extends": "next/core-web-vitals"
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks"
+  ],
+  "ignorePatterns": [
+    "build",
+    ".*.js",
+    "*.config.js",
+    "node_modules",
+    "scripts",
+    "config",
+    "dist",
+    "*.d.ts"
+  ],
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/jsx-runtime",
+    "prettier"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "array-callback-return": [
+      "error",
+      {
+        "allowImplicit": true
+      }
+    ],
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "arrow-spacing": "error",
+    "brace-style": "off",
+    // disabled in favor of @typescript-eslint rule
+    "camelcase": "off",
+    "comma-dangle": "off",
+    // disabled in favor of @typescript-eslint rule
+    "comma-spacing": "off",
+    // disabled in favor of @typescript-eslint rule
+    "complexity": "off",
+    "default-case-last": "error",
+    "default-case": "error",
+    "default-param-last": "off",
+    // disabled in favor of @typescript-eslint rule
+    "dot-notation": "off",
+    // disabled in favor of @typescript-eslint rule
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "eqeqeq": "error",
+    "func-call-spacing": "off",
+    // disabled in favor of @typescript-eslint rule
+    "func-names": [
+      "error",
+      "as-needed"
+    ],
+    "guard-for-in": "error",
+    "indent": "off",
+    // disabled in favor of @typescript-eslint rule
+    "init-declarations": "off",
+    // disabled in favor of @typescript-eslint rule
+    "keyword-spacing": "off",
+    // disabled in favor of @typescript-eslint rule,
+    "linebreak-style": "off",
+    "lines-between-class-members": "off",
+    // disabled in favor of @typescript-eslint rule
+    "max-depth": [
+      "error",
+      3
+    ],
+    "max-nested-callbacks": [
+      "error",
+      3
+    ],
+    "max-params": [
+      "error",
+      4
+    ],
+    "no-await-in-loop": "error",
+    "no-bitwise": "error",
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "no-continue": "error",
+    "no-dupe-class-members": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-duplicate-imports": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-else-return": "error",
+    "no-empty-function": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-extra-parens": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-loop-func": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-magic-numbers": "off",
+    "no-nested-ternary": "error",
+    "no-param-reassign": "error",
+    //Bad code style.
+    "no-plusplus": "error",
+    "no-promise-executor-return": "error",
+    "no-prototype-builtins": "off",
+    "no-redeclare": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-restricted-imports": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-return-assign": "error",
+    "no-return-await": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-self-compare": "error",
+    "no-shadow": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-unneeded-ternary": "error",
+    "no-unused-expressions": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-unused-vars": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-use-before-define": "off",
+    // disabled in favor of @typescript-eslint rule
+    "no-useless-rename": "error",
+    "no-useless-return": "error",
+    "no-var": "error",
+    "object-curly-newline": [
+      "off",
+      {
+        "multiline": true
+      }
+    ],
+    "object-curly-spacing": "off",
+    // disabled in favor of @typescript-eslint rule
+    "padding-line-between-statements": "off",
+    // disabled in favor of @typescript-eslint rule
+    "prefer-arrow-callback": "error",
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "all"
+      }
+    ],
+    "prefer-destructuring": [
+      "error",
+      {
+        "object": true,
+        "array": true
+      }
+    ],
+    "prefer-rest-params": "error",
+    "quotes": "off",
+    // disabled in favor of @typescript-eslint rule
+    "radix": "error",
+    "require-await": "off",
+    // disabled in favor of @typescript-eslint rule
+    "semi": "off",
+    // disabled in favor of @typescript-eslint rule
+    "space-before-function-paren": "off"
+  }
 }
