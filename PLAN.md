@@ -60,17 +60,17 @@
 
 Фундамент, на который ложится всё остальное. Ничего визуального — зато сразу видно, что весь контент разложился без потерь.
 
-- `scripts/build-tokens.mts`: `design/tokens.json` → `src/styles/tokens.css` (CSS custom properties) + `src/styles/tokens.ts` (типизированный экспорт для SVG-пропсов). В `predev`/`prebuild`. Одни значения для Tailwind и для сцены
+- `src/styles/tokens.css` — обычный файл в репозитории, значения перенесены из `design/tokens.json` руками. Без генератора и без `predev`/`prebuild`
 - Tailwind v4 `@theme` читает сгенерированные переменные
 - `src/content/types.ts`: `Content`, `Floor`, `Achievement`, `PetProject`, `Roof`, `Contacts`, `Basement`
 - `src/content/ru.ts`, `src/content/en.ts` — весь `portfolio-content.md`. Этажи 2–6 (нумерация дома), у каждого: `period`, `title`, `role`, `description`, `stack[]`, `achievements[]` (`{ title, text }` — заголовок рамки и полный текст), `responsibilities[]`
 - **Облегчённый режим квартиры выводится из данных, а не флагом:** у Мосгосэкспертизы пустые `achievements` и `responsibilities` → рендерится только плакат (SPEC §5)
 - `[locale]` route segment, реестр локалей, типизированный доступ к словарю
 - `public/cv/` + пути в модели: `Mihail-Danilovich-Senior-Frontend-Developer-RU.pdf` и `-EN.pdf`. **Файлы кладёт владелец проекта**
-- `scripts/check-assets.mts` в prebuild: каждый `cv.href` существует в `public/`. В dev предупреждение, на production-билде падение со списком. Битая ссылка на резюме — худший баг на сайте, который ищет работу
+- Проверка наличия PDF — тестом в `content.test.ts`, а не отдельным скриптом: прогоняется в pre-push, новой обвязки не требует. Добавляется, как только файлы легут в `public/cv/`. Битая ссылка на резюме — худший баг на сайте, который ищет работу
 - Тесты: обе локали одинаковой формы, этажи 2–6 на месте, обязательные строки не пустые, у каждого пет-проекта есть ссылка
 
-Критические файлы: `src/content/types.ts`, `src/content/{ru,en}.ts`, `scripts/build-tokens.mts`
+Критические файлы: `src/content/types.ts`, `src/content/{ru,en}.ts`, `src/styles/tokens.css`
 
 ## Стадия 3 — Сцена дома и камера
 
