@@ -84,6 +84,16 @@
   --shadow-frame: 0 6px 12px rgba(0, 0, 0, 0.18);
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
   --ease-in-out: cubic-bezier(0.6, 0, 0.3, 1);
+  --spacing-viewport: 1440px;
+  --spacing-header: 72px;
+  --spacing-room-bar: 60px;
+  --spacing-garage-panel: 480px;
+  --spacing-control: 48px;
+  --spacing-panel-cta: 52px;
+  --spacing-touch-target: 44px;
+  --spacing-mini-map: 44px;
+  --spacing-mini-map-item: 36px;
+  --spacing-modal: 920px;
 }
 
 :root {
@@ -93,14 +103,4 @@
   --motion-fly-in: 700ms;
   --motion-intercom-pulse: 2400ms;
   --motion-window-breath: 5000ms;
-  --size-viewport: 1440px;
-  --size-header: 72px;
-  --size-room-bar: 60px;
-  --size-garage-panel: 480px;
-  --size-control: 48px;
-  --size-panel-cta: 52px;
-  --size-touch-target: 44px;
-  --size-mini-map: 44px;
-  --size-mini-map-item: 36px;
-  --size-modal-width: 920px;
 }
