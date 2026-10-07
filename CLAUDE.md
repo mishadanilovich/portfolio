@@ -52,6 +52,16 @@
 
 Конфиг лежит в `vitest.config.mts`, а не `.ts`: иначе Vite грузит его как CommonJS и предупреждает про ESM-синтаксис.
 
+## Prettier
+
+Из форматирования исключены (`.prettierignore`):
+
+- `design/` и `portfolio-content.md` — хендофф-материалы, входные данные. Держим байт-в-байт как переданы, чтобы сверка с источником оставалась чистой. В `design/mockups/` вдобавок рукописный однострочный SVG, его переформатирование всё поломает.
+- `AGENTS.md` — блок внутри перезаписывает `next dev`, форматирование даст вечный diff.
+- `src/styles/tokens.css` и `src/styles/tokens.ts` — генерируются из `design/tokens.json`.
+
+В `eslint.config.mjs` блок `jsx-a11y/recommended-rules` берёт из recommended только `rules`: плагин уже зарегистрирован `eslint-config-next`, объявить его второй раз нельзя — ESLint падает с `Cannot redefine plugin`. `eslint-config-prettier` идёт последним в массиве, иначе не снимет конфликтующие правила.
+
 ## Stylelint
 
 Правило `color-hex-length` стоит в режиме `long`: **хексы пишем полностью**, `#ffffff`, а не `#fff`. Все цвета приезжают из `design/tokens.json` дословно, и сокращение расходится с источником и с `00-design-system.html`, по которым идёт сверка. Режим `long` не просто разрешает полную форму, а требует её — `stylelint --fix` в pre-commit разворачивает сокращённые сам.

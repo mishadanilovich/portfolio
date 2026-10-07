@@ -4,15 +4,8 @@ build
 node_modules
 coverage
 package-lock.json
-
-# хендофф-материалы: входные данные, держим байт-в-байт как переданы.
-# В mockups вдобавок рукописный однострочный SVG — форматировать нельзя.
 design
 portfolio-content.md
-
-# блок внутри перезаписывает next dev
 AGENTS.md
-
-# генерируется из design/tokens.json
 src/styles/tokens.css
 src/styles/tokens.ts
