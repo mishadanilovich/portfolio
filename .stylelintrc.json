@@ -20,7 +20,7 @@
       }
     ],
     "import-notation": null,
-    "color-hex-length": null,
+    "color-hex-length": "long",
     "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global", "local"] }],
     "property-no-unknown": [true, { "ignoreProperties": ["composes"] }]
   }

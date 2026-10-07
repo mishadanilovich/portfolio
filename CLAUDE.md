@@ -54,7 +54,9 @@
 
 ## Stylelint
 
-Правило `color-hex-length` выключено намеренно. Все цвета приезжают из `design/tokens.json` дословно; сокращение `#ffffff` до `#fff` расходится с источником и с `00-design-system.html`, по которым идёт сверка. Генерируемый `src/styles/tokens.css` исключён через `ignoreFiles`.
+Правило `color-hex-length` стоит в режиме `long`: **хексы пишем полностью**, `#ffffff`, а не `#fff`. Все цвета приезжают из `design/tokens.json` дословно, и сокращение расходится с источником и с `00-design-system.html`, по которым идёт сверка. Режим `long` не просто разрешает полную форму, а требует её — `stylelint --fix` в pre-commit разворачивает сокращённые сам.
+
+Генерируемый `src/styles/tokens.css` исключён через `ignoreFiles`.
 
 ## npm audit
 
