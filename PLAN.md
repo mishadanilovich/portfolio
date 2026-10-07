@@ -12,19 +12,19 @@
 
 ## Согласованные решения
 
-| | |
-|---|---|
-| Фреймворк | Next.js 16.4 (App Router) + React 19.3 + TypeScript |
-| Стили | Tailwind v4 (UI-хром) + CSS Modules (сцена), оба без рантайма |
-| Анимации | CSS transitions/keyframes + нативный скролл + тонкий helper на WAAPI. **Без GSAP/Motion** — план Б, если exit-анимации станут неудобными |
-| Камера | Нативный скролл, без JS-перехвата. `IntersectionObserver` для фокуса этажа |
-| i18n | `[locale]`-сегмент + типизированные словари. **Без i18next** |
-| Состояние | React state + URL. **Без Redux/Zustand** |
-| Форма | react-hook-form + Zod (одна схема на клиент и сервер), ленивый чанк |
-| Отправка | Route Handler → Telegram Bot API, honeypot + in-memory rate limit (best-effort, осознанно) |
-| Тесты | Vitest с первого кода, Playwright перед стадией домофона |
-| Репозиторий | Публичный на GitHub |
-| Коммиты | Conventional Commits, без commitlint. Коммиты от Claude Code несут строку `Co-Authored-By` |
+|             |                                                                                                                                          |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Фреймворк   | Next.js 16.4 (App Router) + React 19.3 + TypeScript                                                                                      |
+| Стили       | Tailwind v4 (UI-хром) + CSS Modules (сцена), оба без рантайма                                                                            |
+| Анимации    | CSS transitions/keyframes + нативный скролл + тонкий helper на WAAPI. **Без GSAP/Motion** — план Б, если exit-анимации станут неудобными |
+| Камера      | Нативный скролл, без JS-перехвата. `IntersectionObserver` для фокуса этажа                                                               |
+| i18n        | `[locale]`-сегмент + типизированные словари. **Без i18next**                                                                             |
+| Состояние   | React state + URL. **Без Redux/Zustand**                                                                                                 |
+| Форма       | react-hook-form + Zod (одна схема на клиент и сервер), ленивый чанк                                                                      |
+| Отправка    | Route Handler → Telegram Bot API, honeypot + in-memory rate limit (best-effort, осознанно)                                               |
+| Тесты       | Vitest с первого кода, Playwright перед стадией домофона                                                                                 |
+| Репозиторий | Публичный на GitHub                                                                                                                      |
+| Коммиты     | Conventional Commits, без commitlint. Коммиты от Claude Code несут строку `Co-Authored-By`                                               |
 
 ---
 

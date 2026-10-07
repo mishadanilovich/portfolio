@@ -24,20 +24,20 @@ npm install
 npm run dev
 ```
 
-Откроется на http://localhost:3000.
+Откроется на <http://localhost:3000>.
 
-| Скрипт | Что делает |
-|---|---|
-| `npm run dev` | Dev-сервер |
-| `npm run build` | Production-сборка |
-| `npm start` | Запуск собранного приложения |
-| `npm run lint` | ESLint |
+| Скрипт          | Что делает                   |
+| --------------- | ---------------------------- |
+| `npm run dev`   | Dev-сервер                   |
+| `npm run build` | Production-сборка            |
+| `npm start`     | Запуск собранного приложения |
+| `npm run lint`  | ESLint                       |
 
 Переменные окружения понадобятся только для формы-домофона — см. [`.env.example`](.env.example). Без них сайт работает, форма пишет в консоль.
 
 ## Структура
 
-```
+```text
 src/
   app/           роуты App Router
 design/          материалы дизайна (ниже)

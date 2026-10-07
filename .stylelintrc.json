@@ -1,0 +1,27 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "ignoreFiles": ["src/styles/tokens.css"],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "theme",
+          "source",
+          "utility",
+          "variant",
+          "custom-variant",
+          "apply",
+          "reference",
+          "plugin",
+          "config",
+          "tailwind"
+        ]
+      }
+    ],
+    "import-notation": null,
+    "color-hex-length": null,
+    "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global", "local"] }],
+    "property-no-unknown": [true, { "ignoreProperties": ["composes"] }]
+  }
+}
