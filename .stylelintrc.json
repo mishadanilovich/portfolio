@@ -1,6 +1,5 @@
 {
   "extends": ["stylelint-config-standard"],
-  "ignoreFiles": ["src/styles/tokens.css"],
   "rules": {
     "at-rule-no-unknown": [
       true,
@@ -21,7 +20,26 @@
     ],
     "import-notation": null,
     "color-hex-length": "long",
-    "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global", "local"] }],
-    "property-no-unknown": [true, { "ignoreProperties": ["composes"] }]
+    "color-function-notation": null,
+    "color-function-alias-notation": null,
+    "alpha-value-notation": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global", "local"]
+      }
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["composes"]
+      }
+    ],
+    "value-keyword-case": [
+      "lower",
+      {
+        "ignoreProperties": ["/^--font/"]
+      }
+    ]
   }
 }
