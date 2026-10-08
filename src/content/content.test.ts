@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { en } from './en';
 import { ru } from './ru';
@@ -46,6 +48,10 @@ describe.each(pairs)('словарь %s', (name, content) => {
       expect(project.href, project.slug).toMatch(/^https:\/\//);
       expect(project.achievements.length, project.slug).toBeGreaterThan(0);
     }
+  });
+
+  it('файл резюме лежит в public — иначе ссылка на сайте битая', () => {
+    expect(existsSync(join(process.cwd(), 'public', 'cv', content.cv.downloadName))).toBe(true);
   });
 
   it('ссылка на резюме ведёт на PDF своей локали', () => {
