@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Golos_Text, Literata } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { getContent, isLocale, locales } from '@/content';
+import { Scene } from '@/scene/Scene';
 import '../globals.css';
 
 const literata = Literata({
@@ -43,7 +44,10 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 
   return (
     <html lang={locale} className={`${literata.variable} ${golos.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Scene />
+        {children}
+      </body>
     </html>
   );
 }

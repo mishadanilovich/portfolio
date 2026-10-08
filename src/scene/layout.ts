@@ -139,6 +139,11 @@ export const MAX_COMPOSITION_WIDTH = DESIGN.viewportWidth;
 export const SCENE_LEFT = -DESIGN.offsetX / DESIGN.scale;
 export const SCENE_TOP = -260;
 export const SCENE_BOTTOM = 880;
+export const SCENE_WIDTH = VIEWPORT_UNITS;
+export const SCENE_HEIGHT = SCENE_BOTTOM - SCENE_TOP;
+export const SCENE_VIEW_BOX = `${SCENE_LEFT} ${SCENE_TOP} ${SCENE_WIDTH} ${SCENE_HEIGHT}`;
+export const FOCUS_ZOOM = 1.6;
+export const GROUND_BLEED = 40;
 
 export const GROUND_Y = 760;
 export const TOP_FLOOR = 6;
@@ -160,10 +165,15 @@ const WINDOW_TOP = 24;
 const WINDOW_GLOW_SPREAD = 20;
 
 const PLAQUE_GAP = 12;
-const PLAQUE_WIDTH = 128;
+const PLAQUE_WIDTH = 136;
+
+export const PLAQUE = {
+  width: PLAQUE_WIDTH,
+  bracketX: FACADE_X + FACADE_WIDTH,
+  anchorX: FACADE_X + FACADE_WIDTH + PLAQUE_GAP,
+} as const;
 
 const GROUND_DEPTH = SCENE_BOTTOM - GROUND_Y;
-const GROUND_BLEED = 40;
 
 interface FloorPlan {
   floor: number;
@@ -196,12 +206,10 @@ function slabOf(floor: number): Rect {
 }
 
 function plaqueAt(midline: number): Plaque {
-  const anchorX = FACADE_X + FACADE_WIDTH + PLAQUE_GAP;
-
   return {
-    anchor: { x: anchorX, y: midline },
-    width: PLAQUE_WIDTH,
-    bracket: { x1: FACADE_X + FACADE_WIDTH, x2: anchorX, y: midline },
+    anchor: { x: PLAQUE.anchorX, y: midline },
+    width: PLAQUE.width,
+    bracket: { x1: PLAQUE.bracketX, x2: PLAQUE.anchorX, y: midline },
   };
 }
 
