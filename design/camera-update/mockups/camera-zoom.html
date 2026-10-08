@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>Камера — приближение к дому</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&amp;family=Golos+Text:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#F4F0E8;font-family:'Golos Text',system-ui,sans-serif;color:#232938}
+</style>
+</head>
+<body>
+<div style="width: 1440px; height: 1500px; box-sizing: border-box; padding: 64px; background: #F4F0E8; color: #232938; display: flex; flex-direction: column; gap: 44px">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true"><defs>
+<linearGradient id="cz-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B6180"></stop><stop offset="1" stop-color="#2B3244"></stop></linearGradient>
+<g id="cz-house">
+<rect x="-200" y="720" width="1900" height="400" fill="#232835"></rect>
+<rect x="350" y="606" width="195" height="114" fill="#C4BCAE"></rect><rect x="374" y="633" width="138" height="87" fill="#6E7385"></rect><rect x="374" y="704" width="138" height="16" fill="#F2B45C"></rect>
+<rect x="560" y="-600" width="540" height="1320" fill="#CFC8BB"></rect>
+<g fill="#B3AB9C"><rect x="560" y="-180" width="540" height="7"></rect><rect x="560" y="-30" width="540" height="7"></rect><rect x="560" y="120" width="540" height="7"></rect><rect x="560" y="270" width="540" height="7"></rect><rect x="560" y="420" width="540" height="7"></rect><rect x="560" y="570" width="540" height="7"></rect></g>
+<rect x="560" y="577" width="540" height="143" fill="#BDB4A5"></rect>
+<g fill="#4A5268"><rect x="614" y="-144" width="72" height="84"></rect><rect x="734" y="-144" width="72" height="84"></rect><rect x="974" y="-144" width="72" height="84"></rect><rect x="614" y="6" width="72" height="84"></rect><rect x="854" y="6" width="72" height="84"></rect><rect x="974" y="6" width="72" height="84"></rect><rect x="734" y="156" width="72" height="84"></rect><rect x="854" y="156" width="72" height="84"></rect><rect x="974" y="156" width="72" height="84"></rect><rect x="614" y="306" width="72" height="84"></rect><rect x="734" y="306" width="72" height="84"></rect><rect x="974" y="306" width="72" height="84"></rect><rect x="614" y="456" width="72" height="84"></rect><rect x="734" y="456" width="72" height="84"></rect><rect x="854" y="456" width="72" height="84"></rect></g>
+<g fill="#F2B45C"><rect x="854" y="-144" width="72" height="84"></rect><rect x="734" y="6" width="72" height="84"></rect><rect x="614" y="156" width="72" height="84"></rect><rect x="854" y="306" width="72" height="84"></rect><rect x="974" y="456" width="72" height="84"></rect></g>
+<rect x="602" y="603" width="126" height="90" fill="#6E7A86"></rect><rect x="932" y="603" width="126" height="90" fill="#6E7A86"></rect>
+<rect x="770" y="606" width="120" height="114" fill="#3E3024"></rect><rect x="779" y="615" width="102" height="15" fill="#F2B45C"></rect><rect x="779" y="633" width="102" height="87" fill="#5A4636"></rect>
+<rect x="912" y="654" width="15" height="24" fill="#2E3548"></rect><circle cx="919" cy="663" r="4" fill="#F2B45C"></circle>
+<rect x="560" y="720" width="540" height="129" fill="#343A4B"></rect><rect x="740" y="760" width="150" height="6" fill="#2A2F3D"></rect><rect x="790" y="740" width="30" height="20" fill="#2E4A6E"></rect>
+<g fill="#2E3548"><rect x="1118" y="-12" width="192" height="60" rx="3"></rect><rect x="1118" y="138" width="192" height="60" rx="3"></rect><rect x="1118" y="288" width="192" height="60" rx="3"></rect><rect x="1118" y="438" width="192" height="60" rx="3"></rect><rect x="1118" y="754" width="192" height="60" rx="3"></rect></g>
+</g>
+<g id="cz-ui">
+<rect width="1440" height="72" fill="#232938"></rect>
+<rect x="40" y="18" width="36" height="36" rx="3" fill="none" stroke="#EDE8DF" stroke-width="3"></rect><rect x="92" y="22" width="190" height="14" rx="3" fill="#EDE8DF"></rect><rect x="92" y="44" width="150" height="10" rx="3" fill="#6B7390"></rect>
+<rect x="1110" y="16" width="200" height="40" rx="6" fill="#3A4258"></rect><rect x="1322" y="16" width="70" height="40" rx="6" fill="#F2B45C"></rect>
+<rect x="1386" y="250" width="44" height="380" rx="22" fill="#232938" fill-opacity="0.85"></rect>
+</g>
+</defs></svg>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: #4A5060">Доработка · камера</div>
+<h1 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 52px; font-weight: 500; line-height: 1.05">Приближение к дому</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #3A4052; max-width: 900px">Главный экран остаётся общим планом. Первое движение колеса — вверх или вниз — запускает «фокус»: текст уходит, камера наезжает на дом. Дальше скролл вверх ведёт по этажам уже на крупном плане.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<svg width="416" height="260" viewBox="0 0 1440 900" style="display: block; border-radius: 6px" aria-label="Общий план: дом целиком и текст первого экрана">
+<rect width="1440" height="900" fill="url(#cz-sky)"></rect>
+<use href="#cz-house"></use>
+<g fill="#EDE8DF"><rect x="72" y="150" width="200" height="14" rx="3" fill="#7FBF8F"></rect><rect x="72" y="190" width="420" height="52" rx="6"></rect><rect x="72" y="262" width="400" height="18" rx="4" fill="#D2CEC6"></rect></g>
+<rect x="72" y="310" width="220" height="48" rx="6" fill="#F2B45C"></rect><rect x="304" y="310" width="180" height="48" rx="6" fill="none" stroke="#8A92A8" stroke-width="2"></rect>
+<rect x="72" y="840" width="380" height="14" rx="3" fill="#C3C7D2"></rect>
+<use href="#cz-ui"></use>
+</svg>
+<div style="font-size: 18px; font-weight: 600">A · Общий план</div>
+<div style="font-size: 16px; line-height: 1.5; color: #3A4052">Первый экран как сейчас: масштаб 1, дом целиком в правой части, слева текст и кнопки, домофон мигает.</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<svg width="416" height="260" viewBox="0 0 1440 900" style="display: block; border-radius: 6px" aria-label="Переход: текст уходит, камера приближается">
+<rect width="1440" height="900" fill="url(#cz-sky)"></rect>
+<g transform="translate(760 740) scale(1.3) translate(-830 -720)"><use href="#cz-house"></use></g>
+<g fill="#EDE8DF" opacity="0.35" transform="translate(-24 0)"><rect x="72" y="150" width="200" height="14" rx="3" fill="#7FBF8F"></rect><rect x="72" y="190" width="420" height="52" rx="6"></rect><rect x="72" y="262" width="400" height="18" rx="4" fill="#D2CEC6"></rect><rect x="72" y="310" width="220" height="48" rx="6" fill="#F2B45C"></rect></g>
+<use href="#cz-ui"></use>
+</svg>
+<div style="font-size: 18px; font-weight: 600">Переход · 900 мс</div>
+<div style="font-size: 16px; line-height: 1.5; color: #3A4052">Текст гаснет и уезжает влево на 24 px за 300 мс. Параллельно камера наезжает от 1 до 1.6, якорь — центр входа на уровне земли. Небо и соседние дома движутся медленнее (параллакс 0.6).</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<svg width="416" height="260" viewBox="0 0 1440 900" style="display: block; border-radius: 6px" aria-label="Фокус: дом крупно, этажи в полный рост">
+<rect width="1440" height="900" fill="url(#cz-sky)"></rect>
+<g transform="translate(720 770) scale(1.6) translate(-830 -720)"><use href="#cz-house"></use></g>
+<rect x="520" y="830" width="400" height="36" rx="18" fill="#232938" fill-opacity="0.85"></rect><rect x="560" y="842" width="320" height="12" rx="3" fill="#C3C7D2"></rect>
+<use href="#cz-ui"></use>
+</svg>
+<div style="font-size: 18px; font-weight: 600">B · Фокус на доме</div>
+<div style="font-size: 16px; line-height: 1.5; color: #3A4052">Масштаб 1.6, дом по центру, в кадре вестибюль и подвал. Внизу на 3 с плашка «Листайте вверх — по этажам». Дальше скролл вверх поднимает камеру, масштаб не меняется.</div>
+</div>
+</div>
+
+<section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; font-weight: 500">Правила</h2>
+<ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.5">
+<li><b>Триггер A → B:</b> первое колесо в любую сторону, свайп, ↑ ↓, PgUp, PgDn, Пробел. Пока идёт переход, ввод не листает страницу.</li>
+<li><b>Возврат B → A:</b> камера внизу (вестибюль и подвал в кадре) и пользователь продолжает листать вниз — после порога около 120 px обратный переход, 700 мс.</li>
+<li><b>Клик по логотипу</b> — плавно вернуться в A из любой точки.</li>
+<li><b>Мини-карта из A:</b> сначала наезд, потом пролёт до этажа одной анимацией. Пункт «вход» ведёт в B у земли.</li>
+<li><b>Прямые ссылки</b> (#floor-3, #roof, #garage) открываются сразу в B на нужной высоте.</li>
+<li><b>Кнопки первого экрана</b> («Позвонить в домофон», «Скачать резюме») в A работают как обычно и не запускают наезд.</li>
+<li><b>Reduced motion:</b> без наезда и параллакса — кадр B появляется через затухание 150 мс.</li>
+</ul>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: Literata, Georgia, serif; font-size: 30px; font-weight: 500">Параметры</h2>
+<div style="display: grid; grid-template-columns: 220px 1fr; border-top: 2px solid #232938; font-size: 16px; line-height: 1.45">
+<div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4; color: #4A5060">Масштаб A / B</div><div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4">1 / 1.6 (на 1280–1440 по ширине)</div>
+<div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4; color: #4A5060">Якорь наезда</div><div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4">центр двери вестибюля; в B — по центру экрана, земля на 85 % высоты</div>
+<div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4; color: #4A5060">Длительность</div><div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4">A → B 900 мс · B → A 700 мс · текст 300 мс</div>
+<div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4; color: #4A5060">Кривая</div><div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4">easeInOut из tokens.json</div>
+<div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4; color: #4A5060">Параллакс</div><div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4">небо 0.3 · соседние дома 0.6 · дом 1</div>
+<div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4; color: #4A5060">Что остаётся в B</div><div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4">шапка, мини-карта, таблички этажей, мигание домофона</div>
+<div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4; color: #4A5060">Что уходит в B</div><div style="padding: 10px 0; border-bottom: 1px solid #D8D1C4">заголовок, описание, кнопки, подсказка первого визита, строка «Листайте…»</div>
+</div>
+</div>
+</section>
+</div>
+</body>
+</html>
