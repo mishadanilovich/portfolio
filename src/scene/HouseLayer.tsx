@@ -223,16 +223,20 @@ function Roof() {
 
   return (
     <g>
-      <rect x="340" y="16" width="180" height="56" rx="3" fill="var(--color-dusk)" />
-      <rect {...sign} rx="3" fill="url(#scene-halo)" fillOpacity="0.35" />
-      <g fill="var(--color-dusk)">
-        {masts.map((mast) => (
-          <rect key={mast.x} {...mast} />
-        ))}
-      </g>
-      <g stroke="#3a3f4d" strokeWidth="1.4" fill="none">
-        <path d="M328 148L320 128M328 148L336 128M328 148V130" />
-      </g>
+      <rect {...parapet} fill="#c9c1b3" />
+      <rect
+        x={parapet.x}
+        y={parapet.y}
+        width={parapet.width}
+        height="2"
+        fill="var(--color-border)"
+      />
+
+      <rect {...stairHut} fill="var(--color-border)" />
+      <rect {...stairHutCap} fill="var(--color-slab)" />
+      <rect {...stairHutDoor} fill="var(--color-lamp)" />
+      <rect {...stairHutWindow} fill="#7c8aa0" />
+
       <path d="M290 100Q325 114 360 96" fill="none" stroke="#5a5f70" strokeWidth="0.6" />
       <g fill="var(--color-lamp-text)">
         <circle cx="300" cy="104" r="1.6" />
@@ -241,12 +245,47 @@ function Roof() {
         <circle cx="336" cy="106" r="1.6" />
         <circle cx="348" cy="102" r="1.6" />
       </g>
-      <rect {...stairHutCap} fill="var(--color-slab)" />
-      <rect {...stairHut} fill="var(--color-facade)" />
-      <rect {...stairHutDoor} fill="var(--color-lamp)" />
-      <rect {...stairHutWindow} fill="var(--color-window-glass)" />
-      <rect {...parapet} fill="var(--color-slab)" />
-      <rect x={parapet.x} y={parapet.y} width={parapet.width} height="2" fill="#d8d1c4" />
+
+      <g fill="var(--color-dusk)">
+        {masts.map((mast) => (
+          <rect key={mast.x} {...mast} />
+        ))}
+      </g>
+      <rect {...sign} rx="3" fill="var(--color-dusk)" />
+      <rect {...sign} rx="3" fill="url(#scene-halo)" fillOpacity="0.35" />
+
+      <g stroke="#3a3f4d" strokeWidth="1.4" fill="none">
+        <path d="M328 148L320 128M328 148L336 128M328 148V130" />
+      </g>
+      <rect
+        x="318"
+        y="114"
+        width="26"
+        height="7"
+        rx="3"
+        fill="#3a3f4d"
+        transform="rotate(-30 328 122)"
+      />
+
+      <path d="M300 148L302 136H316L318 148Z" fill="var(--color-slab)" />
+      <path
+        d="M309 136C305 126 300 124 296 122C302 122 306 126 308 130C308 124 312 118 320 116C314 122 311 128 310 136Z"
+        fill="#5e7d5e"
+      />
+      <path
+        d="M392 148V136H462V148M396 136V128H458V136"
+        fill="none"
+        stroke="#6b5440"
+        strokeWidth="2.5"
+      />
+
+      <rect x="540" y="100" width="18" height="48" fill="#c9c1b3" />
+      <g fill="var(--color-white)" fillOpacity="0.7">
+        <circle cx="549" cy="88" r="6" />
+        <circle cx="556" cy="72" r="8" />
+        <circle cx="566" cy="52" r="10" fillOpacity="0.45" />
+      </g>
+      <path d="M530 148V76M522 86H538M524 96H536" stroke="#5a5f70" strokeWidth="1.2" />
     </g>
   );
 }

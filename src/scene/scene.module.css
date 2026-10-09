@@ -3,21 +3,50 @@
   inset: 0;
   container-type: inline-size;
   overflow: hidden;
+  overscroll-behavior: none;
   background: var(--color-sky-bottom-end);
 }
 
+.viewport[data-camera='focus'] {
+  overflow: hidden auto;
+  scroll-snap-type: y mandatory;
+}
+
 .camera {
-  --zoom: 1.6;
-  --u: calc(clamp(1280px, 100cqw, 1440px) / 960);
   --u-focus: calc(var(--u) * var(--zoom));
 
+  position: relative;
+  width: var(--scene-w);
+  height: var(--scene-h);
+  transform: translateX(var(--camera-x));
+  transform-origin: 0 0;
+}
+
+.viewport[data-camera='overview'] .camera {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: calc(960 * var(--u-focus));
-  height: calc(1140 * var(--u-focus));
-  transform: scale(calc(1 / var(--zoom)));
-  transform-origin: 0 100%;
+  transform: translate(var(--overview-x), var(--overview-y)) scale(var(--overview-scale));
+}
+
+.band {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  scroll-snap-align: center;
+  pointer-events: none;
+}
+
+.below {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: var(--below-h);
+  background: var(--color-ground);
+}
+
+.viewport[data-camera='overview'] .below {
+  display: none;
 }
 
 .layer {
@@ -48,7 +77,20 @@
 }
 
 .day-group {
+  animation: sky-rise linear both;
+  animation-timeline: scroll(nearest block);
+  animation-range: var(--sky-start) var(--sky-end);
   opacity: 0;
+}
+
+@keyframes sky-rise {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 .ground {

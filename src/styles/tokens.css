@@ -103,4 +103,6 @@
   --motion-fly-in: 700ms;
   --motion-intercom-pulse: 2400ms;
   --motion-window-breath: 5000ms;
+  --motion-ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --motion-ease-in-out: cubic-bezier(0.6, 0, 0.3, 1);
 }

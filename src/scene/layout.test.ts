@@ -9,6 +9,12 @@ import {
   SCENE_BOTTOM,
   SCENE_TOP,
   TOP_FLOOR,
+  LEVELS,
+  LANDING_LEVEL,
+  BOTTOM_ANCHOR,
+  FOCUS_CENTER,
+  HOUSE_CENTER,
+  PLAQUE,
   type Rect,
 } from './layout';
 
@@ -244,5 +250,60 @@ describe('сверка с макетом ru/01', () => {
     expect(HOUSE.entrance.door).toMatchObject({ x: 340, y: 684, width: 80 });
     expect(HOUSE.entrance.intercom.button.center).toEqual({ x: 439, y: 722 });
     expect(findFloor(5)?.plaque.anchor.x).toBe(572);
+  });
+});
+
+describe('уровни камеры', () => {
+  it('ведёт восемь уровней сверху вниз', () => {
+    expect(LEVELS.map((level) => level.id)).toEqual([
+      'roof',
+      'floor-6',
+      'floor-5',
+      'floor-4',
+      'floor-3',
+      'floor-2',
+      'entrance',
+      'basement',
+    ]);
+  });
+
+  it('кладёт полосы уровней встык, без разрывов и перекрытий', () => {
+    LEVELS.forEach((level, index) => {
+      const next = LEVELS[index + 1];
+      if (next === undefined) return;
+
+      expect(next.band.y).toBe(level.band.y + level.band.height);
+    });
+  });
+
+  it('ставит якорь в середину полосы, и якоря растут сверху вниз', () => {
+    LEVELS.forEach((level, index) => {
+      expect(level.anchor).toBe(level.band.y + level.band.height / 2);
+
+      const next = LEVELS[index + 1];
+      if (next !== undefined) expect(next.anchor).toBeGreaterThan(level.anchor);
+    });
+  });
+
+  it('даёт каждому этажу свой уровень по его средней линии', () => {
+    for (const floor of HOUSE.floors) {
+      const level = LEVELS.find((candidate) => candidate.floor === floor.floor);
+
+      expect(level).toBeDefined();
+      expect(Math.abs((level?.anchor ?? 0) - floor.midline)).toBeLessThanOrEqual(1.5);
+    }
+  });
+
+  it('начинает подъём с входа, а заканчивает спуск подвалом', () => {
+    expect(LANDING_LEVEL).toBe('entrance');
+    expect(LEVELS[LEVELS.length - 1]?.id).toBe('basement');
+    expect(BOTTOM_ANCHOR).toBe(HOUSE.basement.rect.y + HOUSE.basement.rect.height / 2);
+  });
+
+  it('центрирует крупный план по блоку «фасад и табличка», а не по дому', () => {
+    const plaqueRight = PLAQUE.anchorX + PLAQUE.width;
+
+    expect(FOCUS_CENTER).toBe((HOUSE.facade.x + plaqueRight) / 2);
+    expect(FOCUS_CENTER).toBeGreaterThan(HOUSE_CENTER);
   });
 });

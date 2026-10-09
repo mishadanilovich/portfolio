@@ -87,6 +87,16 @@ export interface RoofGeometry {
   sign: Rect;
 }
 
+export type LevelId =
+  'roof' | 'floor-6' | 'floor-5' | 'floor-4' | 'floor-3' | 'floor-2' | 'entrance' | 'basement';
+
+export interface Level {
+  id: LevelId;
+  band: Rect;
+  anchor: number;
+  floor: number | null;
+}
+
 export interface HouseGeometry {
   facade: Rect;
   shade: Rect;
@@ -351,6 +361,48 @@ function buildHouse(): HouseGeometry {
 }
 
 export const HOUSE: HouseGeometry = buildHouse();
+
+function band(id: LevelId, y: number, height: number, floor: number | null): Level {
+  return {
+    id,
+    band: { x: FACADE_X, y, width: FACADE_WIDTH, height },
+    anchor: y + height / 2,
+    floor,
+  };
+}
+
+function buildLevels(): Level[] {
+  const roofTop = HOUSE.roof.sign.y;
+
+  return [
+    band('roof', roofTop, floorTop(TOP_FLOOR) - roofTop, null),
+    band('floor-6', floorTop(6), FLOOR_HEIGHT, 6),
+    band('floor-5', floorTop(5), FLOOR_HEIGHT, 5),
+    band('floor-4', floorTop(4), FLOOR_HEIGHT, 4),
+    band('floor-3', floorTop(3), FLOOR_HEIGHT, 3),
+    band('floor-2', floorTop(2), FLOOR_HEIGHT, 2),
+    band('entrance', floorTop(1), FLOOR_HEIGHT, null),
+    band('basement', HOUSE.basement.rect.y, HOUSE.basement.rect.height, null),
+  ];
+}
+
+export const LEVELS: Level[] = buildLevels();
+
+export const LANDING_LEVEL: LevelId = 'entrance';
+
+export const DAY_LEVEL: LevelId = 'roof';
+
+export const DUSK_LEVEL: LevelId = 'floor-3';
+
+export const BOTTOM_ANCHOR: number = LEVELS[LEVELS.length - 1]?.anchor ?? SCENE_BOTTOM;
+
+export const HOUSE_CENTER: number = HOUSE.facade.x + HOUSE.facade.width / 2;
+
+export const FOCUS_CENTER: number = (HOUSE.facade.x + PLAQUE.anchorX + PLAQUE.width) / 2;
+
+export function findLevel(id: LevelId): Level | undefined {
+  return LEVELS.find((level) => level.id === id);
+}
 
 export function createSceneLayout(viewport: Viewport): SceneLayout {
   const compositionWidth = clamp(viewport.width, MIN_COMPOSITION_WIDTH, MAX_COMPOSITION_WIDTH);
