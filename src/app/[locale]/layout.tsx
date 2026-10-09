@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Golos_Text, Literata } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { getContent, isLocale, locales } from '@/content';
+import { SiteHeader } from '@/components/SiteHeader';
+import { LANDING_LEVEL } from '@/scene/layout';
 import { Scene } from '@/scene/Scene';
 import '../globals.css';
 
@@ -44,8 +46,9 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
 
   return (
     <html lang={locale} className={`${literata.variable} ${golos.variable}`}>
-      <body>
+      <body data-camera="overview" data-level={LANDING_LEVEL}>
         <Scene />
+        <SiteHeader />
         {children}
       </body>
     </html>

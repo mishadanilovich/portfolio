@@ -283,6 +283,7 @@ export const ru: Content = {
     header: {
       nav: 'Основная навигация',
       language: 'Язык',
+      overview: 'Весь дом',
       garage: 'Гараж',
       cv: 'Резюме',
       call: 'Позвонить',

@@ -283,6 +283,7 @@ export const en: Content = {
     header: {
       nav: 'Main navigation',
       language: 'Language',
+      overview: 'Whole house',
       garage: 'Garage',
       cv: 'Resume',
       call: 'Call',

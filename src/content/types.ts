@@ -72,6 +72,7 @@ export interface Ui {
   header: {
     nav: string;
     language: string;
+    overview: string;
     garage: string;
     cv: string;
     call: string;

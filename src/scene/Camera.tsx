@@ -10,15 +10,14 @@ import {
   SCENE_TOP,
   SCENE_WIDTH,
   findLevel,
-  type LevelId,
 } from './layout';
+import { onOverviewRequest } from './camera-events';
 import styles from './scene.module.css';
 import { cameraVars, OVERVIEW_SCALE, size, top } from './units';
 
 const ZOOM_IN = 900;
 const ZOOM_OUT = 700;
 const REDUCED_FADE = 150;
-const RETURN_THRESHOLD = 120;
 const INERTIA_GUARD = 150;
 
 const WAKE_KEYS = new Set(['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', ' ', 'Spacebar']);
@@ -45,7 +44,6 @@ export function Camera({ children }: { children: ReactNode }) {
     if (viewport === null || camera === null) return;
 
     let mode: Mode = 'overview';
-    let returnDelta = 0;
     let unlockTimer = 0;
     let running: Animation | null = null;
 
@@ -59,8 +57,8 @@ export function Camera({ children }: { children: ReactNode }) {
 
     const setMode = (next: Mode) => {
       mode = next;
-      viewport.dataset.camera = next;
-      if (next === 'overview') viewport.dataset.level = LANDING_LEVEL;
+      document.body.dataset.camera = next;
+      if (next === 'overview') document.body.dataset.level = LANDING_LEVEL;
     };
 
     const scrollTopFor = (anchor: number) =>
@@ -115,7 +113,6 @@ export function Camera({ children }: { children: ReactNode }) {
     const zoomIn = () => {
       setMode('transition');
       viewport.scrollTop = scrollTopFor(findLevel(LANDING_LEVEL)?.anchor ?? 0);
-      returnDelta = 0;
 
       if (reduced.matches) {
         fade(() => setMode('focus'));
@@ -126,8 +123,11 @@ export function Camera({ children }: { children: ReactNode }) {
     };
 
     const zoomOut = () => {
+      if (mode === 'overview') return;
+
+      window.clearTimeout(unlockTimer);
+      unlockTimer = 0;
       setMode('transition');
-      returnDelta = 0;
 
       if (reduced.matches) {
         fade(() => setMode('overview'));
@@ -137,24 +137,9 @@ export function Camera({ children }: { children: ReactNode }) {
       travel(focusTransform(), overviewTransform(), ZOOM_OUT, () => setMode('overview'));
     };
 
-    const onWheel = (event: WheelEvent) => {
-      if (mode === 'overview') {
-        zoomIn();
-        return;
-      }
-
-      if (mode === 'transition') {
-        if (unlockTimer !== 0) unlockSoon();
-        return;
-      }
-
-      if (event.deltaY > 0 && viewport.scrollTop >= scrollMax() - 1) {
-        returnDelta += event.deltaY;
-        if (returnDelta >= RETURN_THRESHOLD) zoomOut();
-        return;
-      }
-
-      returnDelta = 0;
+    const onWheel = () => {
+      if (mode === 'overview') zoomIn();
+      else if (mode === 'transition' && unlockTimer !== 0) unlockSoon();
     };
 
     const onTouchMove = () => {
@@ -173,7 +158,7 @@ export function Camera({ children }: { children: ReactNode }) {
 
         for (const entry of entries) {
           const id = entry.target.getAttribute('data-band');
-          if (entry.isIntersecting && id !== null) viewport.dataset.level = id;
+          if (entry.isIntersecting && id !== null) document.body.dataset.level = id;
         }
       },
       { root: viewport, rootMargin: '-50% 0px -50% 0px' },
@@ -181,11 +166,14 @@ export function Camera({ children }: { children: ReactNode }) {
 
     for (const element of viewport.querySelectorAll('[data-band]')) observer.observe(element);
 
+    const stopListening = onOverviewRequest(zoomOut);
+
     viewport.addEventListener('wheel', onWheel, { passive: true });
     viewport.addEventListener('touchmove', onTouchMove, { passive: true });
     window.addEventListener('keydown', onKeyDown);
 
     return () => {
+      stopListening();
       observer.disconnect();
       viewport.removeEventListener('wheel', onWheel);
       viewport.removeEventListener('touchmove', onTouchMove);
@@ -196,12 +184,7 @@ export function Camera({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <div
-      ref={viewportRef}
-      className={styles.viewport}
-      data-camera="overview"
-      data-level={LANDING_LEVEL satisfies LevelId}
-    >
+    <div ref={viewportRef} className={styles.viewport}>
       <div ref={cameraRef} className={styles.camera} style={cameraVars() as CSSProperties}>
         {children}
 

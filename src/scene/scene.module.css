@@ -7,7 +7,7 @@
   background: var(--color-sky-bottom-end);
 }
 
-.viewport[data-camera='focus'] {
+:global(body[data-camera='focus']) .viewport {
   overflow: hidden auto;
   scroll-snap-type: y mandatory;
 }
@@ -22,7 +22,7 @@
   transform-origin: 0 0;
 }
 
-.viewport[data-camera='overview'] .camera {
+:global(body[data-camera='overview']) .camera {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -45,7 +45,7 @@
   background: var(--color-ground);
 }
 
-.viewport[data-camera='overview'] .below {
+:global(body[data-camera='overview']) .below {
   display: none;
 }
 
