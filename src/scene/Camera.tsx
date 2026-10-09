@@ -49,7 +49,7 @@ export function Camera({ children }: { children: ReactNode }) {
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     const easing =
-      getComputedStyle(document.documentElement).getPropertyValue('--motion-ease-in-out').trim() ||
+      getComputedStyle(document.documentElement).getPropertyValue('--ease-in-out').trim() ||
       'ease-in-out';
 
     const unit = () => camera.offsetWidth / SCENE_WIDTH;
