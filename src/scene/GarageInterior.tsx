@@ -1,6 +1,6 @@
 export function GarageInterior() {
   return (
-    <g>
+    <g clipPath="url(#scene-garage-opening)">
       <rect x="76" y="710.3" width="92" height="49.7" fill="#5c4632" />
       <circle cx="122" cy="744.4" r="55.2" fill="url(#scene-halo)" />
       <rect x="76" y="757.2" width="92" height="2.8" fill="#3e3024" />

@@ -12,6 +12,10 @@ export function SceneDefs() {
           <stop offset="1" stopColor="#efa94e" />
         </radialGradient>
 
+        <clipPath id="scene-garage-opening">
+          <rect x="76" y="702" width="92" height="58" />
+        </clipPath>
+
         <symbol id="scene-window-cold" viewBox="0 0 48 56">
           <rect width="48" height="56" fill="var(--color-window-glass)" />
           <path d="M4 40L30 4H40L10 48Z" fill="var(--color-white)" fillOpacity="0.07" />

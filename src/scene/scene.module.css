@@ -445,7 +445,7 @@
 }
 
 .garage-slit {
-  transition: opacity var(--motion-medium) var(--ease-out);
+  transition: opacity var(--motion-fast) var(--ease-out);
 }
 
 :global(body[data-focus='garage']) .garage-slit {
