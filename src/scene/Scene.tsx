@@ -1,12 +1,13 @@
 import { AtmosphereLayer } from './AtmosphereLayer';
 import { BackdropLayer } from './BackdropLayer';
 import { Camera } from './Camera';
-import { FloorOverlay } from './FloorOverlay';
+
 import { HouseLayer } from './HouseLayer';
 import { ObjectsLayer } from './ObjectsLayer';
 import { Plaques } from './Plaques';
 import { SceneDefs } from './SceneDefs';
 import { SkyLayer } from './SkyLayer';
+import { StateOverlay } from './StateOverlay';
 
 export function Scene() {
   return (
@@ -16,7 +17,7 @@ export function Scene() {
         <SkyLayer />
         <BackdropLayer />
         <HouseLayer />
-        <FloorOverlay />
+        <StateOverlay />
         <AtmosphereLayer />
         <ObjectsLayer />
         <Plaques />

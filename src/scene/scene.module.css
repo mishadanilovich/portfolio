@@ -302,3 +302,71 @@
 .glow[data-state='focused'] {
   transform: scale(1.35);
 }
+
+.leaf,
+.spill,
+.ring {
+  opacity: 0;
+  transition: opacity 350ms var(--ease-out);
+}
+
+.spill {
+  transition: opacity var(--motion-fast) var(--ease-out) 350ms;
+}
+
+:global(body[data-focus='door']) .leaf,
+:global(body[data-focus='door']) .spill,
+:global(body[data-focus='door']) .ring {
+  opacity: 1;
+}
+
+:global(body[data-focus='door']) .pulse,
+:global(body[data-focus='door']) .led {
+  opacity: 0;
+  animation: none;
+}
+
+.tooltip {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.5 * var(--u-focus));
+  padding: calc(7 * var(--u-focus)) calc(9 * var(--u-focus));
+  border: 1px solid var(--color-hover-outline);
+  border-radius: var(--radius-control);
+  background: var(--color-dark);
+  box-shadow: var(--shadow-tooltip);
+  opacity: 0;
+  transition: opacity var(--motion-fast) var(--ease-out);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tooltip::before {
+  position: absolute;
+  top: calc(13 * var(--u-focus));
+  left: calc(-4 * var(--u-focus));
+  width: calc(7 * var(--u-focus));
+  height: calc(7 * var(--u-focus));
+  border-bottom: 1px solid var(--color-hover-outline);
+  border-left: 1px solid var(--color-hover-outline);
+  background: var(--color-dark);
+  content: '';
+  transform: rotate(45deg);
+}
+
+.tooltip-title {
+  font-size: calc(11 * var(--u-focus));
+  font-weight: 600;
+  line-height: normal;
+}
+
+.tooltip-action {
+  color: var(--color-lamp-text);
+  font-size: calc(10 * var(--u-focus));
+  line-height: normal;
+}
+
+:global(body[data-focus='door']) .tooltip {
+  opacity: 1;
+}

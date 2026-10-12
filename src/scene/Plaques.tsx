@@ -71,6 +71,11 @@ export async function Plaques() {
         );
       })}
 
+      <div className={styles.tooltip} style={{ left: left(456), top: top(694.67) }} role="tooltip">
+        <span className={styles['tooltip-title']}>{content.ui.scene.doorTooltipTitle}</span>
+        <span className={styles['tooltip-action']}>{content.ui.scene.doorTooltipAction}</span>
+      </div>
+
       <Plaque
         ground
         midline={HOUSE.basement.plaque.anchor.y}
