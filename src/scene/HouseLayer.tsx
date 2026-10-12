@@ -202,7 +202,12 @@ function Garage() {
       <rect {...body} fill="#c4bcae" />
       <rect {...gate} fill="var(--color-frame-wood)" />
       <GarageInterior />
-      <rect {...lightStrip} fill="var(--color-lamp)" fillOpacity="0.8" />
+      <rect
+        className={styles['garage-slit']}
+        {...lightStrip}
+        fill="var(--color-lamp)"
+        fillOpacity="0.8"
+      />
     </g>
   );
 }
