@@ -46,10 +46,10 @@ function Door() {
         <rect x="381" y="702" width="33" height="55" fill="#fbda96" />
         <path d="M386 757V750H396V740H406V730H414" fill="none" stroke="#e0b368" strokeWidth="1.5" />
 
-        <path d="M414 702L403 706V753L414 757Z" fill="#5a4636" />
+        <path d="M414 702L403 707V757L414 757Z" fill="#5a4636" />
         <path d="M405 713L412 711V733L405 731Z" fill="var(--color-lamp)" fillOpacity="0.45" />
         <circle cx="405.5" cy="739" r="0.9" fill="#c9a060" />
-        <path d="M414 702L403 706V753L414 757Z" fill="#000000" fillOpacity="0.28" />
+        <path d="M414 702L403 707V757L414 757Z" fill="#000000" fillOpacity="0.28" />
       </g>
 
       <rect className={styles.spill} x="336" y="757" width="88" height="3" fill="#e8cc90" />

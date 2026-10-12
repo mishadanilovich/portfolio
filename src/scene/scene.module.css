@@ -312,13 +312,17 @@
 }
 
 .spill {
-  transition: opacity var(--motion-fast) var(--ease-out) 350ms;
+  transition: opacity 150ms var(--ease-out);
 }
 
 :global(body[data-focus='door']) .leaf,
-:global(body[data-focus='door']) .spill,
 :global(body[data-focus='door']) .ring {
   opacity: 1;
+}
+
+:global(body[data-focus='door']) .spill {
+  opacity: 1;
+  transition: opacity var(--motion-fast) var(--ease-out) 350ms;
 }
 
 :global(body[data-focus='door']) .pulse,
@@ -471,11 +475,14 @@
   opacity: 0;
   transform: scale(0.8);
   transition:
-    opacity var(--motion-fast) var(--ease-out) 350ms,
-    transform var(--motion-medium) var(--ease-out) 350ms;
+    opacity 150ms var(--ease-out),
+    transform 150ms var(--ease-out);
 }
 
 :global(body[data-focus='door']) .door-spill {
   opacity: 1;
   transform: scale(1);
+  transition:
+    opacity var(--motion-fast) var(--ease-out) 350ms,
+    transform var(--motion-medium) var(--ease-out) 350ms;
 }
