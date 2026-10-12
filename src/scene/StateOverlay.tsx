@@ -42,16 +42,13 @@ function Door() {
         height="10"
         fill="var(--color-lamp-bright)"
       />
-      <rect className={styles.spill} x="381" y="702" width="33" height="58" fill="#fbda96" />
-      <path
-        className={styles.spill}
-        d="M386 760V750H396V740H406V730H414"
-        fill="none"
-        stroke="#e0b368"
-        strokeWidth="1.5"
-      />
       <rect className={styles.spill} x="336" y="757" width="88" height="3" fill="#e8cc90" />
-      <path className={styles.leaf} d="M414 702L403 706V756L414 760Z" fill="#4a3a2c" />
+
+      <g className={styles.leaf}>
+        <rect x="381" y="702" width="33" height="58" fill="#fbda96" />
+        <path d="M386 760V750H396V740H406V730H414" fill="none" stroke="#e0b368" strokeWidth="1.5" />
+        <path d="M414 702L403 706V756L414 760Z" fill="#4a3a2c" />
+      </g>
       <circle
         className={styles.ring}
         cx={button.center.x}
