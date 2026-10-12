@@ -330,9 +330,9 @@ export function HouseLayer() {
         className={styles['garage-light']}
         style={{
           left: left(64),
-          top: top(757),
+          top: top(702),
           width: size(116),
-          height: size(10),
+          height: size(116),
         }}
       />
     </div>

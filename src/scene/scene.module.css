@@ -400,11 +400,13 @@
 .garage-light {
   position: absolute;
   border-radius: 50%;
-  background: var(--color-lamp-text);
-  opacity: 0.28;
-  transition:
-    transform var(--motion-medium) var(--ease-out),
-    opacity var(--motion-medium) var(--ease-out);
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-lamp-text) 35%, transparent),
+    transparent
+  );
+  clip-path: inset(50% 0 0);
+  transition: transform var(--motion-medium) var(--ease-out);
 }
 
 :global(body[data-focus='garage']) .gate {
@@ -412,8 +414,7 @@
 }
 
 :global(body[data-focus='garage']) .garage-light {
-  opacity: 0.4;
-  transform: scale(1.3);
+  transform: scale(1.33);
 }
 
 .basement-lamp {
