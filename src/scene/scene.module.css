@@ -322,7 +322,7 @@
 
 :global(body[data-focus='door']) .spill {
   opacity: 1;
-  transition: opacity var(--motion-fast) var(--ease-out) 350ms;
+  transition: opacity var(--motion-fast) var(--ease-out) 180ms;
 }
 
 :global(body[data-focus='door']) .pulse,
@@ -483,6 +483,24 @@
   opacity: 1;
   transform: scale(1);
   transition:
-    opacity var(--motion-fast) var(--ease-out) 350ms,
-    transform var(--motion-medium) var(--ease-out) 350ms;
+    opacity var(--motion-fast) var(--ease-out) 180ms,
+    transform var(--motion-medium) var(--ease-out) 180ms;
+}
+
+.door-sill {
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    transparent 22%,
+    var(--color-lamp-bright) 52%,
+    var(--color-lamp-bright) 88%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 150ms var(--ease-out);
+}
+
+:global(body[data-focus='door']) .door-sill {
+  opacity: 1;
+  transition: opacity var(--motion-fast) var(--ease-out) 180ms;
 }

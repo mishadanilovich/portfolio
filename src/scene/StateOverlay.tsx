@@ -52,7 +52,6 @@ function Door() {
         <path d="M414 702L403 707V757L414 757Z" fill="#000000" fillOpacity="0.28" />
       </g>
 
-      <rect className={styles.spill} x="336" y="757" width="88" height="3" fill="#e8cc90" />
       <circle
         className={styles.ring}
         cx={button.center.x}
@@ -92,6 +91,11 @@ function Basement() {
 export function StateOverlay() {
   return (
     <div className={styles.layer}>
+      <div
+        className={styles['door-sill']}
+        style={{ left: left(336), top: top(757), width: size(88), height: size(3) }}
+      />
+
       <div
         className={styles['door-spill']}
         style={{ left: left(349), top: top(680), width: size(96), height: size(96) }}
