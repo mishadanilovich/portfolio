@@ -1,5 +1,6 @@
 import { HOUSE, SCENE_VIEW_BOX } from './layout';
 import styles from './scene.module.css';
+import { left, size, top } from './units';
 
 function Floors() {
   return HOUSE.floors.map((floor) => (
@@ -33,7 +34,6 @@ function Door() {
 
   return (
     <g data-object="door">
-      <circle className={styles.spill} cx="397" cy="728" r="48" fill="url(#scene-halo)" />
       <rect
         className={styles.spill}
         x="346"
@@ -42,13 +42,17 @@ function Door() {
         height="10"
         fill="var(--color-lamp-bright)"
       />
-      <rect className={styles.spill} x="336" y="757" width="88" height="3" fill="#e8cc90" />
-
       <g className={styles.leaf}>
-        <rect x="381" y="702" width="33" height="58" fill="#fbda96" />
-        <path d="M386 760V750H396V740H406V730H414" fill="none" stroke="#e0b368" strokeWidth="1.5" />
-        <path d="M414 702L403 706V756L414 760Z" fill="#4a3a2c" />
+        <rect x="381" y="702" width="33" height="55" fill="#fbda96" />
+        <path d="M386 757V750H396V740H406V730H414" fill="none" stroke="#e0b368" strokeWidth="1.5" />
+
+        <path d="M414 702L403 706V753L414 757Z" fill="#5a4636" />
+        <path d="M405 713L412 711V733L405 731Z" fill="var(--color-lamp)" fillOpacity="0.45" />
+        <circle cx="405.5" cy="739" r="0.9" fill="#c9a060" />
+        <path d="M414 702L403 706V753L414 757Z" fill="#000000" fillOpacity="0.28" />
       </g>
+
+      <rect className={styles.spill} x="336" y="757" width="88" height="3" fill="#e8cc90" />
       <circle
         className={styles.ring}
         cx={button.center.x}
@@ -88,6 +92,11 @@ function Basement() {
 export function StateOverlay() {
   return (
     <div className={styles.layer}>
+      <div
+        className={styles['door-spill']}
+        style={{ left: left(349), top: top(680), width: size(96), height: size(96) }}
+      />
+
       <svg className={styles.layer} viewBox={SCENE_VIEW_BOX} aria-hidden="true">
         <Floors />
         <Door />
