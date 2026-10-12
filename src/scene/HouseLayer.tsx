@@ -1,6 +1,8 @@
 import { GlowLayer } from './GlowLayer';
+import { GarageInterior } from './GarageInterior';
 import { HOUSE, SCENE_VIEW_BOX } from './layout';
 import styles from './scene.module.css';
+import { left, size, top } from './units';
 
 const WINDOW_SYMBOL = {
   cold: '#scene-window-cold',
@@ -199,11 +201,8 @@ function Garage() {
       <rect {...lintel} fill="var(--color-slab)" />
       <rect {...body} fill="#c4bcae" />
       <rect {...gate} fill="var(--color-frame-wood)" />
+      <GarageInterior />
       <rect {...lightStrip} fill="var(--color-lamp)" fillOpacity="0.8" />
-      <rect x="76" y="702" width="92" height="46" fill="#6e7385" />
-      <path d="M76 712H168M76 722H168M76 732H168M76 742H168" stroke="#5a5f70" />
-      <rect x="76" y="746" width="92" height="2" fill="#4a4f60" />
-      <ellipse cx="122" cy="762" rx="58" ry="5" fill="var(--color-lamp-text)" fillOpacity="0.28" />
     </g>
   );
 }
@@ -309,6 +308,28 @@ export function HouseLayer() {
         <Garage />
         <Lantern />
       </svg>
+
+      <div
+        className={styles['gate-clip']}
+        style={{
+          left: left(76),
+          top: top(702),
+          width: size(92),
+          height: size(46),
+        }}
+      >
+        <div className={styles.gate} />
+      </div>
+
+      <div
+        className={styles['garage-light']}
+        style={{
+          left: left(64),
+          top: top(757),
+          width: size(116),
+          height: size(10),
+        }}
+      />
     </div>
   );
 }

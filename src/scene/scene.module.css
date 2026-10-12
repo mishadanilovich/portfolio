@@ -367,6 +367,50 @@
   line-height: normal;
 }
 
-:global(body[data-focus='door']) .tooltip {
+.tooltip-garage {
+  transform: translateY(-100%);
+}
+
+.tooltip-garage::before {
+  display: none;
+}
+
+:global(body[data-focus='door']) .tooltip:not(.tooltip-garage),
+:global(body[data-focus='garage']) .tooltip-garage {
   opacity: 1;
+}
+
+.gate-clip {
+  position: absolute;
+  overflow: hidden;
+}
+
+.gate {
+  width: 100%;
+  height: 100%;
+  border-bottom: calc(2 * var(--u-focus)) solid #4a4f60;
+  background: repeating-linear-gradient(
+    #6e7385 0 calc(9 * var(--u-focus)),
+    #5a5f70 calc(9 * var(--u-focus)) calc(10 * var(--u-focus))
+  );
+  transition: transform var(--motion-medium) var(--ease-out);
+}
+
+.garage-light {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-lamp-text);
+  opacity: 0.28;
+  transition:
+    transform var(--motion-medium) var(--ease-out),
+    opacity var(--motion-medium) var(--ease-out);
+}
+
+:global(body[data-focus='garage']) .gate {
+  transform: translateY(-55%);
+}
+
+:global(body[data-focus='garage']) .garage-light {
+  opacity: 0.4;
+  transform: scale(1.3);
 }
