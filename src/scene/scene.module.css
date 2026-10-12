@@ -446,9 +446,16 @@
 }
 
 .garage-slit {
-  transition: opacity var(--motion-fast) var(--ease-out);
+  position: absolute;
+  background: var(--color-lamp);
+  opacity: 0.8;
+  transform-origin: bottom;
+  transition:
+    transform var(--motion-medium) var(--ease-out),
+    opacity var(--motion-medium) var(--ease-out);
 }
 
 :global(body[data-focus='garage']) .garage-slit {
   opacity: 0;
+  transform: scaleY(3.1);
 }

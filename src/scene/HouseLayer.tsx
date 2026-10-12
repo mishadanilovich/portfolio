@@ -194,7 +194,7 @@ function Entrance() {
 }
 
 function Garage() {
-  const { lintel, body, gate, lightStrip } = HOUSE.garage;
+  const { lintel, body, gate } = HOUSE.garage;
 
   return (
     <g>
@@ -202,12 +202,6 @@ function Garage() {
       <rect {...body} fill="#c4bcae" />
       <rect {...gate} fill="var(--color-frame-wood)" />
       <GarageInterior />
-      <rect
-        className={styles['garage-slit']}
-        {...lightStrip}
-        fill="var(--color-lamp)"
-        fillOpacity="0.8"
-      />
     </g>
   );
 }
@@ -327,12 +321,22 @@ export function HouseLayer() {
       </div>
 
       <div
+        className={styles['garage-slit']}
+        style={{
+          left: left(HOUSE.garage.lightStrip.x),
+          top: top(HOUSE.garage.lightStrip.y),
+          width: size(HOUSE.garage.lightStrip.width),
+          height: size(HOUSE.garage.lightStrip.height),
+        }}
+      />
+
+      <div
         className={styles['garage-light']}
         style={{
-          left: left(64),
-          top: top(702),
-          width: size(116),
-          height: size(116),
+          left: left(86),
+          top: top(724),
+          width: size(72),
+          height: size(72),
         }}
       />
     </div>
