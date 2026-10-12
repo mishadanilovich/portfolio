@@ -316,7 +316,6 @@ export const en: Content = {
       roof: 'Roof — contacts',
       floor: 'Floor {floor}',
       entrance: 'Entrance and intercom',
-      entranceCurrent: 'Entrance and intercom, you are here',
       basement: 'Basement — where it began',
       garage: 'Garage — pet projects',
     },

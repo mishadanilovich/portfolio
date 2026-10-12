@@ -316,7 +316,6 @@ export const ru: Content = {
       roof: 'Крыша — контакты',
       floor: 'Этаж {floor}',
       entrance: 'Вход и домофон',
-      entranceCurrent: 'Вход и домофон, вы здесь',
       basement: 'Подвал — начало пути',
       garage: 'Гараж — пет-проекты',
     },

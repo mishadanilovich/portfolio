@@ -105,7 +105,6 @@ export interface Ui {
     roof: string;
     floor: string;
     entrance: string;
-    entranceCurrent: string;
     basement: string;
     garage: string;
   };

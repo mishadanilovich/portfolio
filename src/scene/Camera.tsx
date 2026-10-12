@@ -10,8 +10,9 @@ import {
   SCENE_TOP,
   SCENE_WIDTH,
   findLevel,
+  type LevelId,
 } from './layout';
-import { onOverviewRequest } from './camera-events';
+import { emitLevelChange, onLevelRequest, onOverviewRequest } from './camera-events';
 import styles from './scene.module.css';
 import { cameraVars, OVERVIEW_SCALE, size, top } from './units';
 
@@ -55,10 +56,17 @@ export function Camera({ children }: { children: ReactNode }) {
     const unit = () => camera.offsetWidth / SCENE_WIDTH;
     const scrollMax = () => viewport.scrollHeight - viewport.clientHeight;
 
+    const setLevel = (id: LevelId) => {
+      if (document.body.dataset.level === id) return;
+
+      document.body.dataset.level = id;
+      emitLevelChange(id);
+    };
+
     const setMode = (next: Mode) => {
       mode = next;
       document.body.dataset.camera = next;
-      if (next === 'overview') document.body.dataset.level = LANDING_LEVEL;
+      if (next === 'overview') setLevel(LANDING_LEVEL);
     };
 
     const scrollTopFor = (anchor: number) =>
@@ -110,9 +118,21 @@ export function Camera({ children }: { children: ReactNode }) {
       }, INERTIA_GUARD);
     };
 
-    const zoomIn = () => {
+    const keepFocusVisible = () => {
+      const active = document.activeElement;
+      if (!(active instanceof HTMLElement) || active.closest('[data-hidden-in-focus]') === null) {
+        return;
+      }
+
+      const fallback = document.querySelector<HTMLElement>('[data-minimap] [aria-current]');
+      fallback?.focus();
+    };
+
+    const zoomIn = (target: LevelId = LANDING_LEVEL) => {
+      keepFocusVisible();
       setMode('transition');
-      viewport.scrollTop = scrollTopFor(findLevel(LANDING_LEVEL)?.anchor ?? 0);
+      viewport.scrollTop = scrollTopFor(findLevel(target)?.anchor ?? 0);
+      setLevel(target);
 
       if (reduced.matches) {
         fade(() => setMode('focus'));
@@ -120,6 +140,21 @@ export function Camera({ children }: { children: ReactNode }) {
       }
 
       travel(overviewTransform(), focusTransform(), ZOOM_IN, unlockSoon);
+    };
+
+    const goToLevel = (id: LevelId) => {
+      if (mode === 'overview') {
+        zoomIn(id);
+        return;
+      }
+
+      const anchor = findLevel(id)?.anchor;
+      if (anchor === undefined) return;
+
+      viewport.scrollTo({
+        top: scrollTopFor(anchor),
+        behavior: reduced.matches ? 'instant' : 'smooth',
+      });
     };
 
     const zoomOut = () => {
@@ -158,7 +193,7 @@ export function Camera({ children }: { children: ReactNode }) {
 
         for (const entry of entries) {
           const id = entry.target.getAttribute('data-band');
-          if (entry.isIntersecting && id !== null) document.body.dataset.level = id;
+          if (entry.isIntersecting && id !== null) setLevel(id as LevelId);
         }
       },
       { root: viewport, rootMargin: '-50% 0px -50% 0px' },
@@ -166,14 +201,16 @@ export function Camera({ children }: { children: ReactNode }) {
 
     for (const element of viewport.querySelectorAll('[data-band]')) observer.observe(element);
 
-    const stopListening = onOverviewRequest(zoomOut);
+    const stopOverview = onOverviewRequest(zoomOut);
+    const stopLevel = onLevelRequest(goToLevel);
 
     viewport.addEventListener('wheel', onWheel, { passive: true });
     viewport.addEventListener('touchmove', onTouchMove, { passive: true });
     window.addEventListener('keydown', onKeyDown);
 
     return () => {
-      stopListening();
+      stopOverview();
+      stopLevel();
       observer.disconnect();
       viewport.removeEventListener('wheel', onWheel);
       viewport.removeEventListener('touchmove', onTouchMove);
