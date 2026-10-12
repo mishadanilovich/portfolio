@@ -65,12 +65,36 @@ function Door() {
   );
 }
 
+function Basement() {
+  return (
+    <g>
+      <circle
+        className={styles['basement-lamp']}
+        cx="380"
+        cy="806"
+        r="46"
+        fill="url(#scene-halo)"
+      />
+
+      <g className={styles['basement-diploma']}>
+        <rect x="360" y="794" width="40" height="22" rx="1" fill="#2e4a6e" />
+        <rect x="362" y="796" width="17" height="18" fill="var(--color-matte)" />
+        <rect x="381" y="796" width="17" height="18" fill="#f6f0e2" />
+        <path d="M380 794V816" stroke="#24395a" strokeWidth="1" />
+        <path d="M365 800H375M365 804H375M365 808H373" stroke="#9aa0ac" strokeWidth="0.8" />
+        <circle cx="389" cy="805" r="2.5" fill="none" stroke="#9c8458" strokeWidth="0.8" />
+      </g>
+    </g>
+  );
+}
+
 export function StateOverlay() {
   return (
     <div className={styles.layer}>
       <svg className={styles.layer} viewBox={SCENE_VIEW_BOX} aria-hidden="true">
         <Floors />
         <Door />
+        <Basement />
       </svg>
     </div>
   );
