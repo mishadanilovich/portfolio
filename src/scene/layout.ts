@@ -177,6 +177,8 @@ const WINDOW_GLOW_SPREAD = 20;
 const PLAQUE_GAP = 12;
 const PLAQUE_WIDTH = 136;
 
+export const CARD_WIDTH = 148;
+
 export const PLAQUE = {
   width: PLAQUE_WIDTH,
   bracketX: FACADE_X + FACADE_WIDTH,

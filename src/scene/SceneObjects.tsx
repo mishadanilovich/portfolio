@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+import { useFocusTarget, type FocusTarget } from './FocusController';
 import { HOUSE, type LevelId } from './layout';
 import { requestLevel } from './camera-events';
 import styles from './scene.module.css';
@@ -20,7 +22,14 @@ export function SceneObjects({
   doorLabel: string;
   garageLabel: string;
 }) {
+  const [hovered, setHovered] = useState<FocusTarget | null>(null);
+  useFocusTarget(hovered);
+
   const { entrance, garage } = HOUSE;
+
+  const hover = (target: FocusTarget | null) => (event: { pointerType: string }) => {
+    if (event.pointerType === 'mouse') setHovered(target);
+  };
 
   return (
     <div className={styles.layer}>
@@ -35,6 +44,8 @@ export function SceneObjects({
             className={styles.object}
             aria-label={target.label}
             onClick={() => requestLevel(target.level)}
+            onPointerEnter={hover(target.level)}
+            onPointerLeave={hover(null)}
             style={{
               left: left(geometry.rect.x),
               top: top(geometry.rect.y),
@@ -49,6 +60,8 @@ export function SceneObjects({
         type="button"
         className={styles.object}
         aria-label={doorLabel}
+        onPointerEnter={hover('door')}
+        onPointerLeave={hover(null)}
         style={{
           left: left(entrance.hitArea.x),
           top: top(entrance.hitArea.y),
@@ -61,6 +74,8 @@ export function SceneObjects({
         type="button"
         className={styles.object}
         aria-label={garageLabel}
+        onPointerEnter={hover('garage')}
+        onPointerLeave={hover(null)}
         style={{
           left: left(garage.hitArea.x),
           top: top(garage.hitArea.y),

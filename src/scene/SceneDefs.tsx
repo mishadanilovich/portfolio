@@ -45,6 +45,24 @@ export function SceneDefs() {
             strokeWidth="2"
           />
         </symbol>
+        <symbol id="scene-window-hot" viewBox="0 0 48 56">
+          <rect width="48" height="56" fill="var(--color-lamp-bright)" />
+          <path d="M0 0H8Q5 26 9 56H0Z" fill="var(--color-curtain)" fillOpacity="0.75" />
+          <path d="M48 0H40Q43 26 39 56H48Z" fill="var(--color-curtain)" fillOpacity="0.75" />
+          <path d="M24 0V11" stroke="var(--color-silhouette)" />
+          <path d="M18 16L20 11H28L30 16Z" fill="var(--color-silhouette)" />
+          <circle cx="24" cy="33" r="5" fill="var(--color-silhouette)" />
+          <path d="M14 56Q15 43 24 42Q33 43 34 56Z" fill="var(--color-silhouette)" />
+          <rect
+            x="1"
+            y="1"
+            width="46"
+            height="54"
+            fill="none"
+            stroke="var(--color-white)"
+            strokeWidth="2"
+          />
+        </symbol>
       </defs>
     </svg>
   );

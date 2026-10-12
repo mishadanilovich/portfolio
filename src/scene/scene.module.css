@@ -52,6 +52,7 @@
 .layer {
   position: absolute;
   inset: 0;
+  pointer-events: none;
 }
 
 .wide {
@@ -101,6 +102,7 @@
 
 .glow {
   position: absolute;
+  transition: transform var(--motion-fast) var(--ease-out);
   border-radius: 50%;
   background: radial-gradient(
     closest-side,
@@ -112,6 +114,7 @@
 .plaques {
   position: absolute;
   inset: 0;
+  pointer-events: none;
   font-family: var(--font-ui);
 }
 
@@ -124,6 +127,7 @@
   border-radius: calc(2 * var(--u-focus));
   background: color-mix(in srgb, var(--color-dusk) 92%, transparent);
   transform: translateY(-50%);
+  transition: opacity var(--motion-fast) var(--ease-out);
 }
 
 .plaque-ground {
@@ -202,6 +206,7 @@
 
 .object {
   position: absolute;
+  pointer-events: auto;
   padding: 0;
   border: 0;
   background: transparent;
@@ -211,4 +216,89 @@
 .object:focus-visible {
   outline: 2px solid var(--color-lamp-text);
   outline-offset: 2px;
+}
+
+.fill,
+.outline,
+.hot,
+.dim {
+  opacity: 0;
+  transition: opacity var(--motion-fast) var(--ease-out);
+}
+
+.hot {
+  transition-duration: 400ms;
+}
+
+[data-state='focused'] .fill {
+  opacity: 0.18;
+}
+
+[data-state='focused'] .outline,
+[data-state='focused'] .hot {
+  opacity: 1;
+}
+
+[data-state='dimmed'] .dim {
+  opacity: 0.3;
+}
+
+.card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: calc(2 * var(--u-focus));
+  box-sizing: border-box;
+  padding: calc(8 * var(--u-focus)) calc(10 * var(--u-focus));
+  border: 1px solid var(--color-hover-outline);
+  border-radius: var(--radius-control);
+  background: var(--color-dark);
+  opacity: 0;
+  transform: translateY(-50%) scaleY(0.85);
+  transition:
+    opacity var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
+  pointer-events: none;
+}
+
+.card-kicker {
+  color: var(--color-text-on-dark-muted);
+  font-size: calc(10 * var(--u-focus));
+  letter-spacing: calc(0.5 * var(--u-focus));
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: calc(16 * var(--u-focus));
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.card-role {
+  color: var(--color-text-on-dark-soft);
+  font-size: calc(11 * var(--u-focus));
+  line-height: normal;
+}
+
+.card-action {
+  margin-top: calc(3 * var(--u-focus));
+  color: var(--color-lamp-text);
+  font-size: calc(12 * var(--u-focus));
+  font-weight: 500;
+  line-height: normal;
+}
+
+[data-state='focused'] .plaque {
+  opacity: 0;
+}
+
+[data-state='focused'] .card {
+  opacity: 1;
+  transform: translateY(-50%) scaleY(1);
+}
+
+.glow[data-state='focused'] {
+  transform: scale(1.35);
 }
