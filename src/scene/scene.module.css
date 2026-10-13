@@ -325,9 +325,13 @@
   transition: opacity var(--motion-fast) var(--ease-out) 180ms;
 }
 
-:global(body[data-focus='door']) .pulse,
-:global(body[data-focus='door']) .led {
+:global(body[data-focus='door']) .pulse {
   opacity: 0;
+  animation: none;
+}
+
+:global(body[data-focus='door']) .led {
+  opacity: 1;
   animation: none;
 }
 
