@@ -88,6 +88,10 @@
   visibility: hidden;
 }
 
+:global(body:has([data-room])) .overview {
+  display: none;
+}
+
 .link {
   display: flex;
   align-items: center;

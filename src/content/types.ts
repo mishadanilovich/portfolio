@@ -108,6 +108,23 @@ export interface Ui {
     basement: string;
     garage: string;
   };
+  room: {
+    exit: string;
+    floor: string;
+    kicker: string;
+    stack: string;
+    responsibilities: string;
+    achievements: string;
+    windowAria: string;
+    moveDown: string;
+    moveUp: string;
+    moveRoof: string;
+    nav: string;
+    below: string;
+    above: string;
+    roof: string;
+    call: string;
+  };
 }
 
 export interface Content {

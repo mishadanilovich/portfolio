@@ -43,3 +43,7 @@
   margin: 2px 0;
   background: var(--color-border-on-dark);
 }
+
+:global(body:has([data-room])) .minimap {
+  display: none;
+}

@@ -11,3 +11,7 @@ body {
   color: var(--color-text-on-dark);
   font-family: var(--font-ui);
 }
+
+body:has([data-room]) {
+  background: var(--color-wall);
+}

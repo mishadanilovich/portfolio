@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import Link from 'next/link';
+import { useState, type KeyboardEvent, type MouseEvent } from 'react';
+import { isPlainClick } from '@/lib/click';
 import { useFocusTarget, type FocusTarget } from './FocusController';
 import { HOUSE, type LevelId } from './layout';
-import { requestLevel } from './camera-events';
+import { requestFlyIn, requestLevel } from './camera-events';
 import styles from './scene.module.css';
 import { left, size, top } from './units';
 
@@ -11,6 +13,7 @@ export interface FloorTarget {
   floor: number;
   level: LevelId;
   label: string;
+  href: string;
 }
 
 export function SceneObjects({
@@ -23,12 +26,32 @@ export function SceneObjects({
   garageLabel: string;
 }) {
   const [hovered, setHovered] = useState<FocusTarget | null>(null);
-  useFocusTarget(hovered);
+  const focused = useFocusTarget(hovered);
 
   const { entrance, garage } = HOUSE;
 
   const hover = (target: FocusTarget | null) => (event: { pointerType: string }) => {
     if (event.pointerType === 'mouse') setHovered(target);
+  };
+
+  const enter = (target: FloorTarget) => (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!isPlainClick(event)) return;
+
+    if (focused !== target.level) {
+      event.preventDefault();
+      requestLevel(target.level);
+      return;
+    }
+
+    requestFlyIn(target.floor);
+  };
+
+  const activate = (event: KeyboardEvent<HTMLAnchorElement>) => {
+    if (event.key !== ' ' && event.key !== 'Spacebar') return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    event.currentTarget.click();
   };
 
   return (
@@ -38,12 +61,13 @@ export function SceneObjects({
         if (geometry === undefined) return null;
 
         return (
-          <button
+          <Link
             key={target.floor}
-            type="button"
+            href={target.href}
             className={styles.object}
             aria-label={target.label}
-            onClick={() => requestLevel(target.level)}
+            onClick={enter(target)}
+            onKeyDown={activate}
             onPointerEnter={hover(target.level)}
             onPointerLeave={hover(null)}
             style={{

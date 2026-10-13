@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { locale } from 'next/root-params';
-import { defaultLocale, getContent, isLocale, locales } from '@/content';
+import { defaultLocale, getContent, isLocale } from '@/content';
 import styles from './header.module.css';
+import { LanguageSwitch } from './LanguageSwitch';
 import { Logo } from './Logo';
 import { OverviewButton } from './OverviewButton';
 
@@ -21,18 +22,7 @@ export async function SiteHeader() {
       </Link>
 
       <nav className={styles.nav} aria-label={content.ui.header.nav}>
-        <div className={styles.language} role="group" aria-label={content.ui.header.language}>
-          {locales.map((item) => (
-            <Link
-              key={item}
-              href={`/${item}`}
-              className={styles.lang}
-              aria-current={item === active ? 'true' : undefined}
-            >
-              {item.toUpperCase()}
-            </Link>
-          ))}
-        </div>
+        <LanguageSwitch label={content.ui.header.language} active={active} />
 
         <OverviewButton label={content.ui.header.overview} />
 

@@ -52,6 +52,7 @@
 .layer {
   position: absolute;
   inset: 0;
+  transition: content-visibility 0s allow-discrete;
   pointer-events: none;
 }
 
@@ -114,6 +115,7 @@
 .plaques {
   position: absolute;
   inset: 0;
+  transition: content-visibility 0s allow-discrete;
   pointer-events: none;
   font-family: var(--font-ui);
 }
@@ -207,6 +209,7 @@
 
 .object {
   position: absolute;
+  display: block;
   pointer-events: auto;
   padding: 0;
   border: 0;
@@ -507,4 +510,22 @@
 :global(body[data-focus='door']) .door-sill {
   opacity: 1;
   transition: opacity var(--motion-fast) var(--ease-out) 180ms;
+}
+
+:global(body:has([data-room])) .layer,
+:global(body:has([data-room])) .plaques {
+  content-visibility: hidden;
+  transition-delay: var(--motion-fly-in);
+}
+
+:global(body[data-fly]) .viewport {
+  z-index: 1;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(body:has([data-room])) .layer,
+  :global(body:has([data-room])) .plaques {
+    transition-delay: 0s;
+  }
 }

@@ -6,20 +6,32 @@ import {
   LANDING_LEVEL,
   LEVELS,
   MAX_COMPOSITION_WIDTH,
+  SCENE_HEIGHT,
   SCENE_LEFT,
   SCENE_TOP,
   SCENE_WIDTH,
+  findFloor,
   findLevel,
   type LevelId,
 } from './layout';
-import { emitLevelChange, onLevelRequest, onOverviewRequest } from './camera-events';
+import {
+  emitLevelChange,
+  onFlyInRequest,
+  onFlyOutRequest,
+  onLevelRequest,
+  onOverviewRequest,
+  type FlyTarget,
+} from './camera-events';
 import styles from './scene.module.css';
 import { cameraVars, OVERVIEW_SCALE, size, top } from './units';
 
 const ZOOM_IN = 900;
 const ZOOM_OUT = 700;
+const FLY = 700;
+const FLY_SCALE = 2.2;
 const REDUCED_FADE = 150;
 const INERTIA_GUARD = 150;
+const ROOM = '[data-room]';
 
 const WAKE_KEYS = new Set(['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', ' ', 'Spacebar']);
 
@@ -27,6 +39,14 @@ type Mode = 'overview' | 'transition' | 'focus';
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
+}
+
+function levelOf(floor: number): LevelId {
+  return `floor-${floor}` as LevelId;
+}
+
+function inRoom(): boolean {
+  return document.querySelector(ROOM) !== null;
 }
 
 function isTyping(target: EventTarget | null): boolean {
@@ -47,6 +67,7 @@ export function Camera({ children }: { children: ReactNode }) {
     let mode: Mode = 'overview';
     let unlockTimer = 0;
     let running: Animation | null = null;
+    let flying: Animation | null = null;
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     const easing =
@@ -108,6 +129,77 @@ export function Camera({ children }: { children: ReactNode }) {
         camera.style.transform = '';
         animation.cancel();
       });
+    };
+
+    const settleAt = (id: LevelId) => {
+      window.clearTimeout(unlockTimer);
+      unlockTimer = 0;
+      setMode('focus');
+
+      const anchor = findLevel(id)?.anchor;
+      if (anchor !== undefined) viewport.scrollTop = scrollTopFor(anchor);
+
+      setLevel(id);
+    };
+
+    const windowOrigin = (floor: number): string | null => {
+      const slot = findFloor(floor)?.projectWindow;
+      if (slot === undefined) return null;
+
+      const rect = camera.getBoundingClientRect();
+      const x = rect.left + (rect.width * (slot.center.x - SCENE_LEFT)) / SCENE_WIDTH;
+      const y = rect.top + (rect.height * (slot.center.y - SCENE_TOP)) / SCENE_HEIGHT;
+
+      return `${x}px ${y}px`;
+    };
+
+    const fly = (
+      direction: 'in' | 'out',
+      zoomed: Keyframe,
+      origin: string,
+      settle?: () => void,
+    ) => {
+      flying?.cancel();
+      document.body.dataset.fly = direction;
+      viewport.style.transformOrigin = origin;
+
+      const grounded: Keyframe = { transform: 'scale(1)', opacity: 1 };
+      const frames = direction === 'in' ? [grounded, zoomed] : [zoomed, grounded];
+      const animation = viewport.animate(frames, { duration: FLY, easing, fill: 'forwards' });
+      flying = animation;
+
+      void animation.finished.then(() => {
+        if (flying !== animation) return;
+        flying = null;
+        settle?.();
+        delete document.body.dataset.fly;
+        viewport.style.transformOrigin = '';
+        animation.cancel();
+      });
+    };
+
+    const zoomed: Keyframe = { transform: `scale(${FLY_SCALE})`, opacity: 0 };
+
+    const flyIn = (floor: number) => {
+      const level = levelOf(floor);
+      const origin = windowOrigin(floor);
+
+      if (origin === null || reduced.matches) {
+        settleAt(level);
+        return;
+      }
+
+      fly('in', zoomed, origin, () => settleAt(level));
+    };
+
+    const flyOut = ({ floor, level }: FlyTarget) => {
+      const target = level ?? levelOf(floor);
+      settleAt(target);
+
+      if (reduced.matches) return;
+
+      const origin = (target === levelOf(floor) ? windowOrigin(floor) : null) ?? '50% 50%';
+      fly('out', zoomed, origin);
     };
 
     const unlockSoon = () => {
@@ -173,16 +265,17 @@ export function Camera({ children }: { children: ReactNode }) {
     };
 
     const onWheel = () => {
+      if (inRoom()) return;
       if (mode === 'overview') zoomIn();
       else if (mode === 'transition' && unlockTimer !== 0) unlockSoon();
     };
 
     const onTouchMove = () => {
-      if (mode === 'overview') zoomIn();
+      if (mode === 'overview' && !inRoom()) zoomIn();
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (mode !== 'overview' || isTyping(event.target)) return;
+      if (mode !== 'overview' || isTyping(event.target) || inRoom()) return;
       if (!WAKE_KEYS.has(event.key)) return;
       zoomIn();
     };
@@ -203,6 +296,8 @@ export function Camera({ children }: { children: ReactNode }) {
 
     const stopOverview = onOverviewRequest(zoomOut);
     const stopLevel = onLevelRequest(goToLevel);
+    const stopFlyIn = onFlyInRequest(flyIn);
+    const stopFlyOut = onFlyOutRequest(flyOut);
 
     viewport.addEventListener('wheel', onWheel, { passive: true });
     viewport.addEventListener('touchmove', onTouchMove, { passive: true });
@@ -211,12 +306,15 @@ export function Camera({ children }: { children: ReactNode }) {
     return () => {
       stopOverview();
       stopLevel();
+      stopFlyIn();
+      stopFlyOut();
       observer.disconnect();
       viewport.removeEventListener('wheel', onWheel);
       viewport.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('keydown', onKeyDown);
       window.clearTimeout(unlockTimer);
       running?.cancel();
+      flying?.cancel();
     };
   }, []);
 

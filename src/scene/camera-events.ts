@@ -3,9 +3,16 @@ import type { LevelId } from './layout';
 const OVERVIEW_REQUEST = 'scene:overview';
 const LEVEL_REQUEST = 'scene:level-request';
 const LEVEL_CHANGE = 'scene:level-change';
+const FLY_IN_REQUEST = 'scene:fly-in';
+const FLY_OUT_REQUEST = 'scene:fly-out';
 
-function listen(type: string, handler: (id: LevelId) => void): () => void {
-  const wrapped = (event: Event) => handler((event as CustomEvent<LevelId>).detail);
+export interface FlyTarget {
+  floor: number;
+  level?: LevelId;
+}
+
+function listen<T>(type: string, handler: (detail: T) => void): () => void {
+  const wrapped = (event: Event) => handler((event as CustomEvent<T>).detail);
   window.addEventListener(type, wrapped);
 
   return () => window.removeEventListener(type, wrapped);
@@ -35,4 +42,20 @@ export function emitLevelChange(id: LevelId): void {
 
 export function onLevelChange(handler: (id: LevelId) => void): () => void {
   return listen(LEVEL_CHANGE, handler);
+}
+
+export function requestFlyIn(floor: number): void {
+  window.dispatchEvent(new CustomEvent<number>(FLY_IN_REQUEST, { detail: floor }));
+}
+
+export function onFlyInRequest(handler: (floor: number) => void): () => void {
+  return listen(FLY_IN_REQUEST, handler);
+}
+
+export function requestFlyOut(target: FlyTarget): void {
+  window.dispatchEvent(new CustomEvent<FlyTarget>(FLY_OUT_REQUEST, { detail: target }));
+}
+
+export function onFlyOutRequest(handler: (target: FlyTarget) => void): () => void {
+  return listen(FLY_OUT_REQUEST, handler);
 }
