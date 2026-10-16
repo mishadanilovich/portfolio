@@ -44,7 +44,7 @@
 }
 
 .stage {
-  --scale: max(calc(100cqw / 960), calc(100cqh / 768));
+  --scale: max(calc(100cqw / 1280), calc(100cqh / 768));
 
   position: relative;
   container-type: size;
@@ -171,7 +171,8 @@
 .dim,
 .spill,
 .halo,
-.lit {
+.lit,
+.edge {
   opacity: var(--active, 0);
 }
 
@@ -192,7 +193,8 @@
   .dim,
   .spill,
   .halo,
-  .lit {
+  .lit,
+  .edge {
     transition: opacity var(--motion-medium) var(--ease-out);
   }
 

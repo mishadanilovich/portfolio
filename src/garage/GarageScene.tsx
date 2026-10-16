@@ -45,6 +45,7 @@ function Fridge() {
       </g>
 
       <g className={styles.door}>
+        <path className={styles.edge} d="M300 380L307 382V598L300 600Z" fill="var(--color-slab)" />
         <path
           d="M120 380H300V590A10 10 0 0 1 290 600H130A10 10 0 0 1 120 590Z"
           fill="var(--color-border)"
@@ -125,9 +126,9 @@ export function GarageScene({ label }: { label: string }) {
   return (
     <svg
       className={styles.scene}
-      width="960"
+      width="1280"
       height="768"
-      viewBox="0 0 960 768"
+      viewBox="-160 0 1280 768"
       preserveAspectRatio="xMidYMax slice"
       role="img"
       aria-label={label}
@@ -142,17 +143,17 @@ export function GarageScene({ label }: { label: string }) {
         </pattern>
       </defs>
 
-      <rect width="960" height="768" fill="#4a4950" />
+      <rect x="-160" width="1280" height="768" fill="#4a4950" />
       <path
-        d="M160 64V600M320 64V600M480 64V600M640 64V600M800 64V600"
+        d="M0 64V600M160 64V600M320 64V600M480 64V600M640 64V600M800 64V600M960 64V600"
         stroke="#54535a"
         strokeWidth="2"
       />
       <circle cx="480" cy="300" r="440" fill="url(#garage-glow)" />
 
-      <rect x="0" y="0" width="960" height="64" fill="#6e7385" />
-      <path d="M0 16H960M0 32H960M0 48H960" stroke="#5a5f70" strokeWidth="2" />
-      <rect x="0" y="58" width="960" height="8" fill="#3e4354" />
+      <rect x="-160" y="0" width="1280" height="64" fill="#6e7385" />
+      <path d="M-160 16H1120M-160 32H1120M-160 48H1120" stroke="#5a5f70" strokeWidth="2" />
+      <rect x="-160" y="58" width="1280" height="8" fill="#3e4354" />
 
       <line x1="480" y1="66" x2="480" y2="128" stroke="#2e2620" strokeWidth="2" />
       <path d="M456 150L466 128H494L504 150Z" fill="#2e2620" />
@@ -170,8 +171,8 @@ export function GarageScene({ label }: { label: string }) {
         <rect x="776" y="166" width="12" height="40" rx="3" />
       </g>
 
-      <rect x="0" y="600" width="960" height="168" fill="#34343a" />
-      <rect x="0" y="600" width="960" height="4" fill="#2a2a30" />
+      <rect x="-160" y="600" width="1280" height="168" fill="#34343a" />
+      <rect x="-160" y="600" width="1280" height="4" fill="#2a2a30" />
 
       <path
         className={styles.wedge}
@@ -199,7 +200,7 @@ export function GarageScene({ label }: { label: string }) {
         data-object="fridgemind"
         x="470"
         y="64"
-        width="490"
+        width="650"
         height="704"
         fill="#1a1e28"
         fillOpacity="0.22"
@@ -207,9 +208,9 @@ export function GarageScene({ label }: { label: string }) {
       <rect
         className={styles.dim}
         data-object="coffee-shop"
-        x="0"
+        x="-160"
         y="64"
-        width="470"
+        width="630"
         height="704"
         fill="#1a1e28"
         fillOpacity="0.22"
