@@ -329,12 +329,6 @@ export const ru: Content = {
       windowAria: 'Окно квартиры: дневное небо',
       moveDown: '↓ Этаж {floor}',
       moveUp: 'Этаж {floor} ↑',
-      moveRoof: 'Крыша ↑',
-      nav: 'Соседние этажи',
-      below: '↓ Этаж ниже',
-      above: 'Выше ↑',
-      roof: 'Крыша · контакты',
-      call: 'Позвонить в домофон',
     },
   },
 };

@@ -40,16 +40,7 @@ export function RoomBar({
           </Link>
         )}
 
-        {above === null ? (
-          <HouseLink
-            locale={locale}
-            floor={floor.floor}
-            level="roof"
-            className={styles['bar-move']}
-          >
-            {room.moveRoof}
-          </HouseLink>
-        ) : (
+        {above !== null && (
           <Link className={styles['bar-move']} href={apartmentPath(locale, above.floor)}>
             {fill(room.moveUp, { floor: above.floor })}
           </Link>

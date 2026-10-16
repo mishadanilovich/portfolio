@@ -3,7 +3,6 @@ import { Achievements } from './Achievements';
 import { isSolo, neighbours } from './apartment';
 import { Poster } from './Poster';
 import { RoomBar } from './RoomBar';
-import { RoomNav } from './RoomNav';
 import { RoomShell } from './RoomShell';
 import { RoomWindow } from './RoomWindow';
 import { Whiteboard } from './Whiteboard';
@@ -95,8 +94,6 @@ export function Room({
           <Plant />
         </div>
       </div>
-
-      <RoomNav locale={locale} floor={floor} below={below} above={above} room={room} />
     </RoomShell>
   );
 }

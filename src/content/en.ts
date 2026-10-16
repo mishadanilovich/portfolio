@@ -329,12 +329,6 @@ export const en: Content = {
       windowAria: 'Apartment window: daytime sky',
       moveDown: '↓ Floor {floor}',
       moveUp: 'Floor {floor} ↑',
-      moveRoof: 'Roof ↑',
-      nav: 'Neighbouring floors',
-      below: '↓ Floor below',
-      above: 'Above ↑',
-      roof: 'Roof · contacts',
-      call: 'Ring the intercom',
     },
   },
 };

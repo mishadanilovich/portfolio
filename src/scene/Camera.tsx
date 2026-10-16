@@ -20,7 +20,6 @@ import {
   onFlyOutRequest,
   onLevelRequest,
   onOverviewRequest,
-  type FlyTarget,
 } from './camera-events';
 import styles from './scene.module.css';
 import { cameraVars, OVERVIEW_SCALE, size, top } from './units';
@@ -192,14 +191,13 @@ export function Camera({ children }: { children: ReactNode }) {
       fly('in', zoomed, origin, () => settleAt(level));
     };
 
-    const flyOut = ({ floor, level }: FlyTarget) => {
-      const target = level ?? levelOf(floor);
-      settleAt(target);
+    const flyOut = (floor: number) => {
+      settleAt(levelOf(floor));
 
       if (reduced.matches) return;
 
-      const origin = (target === levelOf(floor) ? windowOrigin(floor) : null) ?? '50% 50%';
-      fly('out', zoomed, origin);
+      const origin = windowOrigin(floor);
+      if (origin !== null) fly('out', zoomed, origin);
     };
 
     const unlockSoon = () => {

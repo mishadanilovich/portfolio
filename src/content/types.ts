@@ -118,12 +118,6 @@ export interface Ui {
     windowAria: string;
     moveDown: string;
     moveUp: string;
-    moveRoof: string;
-    nav: string;
-    below: string;
-    above: string;
-    roof: string;
-    call: string;
   };
 }
 
