@@ -6,22 +6,66 @@ function Fridge() {
       <rect x="120" y="270" width="180" height="330" rx="10" fill="var(--color-border)" />
       <path d="M120 380H300" stroke="#a9a194" strokeWidth="2" />
       <rect x="278" y="298" width="6" height="50" rx="2" fill="#6b6252" />
-      <rect x="278" y="400" width="6" height="90" rx="2" fill="#6b6252" />
       <rect x="150" y="300" width="18" height="13" fill="var(--color-curtain)" />
       <circle cx="204" cy="312" r="8" fill="var(--color-marker)" />
 
-      <g transform="rotate(-4 186 450)">
-        <rect x="156" y="414" width="58" height="68" fill="var(--color-matte)" />
-        <rect x="162" y="420" width="46" height="44" fill="#8fb0b8" />
-        <rect x="170" y="440" width="12" height="20" fill="#e9b25e" />
-        <rect x="186" y="448" width="14" height="12" fill="var(--color-border)" />
+      <g className={styles.inside}>
+        <rect x="126" y="386" width="168" height="208" rx="4" fill="#fff4d6" />
+        <path d="M126 450H294M126 515H294" stroke="#e0d6be" strokeWidth="3" />
+        <rect x="140" y="404" width="12" height="44" rx="3" fill="#6e9a7a" />
+        <rect x="162" y="428" width="22" height="20" rx="3" fill="#e9b25e" />
+        <rect x="192" y="418" width="30" height="30" fill="#c9c1b3" />
+        <circle cx="242" cy="441" r="8" fill="#c9653f" />
+        <circle cx="258" cy="442" r="7" fill="#b8553a" />
+        <path
+          d="M144 512V478L155 468L166 478V512Z"
+          fill="var(--color-text-on-dark)"
+          stroke="#c9c1b3"
+        />
+        <rect x="176" y="492" width="40" height="20" rx="3" fill="#8fb0b8" />
+        <ellipse cx="250" cy="504" rx="24" ry="10" fill="#5e7d5e" />
+        <rect
+          x="136"
+          y="530"
+          width="148"
+          height="56"
+          rx="4"
+          fill="#f0e6cc"
+          stroke="#e0d6be"
+          strokeWidth="2"
+        />
+        <circle cx="170" cy="560" r="10" fill="#d89a4a" />
+        <circle cx="196" cy="562" r="9" fill="#5e7d5e" />
+        <circle cx="220" cy="560" r="9" fill="#c9653f" />
       </g>
 
-      <rect x="228" y="430" width="40" height="56" fill="var(--color-matte)" />
-      <path
-        d="M234 444H262M234 454H262M234 464H256M234 474H260"
-        stroke="var(--color-window-life)"
-      />
+      <g className={styles.spill}>
+        <ellipse cx="290" cy="492" rx="34" ry="120" fill="#fff4d6" fillOpacity="0.22" />
+        <path d="M272 600H294L392 668H236Z" fill="#fff4d6" fillOpacity="0.28" />
+        <ellipse cx="200" cy="606" rx="80" ry="3" fill="#000000" fillOpacity="0.25" />
+        <path d="M266 380L273 382V604L266 606Z" fill="var(--color-slab)" />
+      </g>
+
+      <g className={styles.door}>
+        <path
+          d="M120 380H300V590A10 10 0 0 1 290 600H130A10 10 0 0 1 120 590Z"
+          fill="var(--color-border)"
+        />
+        <rect x="278" y="400" width="6" height="90" rx="2" fill="#6b6252" />
+
+        <g transform="rotate(-4 186 450)">
+          <rect x="156" y="414" width="58" height="68" fill="var(--color-matte)" />
+          <rect x="162" y="420" width="46" height="44" fill="#8fb0b8" />
+          <rect x="170" y="440" width="12" height="20" fill="#e9b25e" />
+          <rect x="186" y="448" width="14" height="12" fill="var(--color-border)" />
+        </g>
+
+        <rect x="228" y="430" width="40" height="56" fill="var(--color-matte)" />
+        <path
+          d="M234 444H262M234 454H262M234 464H256M234 474H260"
+          stroke="var(--color-window-life)"
+        />
+      </g>
     </g>
   );
 }
@@ -36,6 +80,8 @@ function Workbench() {
       <rect x="640" y="490" width="160" height="56" fill="#5c4632" />
       <rect x="704" y="512" width="32" height="5" rx="2" fill="#2e2620" />
 
+      <circle className={styles.halo} cx="615" cy="410" r="120" fill="url(#garage-glow)" />
+
       <rect x="575" y="330" width="80" height="24" rx="3" fill="#3e342c" />
       <rect x="560" y="350" width="110" height="120" rx="6" fill="#2e2620" />
       <rect
@@ -47,7 +93,12 @@ function Workbench() {
         fill="var(--color-lamp)"
         fillOpacity="0.85"
       />
+      <g className={styles.lit}>
+        <rect x="580" y="368" width="40" height="14" rx="2" fill="var(--color-lamp-bright)" />
+        <circle cx="636" cy="375" r="4" fill="var(--color-lamp)" />
+      </g>
       <rect x="603" y="404" width="24" height="12" fill="#1f1a16" />
+      <rect className={styles.stream} x="613" y="416" width="4" height="22" rx="2" fill="#7a5232" />
       <rect x="602" y="436" width="26" height="24" rx="2" fill="var(--color-text-on-dark)" />
       <rect x="580" y="460" width="70" height="8" fill="#1f1a16" />
 
@@ -123,11 +174,48 @@ export function GarageScene({ label }: { label: string }) {
 
       <rect x="0" y="600" width="960" height="168" fill="#34343a" />
       <rect x="0" y="600" width="960" height="4" fill="#2a2a30" />
+
+      <path
+        className={styles.wedge}
+        data-object="fridgemind"
+        d="M470 152H490L330 600H120Z"
+        fill="var(--color-lamp-text)"
+        fillOpacity="0.08"
+      />
+      <path
+        className={styles.wedge}
+        data-object="coffee-shop"
+        d="M470 152H490L700 470H560Z"
+        fill="var(--color-lamp-text)"
+        fillOpacity="0.08"
+      />
+
       <ellipse cx="210" cy="601" rx="104" ry="5" fill="#000000" fillOpacity="0.3" />
       <ellipse cx="690" cy="601" rx="190" ry="4" fill="#000000" fillOpacity="0.22" />
 
       <Fridge />
       <Workbench />
+
+      <rect
+        className={styles.dim}
+        data-object="fridgemind"
+        x="470"
+        y="64"
+        width="490"
+        height="704"
+        fill="#1a1e28"
+        fillOpacity="0.22"
+      />
+      <rect
+        className={styles.dim}
+        data-object="coffee-shop"
+        x="0"
+        y="64"
+        width="470"
+        height="704"
+        fill="#1a1e28"
+        fillOpacity="0.22"
+      />
     </svg>
   );
 }

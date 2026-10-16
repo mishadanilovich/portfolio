@@ -28,17 +28,27 @@ describe('гараж', () => {
     expect(screen.getByRole('main')).toHaveAttribute('data-room', 'garage');
   });
 
-  it('ведёт карточками на страницы пет-проектов', () => {
+  it('ведёт на страницу пет-проекта и карточкой, и объектом сцены', () => {
     show();
 
-    expect(screen.getByRole('link', { name: /FridgeMind/ })).toHaveAttribute(
-      'href',
-      '/ru/garage/fridgemind',
-    );
-    expect(screen.getByRole('link', { name: /Coffee Shop/ })).toHaveAttribute(
-      'href',
-      '/ru/garage/coffee-shop',
-    );
+    const fridge = screen.getAllByRole('link', { name: /FridgeMind/ });
+    const coffee = screen.getAllByRole('link', { name: /Coffee Shop/ });
+
+    expect(fridge).toHaveLength(2);
+    expect(coffee).toHaveLength(2);
+    for (const link of fridge) expect(link).toHaveAttribute('href', '/ru/garage/fridgemind');
+    for (const link of coffee) expect(link).toHaveAttribute('href', '/ru/garage/coffee-shop');
+  });
+
+  it('связывает объект, бирку и карточку одним data-project', () => {
+    const { container } = show();
+
+    for (const project of ru.petProjects) {
+      expect(
+        container.querySelectorAll(`[data-project="${project.slug}"]`),
+        project.slug,
+      ).toHaveLength(3);
+    }
   });
 
   it('показывает три пункта стека и остаток', () => {
