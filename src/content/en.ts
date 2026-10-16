@@ -301,6 +301,7 @@ export const en: Content = {
       dismiss: 'Got it',
     },
     scene: {
+      exitHouse: 'Back to the house',
       floorPlaque: 'Floor {floor} · {period}',
       floorAria: 'Floor {floor} — {title}, {period}',
       enterApartment: 'Enter →',
@@ -320,13 +321,23 @@ export const en: Content = {
       garage: 'Garage — pet projects',
     },
     room: {
-      exit: 'Back to the house',
       floor: 'Floor {floor}',
       kicker: 'Floor {floor} · {period}',
       stack: 'Stack',
       responsibilities: 'Responsibilities',
       achievements: 'Achievements',
       windowAria: 'Apartment window: daytime sky',
+    },
+    garage: {
+      bar: 'Garage',
+      barList: 'pet projects',
+      kicker: 'Garage · 2 projects',
+      title: 'Pet projects',
+      lead: 'My own full-stack projects: from the database to the interface.',
+      sceneAria:
+        'Inside the garage: the FridgeMind fridge and the workbench with the Coffee Shop machine',
+      more: '+{count}',
+      github: 'All code on GitHub · {handle}',
     },
   },
 };

@@ -8,12 +8,13 @@ import { Room } from './Room';
 
 const floors = ru.floors;
 const room = ru.ui.room;
+const scene = ru.ui.scene;
 
 function show(param: string) {
   const floor = findApartment(floors, param);
   if (floor === undefined) throw new Error(`нет этажа ${param}`);
 
-  return render(<Room locale="ru" floors={floors} floor={floor} room={room} />);
+  return render(<Room locale="ru" floors={floors} floor={floor} room={room} scene={scene} />);
 }
 
 describe('квартира', () => {

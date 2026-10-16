@@ -1,7 +1,9 @@
 'use client';
 
-import { useEffect, useState, type ReactNode } from 'react';
-import { onLevelChange, requestLevel } from '@/scene/camera-events';
+import Link from 'next/link';
+import { useEffect, useState, type MouseEvent, type ReactNode } from 'react';
+import { isPlainClick } from '@/lib/click';
+import { onLevelChange, requestFlyIn, requestLevel } from '@/scene/camera-events';
 import { LANDING_LEVEL, type LevelId } from '@/scene/layout';
 import styles from './minimap.module.css';
 
@@ -37,14 +39,20 @@ export function MiniMapNav({
   label,
   items,
   garageLabel,
+  garageHref,
 }: {
   label: string;
   items: MiniMapItem[];
   garageLabel: string;
+  garageHref: string;
 }) {
   const [current, setCurrent] = useState<LevelId>(LANDING_LEVEL);
 
   useEffect(() => onLevelChange(setCurrent), []);
+
+  const enterGarage = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (isPlainClick(event)) requestFlyIn('garage');
+  };
 
   return (
     <nav className={styles.minimap} aria-label={label} data-minimap>
@@ -69,13 +77,18 @@ export function MiniMapNav({
 
       <span className={styles.divider} />
 
-      <button type="button" className={styles.item} aria-label={garageLabel}>
+      <Link
+        href={garageHref}
+        className={styles.item}
+        aria-label={garageLabel}
+        onClick={enterGarage}
+      >
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
           <g stroke="currentColor" strokeWidth="1.6">
             {ICONS.garage}
           </g>
         </svg>
-      </button>
+      </Link>
     </nav>
   );
 }

@@ -1,5 +1,6 @@
 import { locale } from 'next/root-params';
 import { defaultLocale, fill, getContent, isLocale, shortPeriod } from '@/content';
+import { garagePath } from '@/garage/projects';
 import { apartmentPath } from '@/room/apartment';
 import { LEVELS } from './layout';
 import { SceneObjects, type FloorTarget } from './SceneObjects';
@@ -28,5 +29,12 @@ export async function ObjectsLayer() {
     return list;
   }, []);
 
-  return <SceneObjects floors={floors} doorLabel={scene.doorAria} garageLabel={scene.garageAria} />;
+  return (
+    <SceneObjects
+      floors={floors}
+      doorLabel={scene.doorAria}
+      garageLabel={scene.garageAria}
+      garageHref={garagePath(active)}
+    />
+  );
 }

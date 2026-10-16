@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { fill, shortPeriod } from './format';
+import { fill, handleOf, shortPeriod } from './format';
 
 describe('shortPeriod', () => {
   it('сводит период к диапазону лет', () => {
@@ -26,5 +26,16 @@ describe('fill', () => {
 
   it('оставляет плейсхолдер, если значения нет', () => {
     expect(fill('Этаж {floor}', {})).toBe('Этаж {floor}');
+  });
+});
+
+describe('handleOf', () => {
+  it('срезает протокол и хвостовой слеш', () => {
+    expect(handleOf('https://github.com/mishadanilovich')).toBe('github.com/mishadanilovich');
+    expect(handleOf('http://example.com/')).toBe('example.com');
+  });
+
+  it('оставляет строку без протокола как есть', () => {
+    expect(handleOf('github.com/mishadanilovich')).toBe('github.com/mishadanilovich');
   });
 });

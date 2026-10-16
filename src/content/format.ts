@@ -14,3 +14,7 @@ export function fill(template: string, values: Record<string, string | number>):
     return value === undefined ? match : String(value);
   });
 }
+
+export function handleOf(href: string): string {
+  return href.replace(/^https?:\/\//, '').replace(/\/$/, '');
+}

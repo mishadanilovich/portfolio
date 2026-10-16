@@ -4,21 +4,21 @@ import Link from 'next/link';
 import type { MouseEvent, ReactNode } from 'react';
 import type { Locale } from '@/content';
 import { isPlainClick } from '@/lib/click';
-import { requestFlyOut } from '@/scene/camera-events';
+import { requestFlyOut, type FlyTarget } from './camera-events';
 
 export function HouseLink({
   locale,
-  floor,
+  target,
   className,
   children,
 }: {
   locale: Locale;
-  floor: number;
+  target: FlyTarget;
   className?: string;
   children: ReactNode;
 }) {
   const leave = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (isPlainClick(event)) requestFlyOut(floor);
+    if (isPlainClick(event)) requestFlyOut(target);
   };
 
   return (

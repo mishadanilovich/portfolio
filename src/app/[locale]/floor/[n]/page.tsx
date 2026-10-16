@@ -32,5 +32,13 @@ export default async function FloorPage({ params }: PageProps<'/[locale]/floor/[
   const floor = findApartment(content.floors, n);
   if (floor === undefined) notFound();
 
-  return <Room locale={locale} floors={content.floors} floor={floor} room={content.ui.room} />;
+  return (
+    <Room
+      locale={locale}
+      floors={content.floors}
+      floor={floor}
+      room={content.ui.room}
+      scene={content.ui.scene}
+    />
+  );
 }

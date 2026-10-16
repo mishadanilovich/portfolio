@@ -301,6 +301,7 @@ export const ru: Content = {
       dismiss: 'Понятно',
     },
     scene: {
+      exitHouse: 'Выйти к дому',
       floorPlaque: 'Этаж {floor} · {period}',
       floorAria: 'Этаж {floor} — {title}, {period}',
       enterApartment: 'Войти →',
@@ -320,13 +321,22 @@ export const ru: Content = {
       garage: 'Гараж — пет-проекты',
     },
     room: {
-      exit: 'Выйти к дому',
       floor: 'Этаж {floor}',
       kicker: 'Этаж {floor} · {period}',
       stack: 'Стек',
       responsibilities: 'Обязанности',
       achievements: 'Достижения',
       windowAria: 'Окно квартиры: дневное небо',
+    },
+    garage: {
+      bar: 'Гараж',
+      barList: 'пет-проекты',
+      kicker: 'Гараж · 2 проекта',
+      title: 'Пет-проекты',
+      lead: 'Собственные full-stack проекты: от базы данных до интерфейса.',
+      sceneAria: 'Гараж изнутри: холодильник FridgeMind и верстак с кофемашиной Coffee Shop',
+      more: '+{count}',
+      github: 'Весь код на GitHub · {handle}',
     },
   },
 };

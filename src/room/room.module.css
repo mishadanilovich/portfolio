@@ -15,42 +15,6 @@
   outline: none;
 }
 
-.bar {
-  position: sticky;
-  z-index: 1;
-  top: var(--spacing-header);
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  height: var(--spacing-room-bar);
-  padding: 0 40px;
-  border-top: 1px solid #3e4559;
-  background: var(--color-dusk);
-  color: var(--color-text-on-dark);
-}
-
-.bar-exit {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: var(--spacing-touch-target);
-  color: inherit;
-  font-size: var(--text-body);
-  text-decoration: none;
-}
-
-.bar-current {
-  margin: 0;
-  font-size: var(--text-body);
-  line-height: normal;
-}
-
-.bar-floor {
-  color: var(--color-text-on-dark-muted);
-}
-
 .bar-moves {
   display: flex;
   gap: 8px;
@@ -386,7 +350,6 @@
   left: 40px;
 }
 
-.bar-exit:focus-visible,
 .bar-move:focus-visible {
   outline: 2px solid var(--color-lamp-text);
   outline-offset: 2px;

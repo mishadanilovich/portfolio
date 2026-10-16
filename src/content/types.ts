@@ -90,6 +90,7 @@ export interface Ui {
     dismiss: string;
   };
   scene: {
+    exitHouse: string;
     floorPlaque: string;
     floorAria: string;
     enterApartment: string;
@@ -109,13 +110,22 @@ export interface Ui {
     garage: string;
   };
   room: {
-    exit: string;
     floor: string;
     kicker: string;
     stack: string;
     responsibilities: string;
     achievements: string;
     windowAria: string;
+  };
+  garage: {
+    bar: string;
+    barList: string;
+    kicker: string;
+    title: string;
+    lead: string;
+    sceneAria: string;
+    more: string;
+    github: string;
   };
 }
 

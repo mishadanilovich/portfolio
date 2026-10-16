@@ -101,3 +101,15 @@
   font-size: var(--text-body);
   text-decoration: none;
 }
+
+.link[aria-current] {
+  box-shadow: inset 0 -2px 0 var(--color-lamp-text);
+  color: var(--color-lamp-text);
+}
+
+.link:focus-visible,
+.home:focus-visible,
+.lang:focus-visible {
+  outline: 2px solid var(--color-lamp-text);
+  outline-offset: 2px;
+}

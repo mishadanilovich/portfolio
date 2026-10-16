@@ -1,9 +1,9 @@
 import type { Floor, Locale, Ui } from '@/content';
 import { Achievements } from './Achievements';
-import { isSolo, neighbours } from './apartment';
+import { APARTMENT_TITLE_ID, isSolo, neighbours } from './apartment';
 import { Poster } from './Poster';
 import { RoomBar } from './RoomBar';
-import { RoomShell } from './RoomShell';
+import { SceneCover } from '@/components/SceneCover';
 import { RoomWindow } from './RoomWindow';
 import { Whiteboard } from './Whiteboard';
 import styles from './room.module.css';
@@ -51,18 +51,27 @@ export function Room({
   floors,
   floor,
   room,
+  scene,
 }: {
   locale: Locale;
   floors: Floor[];
   floor: Floor;
   room: Ui['room'];
+  scene: Ui['scene'];
 }) {
   const { below, above } = neighbours(floors, floor.floor);
   const solo = isSolo(floor);
 
   return (
-    <RoomShell floor={floor.floor}>
-      <RoomBar locale={locale} floor={floor} below={below} above={above} room={room} />
+    <SceneCover id={String(floor.floor)} className={styles.room} labelledBy={APARTMENT_TITLE_ID}>
+      <RoomBar
+        locale={locale}
+        floor={floor}
+        below={below}
+        above={above}
+        room={room}
+        scene={scene}
+      />
 
       <div className={styles.wall}>
         <div className={`${styles.band} ${solo ? styles['band-solo'] : ''}`}>
@@ -94,6 +103,6 @@ export function Room({
           <Plant />
         </div>
       </div>
-    </RoomShell>
+    </SceneCover>
   );
 }

@@ -3,6 +3,7 @@
 import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
 import {
   FOCUS_CENTER,
+  HOUSE,
   LANDING_LEVEL,
   LEVELS,
   MAX_COMPOSITION_WIDTH,
@@ -20,6 +21,7 @@ import {
   onFlyOutRequest,
   onLevelRequest,
   onOverviewRequest,
+  type FlyTarget,
 } from './camera-events';
 import styles from './scene.module.css';
 import { cameraVars, OVERVIEW_SCALE, size, top } from './units';
@@ -141,13 +143,18 @@ export function Camera({ children }: { children: ReactNode }) {
       setLevel(id);
     };
 
-    const windowOrigin = (floor: number): string | null => {
-      const slot = findFloor(floor)?.projectWindow;
-      if (slot === undefined) return null;
+    const originOf = (target: FlyTarget): string | null => {
+      const { gate } = HOUSE.garage;
+      const center =
+        target === 'garage'
+          ? { x: gate.x + gate.width / 2, y: gate.y + gate.height / 2 }
+          : findFloor(target)?.projectWindow.center;
+
+      if (center === undefined) return null;
 
       const rect = camera.getBoundingClientRect();
-      const x = rect.left + (rect.width * (slot.center.x - SCENE_LEFT)) / SCENE_WIDTH;
-      const y = rect.top + (rect.height * (slot.center.y - SCENE_TOP)) / SCENE_HEIGHT;
+      const x = rect.left + (rect.width * (center.x - SCENE_LEFT)) / SCENE_WIDTH;
+      const y = rect.top + (rect.height * (center.y - SCENE_TOP)) / SCENE_HEIGHT;
 
       return `${x}px ${y}px`;
     };
@@ -179,24 +186,23 @@ export function Camera({ children }: { children: ReactNode }) {
 
     const zoomed: Keyframe = { transform: `scale(${FLY_SCALE})`, opacity: 0 };
 
-    const flyIn = (floor: number) => {
-      const level = levelOf(floor);
-      const origin = windowOrigin(floor);
+    const flyIn = (target: FlyTarget) => {
+      const origin = originOf(target);
+      const settle = target === 'garage' ? undefined : () => settleAt(levelOf(target));
 
-      if (origin === null || reduced.matches) {
-        settleAt(level);
+      if (origin === null || reduced.matches || inRoom()) {
+        settle?.();
         return;
       }
 
-      fly('in', zoomed, origin, () => settleAt(level));
+      fly('in', zoomed, origin, settle);
     };
 
-    const flyOut = (floor: number) => {
-      settleAt(levelOf(floor));
-
+    const flyOut = (target: FlyTarget) => {
+      if (target !== 'garage') settleAt(levelOf(target));
       if (reduced.matches) return;
 
-      const origin = windowOrigin(floor);
+      const origin = originOf(target);
       if (origin !== null) fly('out', zoomed, origin);
     };
 

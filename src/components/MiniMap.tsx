@@ -1,5 +1,6 @@
 import { locale } from 'next/root-params';
 import { defaultLocale, fill, getContent, isLocale, type Ui } from '@/content';
+import { garagePath } from '@/garage/projects';
 import { LEVELS, type LevelId } from '@/scene/layout';
 import { MiniMapNav, type MiniMapItem } from './MiniMapNav';
 
@@ -13,7 +14,8 @@ function placeLabel(id: LevelId, miniMap: Ui['miniMap']): string | null {
 
 export async function MiniMap() {
   const current = await locale();
-  const content = getContent(isLocale(current) ? current : defaultLocale);
+  const active = isLocale(current) ? current : defaultLocale;
+  const content = getContent(active);
   const { miniMap } = content.ui;
 
   const items = LEVELS.reduce<MiniMapItem[]>((list, level) => {
@@ -33,5 +35,12 @@ export async function MiniMap() {
     return list;
   }, []);
 
-  return <MiniMapNav label={miniMap.label} items={items} garageLabel={miniMap.garage} />;
+  return (
+    <MiniMapNav
+      label={miniMap.label}
+      items={items}
+      garageLabel={miniMap.garage}
+      garageHref={garagePath(active)}
+    />
+  );
 }

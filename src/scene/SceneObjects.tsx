@@ -1,11 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, type KeyboardEvent, type MouseEvent } from 'react';
+import { useEffect, useState, type KeyboardEvent, type MouseEvent } from 'react';
 import { isPlainClick } from '@/lib/click';
 import { useFocusTarget, type FocusTarget } from './FocusController';
 import { HOUSE, type LevelId } from './layout';
-import { requestFlyIn, requestLevel } from './camera-events';
+import { onFlyOutRequest, requestFlyIn, requestLevel } from './camera-events';
 import styles from './scene.module.css';
 import { left, size, top } from './units';
 
@@ -20,13 +20,17 @@ export function SceneObjects({
   floors,
   doorLabel,
   garageLabel,
+  garageHref,
 }: {
   floors: FloorTarget[];
   doorLabel: string;
   garageLabel: string;
+  garageHref: string;
 }) {
   const [hovered, setHovered] = useState<FocusTarget | null>(null);
   const focused = useFocusTarget(hovered);
+
+  useEffect(() => onFlyOutRequest(() => setHovered(null)), []);
 
   const { entrance, garage } = HOUSE;
 
@@ -44,6 +48,18 @@ export function SceneObjects({
     }
 
     requestFlyIn(target.floor);
+  };
+
+  const enterGarage = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!isPlainClick(event)) return;
+
+    if (focused !== 'garage') {
+      event.preventDefault();
+      setHovered('garage');
+      return;
+    }
+
+    requestFlyIn('garage');
   };
 
   const activate = (event: KeyboardEvent<HTMLAnchorElement>) => {
@@ -94,10 +110,12 @@ export function SceneObjects({
         }}
       />
 
-      <button
-        type="button"
+      <Link
+        href={garageHref}
         className={styles.object}
         aria-label={garageLabel}
+        onClick={enterGarage}
+        onKeyDown={activate}
         onPointerEnter={hover('garage')}
         onPointerLeave={hover(null)}
         style={{
