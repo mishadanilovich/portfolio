@@ -116,8 +116,6 @@ export interface Ui {
     responsibilities: string;
     achievements: string;
     windowAria: string;
-    moveDown: string;
-    moveUp: string;
   };
 }
 

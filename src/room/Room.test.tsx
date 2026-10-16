@@ -55,8 +55,8 @@ describe('квартира', () => {
   it('полоса ведёт только по соседним проектам и к дому', () => {
     show('5');
 
-    expect(screen.getByRole('link', { name: '↓ Этаж 4' })).toHaveAttribute('href', '/ru/floor/4');
-    expect(screen.getByRole('link', { name: 'Этаж 6 ↑' })).toHaveAttribute('href', '/ru/floor/6');
+    expect(screen.getByRole('link', { name: 'Этаж 4' })).toHaveAttribute('href', '/ru/floor/4');
+    expect(screen.getByRole('link', { name: 'Этаж 6' })).toHaveAttribute('href', '/ru/floor/6');
     expect(screen.getByRole('link', { name: 'Выйти к дому' })).toHaveAttribute('href', '/ru');
     expect(screen.getAllByRole('link')).toHaveLength(3);
   });
@@ -64,7 +64,7 @@ describe('квартира', () => {
   it('с верхнего этажа вверх не ведёт никуда: крыши в квартире нет', () => {
     show('6');
 
-    expect(screen.getByRole('link', { name: '↓ Этаж 5' })).toHaveAttribute('href', '/ru/floor/5');
+    expect(screen.getByRole('link', { name: 'Этаж 5' })).toHaveAttribute('href', '/ru/floor/5');
     expect(screen.queryByText(/Крыша/)).not.toBeInTheDocument();
   });
 
@@ -72,7 +72,7 @@ describe('квартира', () => {
     show('2');
 
     expect(screen.queryByText(/Этаж 1/)).not.toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Этаж 3 ↑' })).toHaveAttribute('href', '/ru/floor/3');
+    expect(screen.getByRole('link', { name: 'Этаж 3' })).toHaveAttribute('href', '/ru/floor/3');
   });
 
   it('помечает комнату для сцены и держит фокус в ней', () => {

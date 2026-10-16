@@ -327,8 +327,6 @@ export const en: Content = {
       responsibilities: 'Responsibilities',
       achievements: 'Achievements',
       windowAria: 'Apartment window: daytime sky',
-      moveDown: '↓ Floor {floor}',
-      moveUp: 'Floor {floor} ↑',
     },
   },
 };

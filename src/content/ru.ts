@@ -327,8 +327,6 @@ export const ru: Content = {
       responsibilities: 'Обязанности',
       achievements: 'Достижения',
       windowAria: 'Окно квартиры: дневное небо',
-      moveDown: '↓ Этаж {floor}',
-      moveUp: 'Этаж {floor} ↑',
     },
   },
 };
