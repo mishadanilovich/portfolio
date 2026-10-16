@@ -152,6 +152,10 @@
   --active: var(--coffee-shop);
 }
 
+.object {
+  display: contents;
+}
+
 .hotspot {
   position: absolute;
   top: calc(100% - (768 - var(--y)) * var(--scale));
@@ -404,4 +408,14 @@
   position: sticky;
   top: calc(var(--spacing-header) + var(--spacing-room-bar));
   height: calc(100dvh - var(--spacing-header) - var(--spacing-room-bar));
+}
+
+.object:has(.hotspot:focus-visible) .tag {
+  --active: 1;
+}
+
+@media (hover: hover) {
+  .object:has(.hotspot:hover) .tag {
+    --active: 1;
+  }
 }

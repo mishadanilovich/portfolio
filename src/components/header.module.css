@@ -92,6 +92,10 @@
   display: none;
 }
 
+:global(body:has([data-room])) .header {
+  background: var(--color-dark);
+}
+
 .link {
   display: flex;
   align-items: center;

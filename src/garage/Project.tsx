@@ -4,7 +4,7 @@ import { SceneCover } from '@/components/SceneCover';
 import { fill, type Locale, type PetProject, type Ui } from '@/content';
 import { GarageScene } from './GarageScene';
 import { ProjectPanel } from './ProjectPanel';
-import { StageTags } from './StageTags';
+import { StageObjects } from './StageObjects';
 import { PROJECT_TITLE_ID } from './projects';
 import styles from './garage.module.css';
 
@@ -44,7 +44,7 @@ export function Project({
       >
         <div className={styles.stage}>
           <GarageScene label={fill(ui.sceneAria, { title: project.title })} />
-          <StageTags projects={projects} />
+          <StageObjects locale={locale} projects={projects} current={project.slug} />
         </div>
 
         <ProjectPanel locale={locale} projects={projects} project={project} ui={ui} />

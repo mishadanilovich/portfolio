@@ -93,6 +93,16 @@ describe('страница пет-проекта', () => {
     expect(screen.getByRole('link', { name: 'Выйти к дому' })).toHaveAttribute('href', '/ru');
   });
 
+  it('оставляет в сцене кликабельным только соседний проект', () => {
+    const { container } = show('fridgemind');
+
+    expect(container.querySelectorAll('[data-project="fridgemind"]')).toHaveLength(1);
+    expect(container.querySelectorAll('[data-project="coffee-shop"]')).toHaveLength(2);
+    expect(screen.getByRole('link', { name: 'Coffee Shop' }).getAttribute('href')).toBe(
+      '/ru/garage/coffee-shop',
+    );
+  });
+
   it('подсвечивает в сцене именно свой объект', () => {
     const { container } = show('coffee-shop');
 
