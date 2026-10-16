@@ -40,10 +40,8 @@ function Fridge() {
       </g>
 
       <g className={styles.spill}>
-        <ellipse cx="290" cy="492" rx="34" ry="120" fill="#fff4d6" fillOpacity="0.22" />
         <path d="M272 600H294L392 668H236Z" fill="#fff4d6" fillOpacity="0.28" />
         <ellipse cx="200" cy="606" rx="80" ry="3" fill="#000000" fillOpacity="0.25" />
-        <path d="M266 380L273 382V604L266 606Z" fill="var(--color-slab)" />
       </g>
 
       <g className={styles.door}>
