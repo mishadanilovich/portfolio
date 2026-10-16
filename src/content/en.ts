@@ -328,6 +328,17 @@ export const en: Content = {
       achievements: 'Achievements',
       windowAria: 'Apartment window: daytime sky',
     },
+    project: {
+      back: 'All pet projects',
+      counter: 'Pet project {index} of {total}',
+      stack: 'Stack',
+      achievements: 'Achievements',
+      open: 'Open project',
+      note: '{handle} · opens in a new tab',
+      next: 'Next: {title}',
+      prev: 'Previous: {title}',
+      sceneAria: 'Inside the garage: {title} in focus',
+    },
     garage: {
       bar: 'Garage',
       barList: 'pet projects',

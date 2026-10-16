@@ -117,6 +117,17 @@ export interface Ui {
     achievements: string;
     windowAria: string;
   };
+  project: {
+    back: string;
+    counter: string;
+    stack: string;
+    achievements: string;
+    open: string;
+    note: string;
+    next: string;
+    prev: string;
+    sceneAria: string;
+  };
   garage: {
     bar: string;
     barList: string;

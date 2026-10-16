@@ -1,9 +1,9 @@
 import type { Floor, Locale, Ui } from '@/content';
-import { Achievements } from './Achievements';
-import { APARTMENT_TITLE_ID, isSolo, neighbours } from './apartment';
+import { ACHIEVEMENTS_TITLE_ID, APARTMENT_TITLE_ID, isSolo, neighbours } from './apartment';
 import { Poster } from './Poster';
 import { RoomBar } from './RoomBar';
 import { SceneCover } from '@/components/SceneCover';
+import { Shelves } from '@/components/Shelves';
 import { RoomWindow } from './RoomWindow';
 import { Whiteboard } from './Whiteboard';
 import styles from './room.module.css';
@@ -90,7 +90,11 @@ export function Room({
               </div>
 
               <div className={`${styles.row} ${styles['row-bottom']}`}>
-                <Achievements title={room.achievements} items={floor.achievements} />
+                <Shelves
+                  title={room.achievements}
+                  titleId={ACHIEVEMENTS_TITLE_ID}
+                  items={floor.achievements}
+                />
                 <RoomWindow label={room.windowAria} />
               </div>
             </>

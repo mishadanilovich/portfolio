@@ -1,0 +1,107 @@
+.shelves {
+  --frame-width: 8px;
+  --frame-padding: 18px 20px;
+  --frame-gap: 32px;
+  --frame-shadow: var(--shadow-frame);
+  --row-padding: 20px;
+  --row-gap: 56px;
+  --board-height: 20px;
+  --board-edge: 4px;
+  --board-bleed: 0px;
+  --badge-padding: 6px 14px;
+  --badge-size: var(--text-body);
+  --badge-gap: 28px;
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.shelves[data-size='small'] {
+  --frame-width: 5px;
+  --frame-padding: 12px;
+  --frame-gap: 14px;
+  --frame-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+  --row-padding: 8px;
+  --row-gap: 22px;
+  --board-height: 13px;
+  --board-edge: 3px;
+  --board-bleed: -16px;
+  --badge-padding: 4px 10px;
+  --badge-size: var(--text-overline);
+  --badge-gap: 16px;
+
+  flex-grow: 0;
+  padding: 18px 16px 0;
+  border-radius: 4px;
+  background: var(--color-wall);
+}
+
+.title {
+  align-self: flex-start;
+  margin: 0 0 var(--badge-gap);
+  padding: var(--badge-padding);
+  border-radius: var(--radius-plaque);
+  background: var(--color-brass);
+  color: var(--color-on-lamp);
+  font-size: var(--badge-size);
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+}
+
+.shelf + .shelf {
+  margin-top: var(--row-gap);
+}
+
+.frames {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--frame-gap);
+  padding: 0 var(--row-padding);
+}
+
+.frame {
+  display: flex;
+  flex: 0 1 calc(50% - var(--frame-gap) / 2);
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: var(--frame-padding);
+  border: var(--frame-width) solid var(--color-frame-wood);
+  background: var(--color-matte);
+  box-shadow: var(--frame-shadow);
+}
+
+.frame-title {
+  margin: 0;
+  color: var(--color-copper-text);
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 500;
+  line-height: var(--leading-h3);
+}
+
+.frame-text {
+  margin: 0;
+  color: #2b2f3a;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+.shelves[data-size='small'] .frame-text {
+  line-height: var(--leading-caption);
+}
+
+.board {
+  height: var(--board-height);
+  margin: 0 var(--board-bleed);
+  border-top: var(--board-edge) solid var(--color-shelf-edge);
+  background: var(--color-shelf);
+  box-shadow: 0 12px 16px rgba(40, 30, 20, 0.25);
+}
+
+.shelves[data-size='small'] .board {
+  box-shadow: none;
+}

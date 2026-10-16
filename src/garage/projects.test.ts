@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ru } from '@/content/ru';
-import { findProject, garagePath, projectPath, stackPreview } from './projects';
+import { findProject, garagePath, placeOf, projectPath, stackPreview } from './projects';
 
 const projects = ru.petProjects;
 
@@ -40,5 +40,19 @@ describe('стек на карточке', () => {
 
       expect(preview.shown.length + preview.more, project.slug).toBe(project.stack.length);
     }
+  });
+});
+
+describe('место проекта в списке', () => {
+  it('нумерует от единицы и знает соседей', () => {
+    expect(placeOf(projects, 'fridgemind')).toMatchObject({ index: 1, total: 2, prev: null });
+    expect(placeOf(projects, 'fridgemind').next?.slug).toBe('coffee-shop');
+
+    expect(placeOf(projects, 'coffee-shop')).toMatchObject({ index: 2, total: 2, next: null });
+    expect(placeOf(projects, 'coffee-shop').prev?.slug).toBe('fridgemind');
+  });
+
+  it('для чужого слага соседей нет', () => {
+    expect(placeOf(projects, 'fridge')).toEqual({ index: 0, total: 2, next: null, prev: null });
   });
 });

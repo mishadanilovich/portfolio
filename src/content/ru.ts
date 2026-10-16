@@ -328,6 +328,17 @@ export const ru: Content = {
       achievements: 'Достижения',
       windowAria: 'Окно квартиры: дневное небо',
     },
+    project: {
+      back: 'Все пет-проекты',
+      counter: 'Пет-проект {index} из {total}',
+      stack: 'Стек',
+      achievements: 'Достижения',
+      open: 'Открыть проект',
+      note: '{handle} · откроется в новой вкладке',
+      next: 'Следующий: {title}',
+      prev: 'Предыдущий: {title}',
+      sceneAria: 'Гараж изнутри: в фокусе {title}',
+    },
     garage: {
       bar: 'Гараж',
       barList: 'пет-проекты',

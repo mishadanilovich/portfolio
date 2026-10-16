@@ -1,13 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { ru } from '@/content/ru';
-import {
-  apartmentPath,
-  findApartment,
-  hasLongWord,
-  isSolo,
-  neighbours,
-  shelves,
-} from './apartment';
+import { apartmentPath, findApartment, hasLongWord, isSolo, neighbours } from './apartment';
 
 const floors = ru.floors;
 
@@ -65,26 +58,6 @@ describe('соседние этажи', () => {
 describe('облегчённый режим выводится из данных', () => {
   it('включается только у первого проекта', () => {
     expect(floors.filter(isSolo).map((floor) => floor.slug)).toEqual(['mosgosexpertiza']);
-  });
-});
-
-describe('полки достижений', () => {
-  it('ставят по две рамки на полку', () => {
-    expect(shelves(ru.floors[4]?.achievements ?? []).map((row) => row.length)).toEqual([2, 2]);
-  });
-
-  it('последнюю рамку оставляют на своей полке', () => {
-    expect(shelves(ru.floors[3]?.achievements ?? []).map((row) => row.length)).toEqual([2, 1]);
-  });
-
-  it('без достижений полок нет', () => {
-    expect(shelves([])).toEqual([]);
-  });
-
-  it('не теряет и не переставляет достижения', () => {
-    const items = ru.floors[4]?.achievements ?? [];
-
-    expect(shelves(items).flat()).toEqual(items);
   });
 });
 

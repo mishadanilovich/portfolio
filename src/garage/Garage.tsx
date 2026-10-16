@@ -1,17 +1,13 @@
 import Link from 'next/link';
-import { Fragment, type CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import { SceneBar } from '@/components/SceneBar';
 import { SceneCover } from '@/components/SceneCover';
 import type { Locale, PetProject, Ui } from '@/content';
 import { GARAGE_TITLE_ID, projectPath } from './projects';
 import { GaragePanel } from './GaragePanel';
 import { GarageScene } from './GarageScene';
+import { StageTags } from './StageTags';
 import styles from './garage.module.css';
-
-const TAGS: Record<string, { x: number; y: number }> = {
-  fridgemind: { x: 150, y: 196 },
-  'coffee-shop': { x: 600, y: 266 },
-};
 
 const SPOTS: Record<string, { x: number; y: number; w: number; h: number }> = {
   fridgemind: { x: 120, y: 270, w: 180, h: 330 },
@@ -41,35 +37,27 @@ export function Garage({
         title={garage.barList}
       />
 
-      <div className={styles.body}>
+      <div className={styles.body} data-live>
         <div className={styles.stage}>
           <GarageScene label={garage.sceneAria} />
 
+          <StageTags projects={projects} />
+
           {projects.map((project) => {
-            const tag = TAGS[project.slug];
             const spot = SPOTS[project.slug];
-            if (tag === undefined || spot === undefined) return null;
+            if (spot === undefined) return null;
 
             return (
-              <Fragment key={project.slug}>
-                <p
-                  className={styles.tag}
-                  data-project={project.slug}
-                  style={{ '--x': tag.x, '--y': tag.y } as CSSProperties}
-                >
-                  {project.title}
-                </p>
-
-                <Link
-                  className={styles.hotspot}
-                  href={projectPath(locale, project.slug)}
-                  aria-label={project.title}
-                  data-project={project.slug}
-                  style={
-                    { '--x': spot.x, '--y': spot.y, '--w': spot.w, '--h': spot.h } as CSSProperties
-                  }
-                />
-              </Fragment>
+              <Link
+                key={project.slug}
+                className={styles.hotspot}
+                href={projectPath(locale, project.slug)}
+                aria-label={project.title}
+                data-project={project.slug}
+                style={
+                  { '--x': spot.x, '--y': spot.y, '--w': spot.w, '--h': spot.h } as CSSProperties
+                }
+              />
             );
           })}
         </div>
