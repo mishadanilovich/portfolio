@@ -31,21 +31,41 @@
   min-height: 0;
 }
 
-.body[data-live]:has([data-project='fridgemind']:focus-visible) {
+.tall .body {
+  align-items: flex-start;
+}
+
+.body[data-focus='fridgemind'] {
   --fridgemind: 1;
 }
 
-.body[data-live]:has([data-project='coffee-shop']:focus-visible) {
+.body[data-focus='coffee-shop'] {
   --coffee-shop: 1;
 }
 
+.body[data-focus] {
+  --dim-strength: 1.8;
+}
+
+.body:has([data-project='fridgemind']:focus-visible) {
+  --fridgemind: 1;
+  --coffee-shop: 0;
+}
+
+.body:has([data-project='coffee-shop']:focus-visible) {
+  --coffee-shop: 1;
+  --fridgemind: 0;
+}
+
 @media (hover: hover) {
-  .body[data-live]:has([data-project='fridgemind']:hover) {
+  .body:has([data-project='fridgemind']:hover) {
     --fridgemind: 1;
+    --coffee-shop: 0;
   }
 
-  .body[data-live]:has([data-project='coffee-shop']:hover) {
+  .body:has([data-project='coffee-shop']:hover) {
     --coffee-shop: 1;
+    --fridgemind: 0;
   }
 }
 
@@ -296,6 +316,7 @@
 .panel-project {
   gap: 18px;
   padding: 24px 40px 32px;
+  overflow: visible;
 }
 
 .back {
@@ -400,22 +421,8 @@
   outline-offset: 2px;
 }
 
-.tall .body {
-  align-items: flex-start;
-}
-
 .tall .stage {
   position: sticky;
   top: calc(var(--spacing-header) + var(--spacing-room-bar));
   height: calc(100dvh - var(--spacing-header) - var(--spacing-room-bar));
-}
-
-.object:has(.hotspot:focus-visible) .tag {
-  --active: 1;
-}
-
-@media (hover: hover) {
-  .object:has(.hotspot:hover) .tag {
-    --active: 1;
-  }
 }

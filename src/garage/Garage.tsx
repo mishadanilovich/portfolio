@@ -30,7 +30,7 @@ export function Garage({
         title={garage.barList}
       />
 
-      <div className={styles.body} data-live>
+      <div className={styles.body}>
         <div className={styles.stage}>
           <GarageScene label={garage.sceneAria} />
 

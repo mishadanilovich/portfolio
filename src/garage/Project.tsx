@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react';
 import { SceneBar } from '@/components/SceneBar';
 import { SceneCover } from '@/components/SceneCover';
 import { fill, type Locale, type PetProject, type Ui } from '@/content';
@@ -38,10 +37,7 @@ export function Project({
         sticky
       />
 
-      <div
-        className={styles.body}
-        style={{ [`--${project.slug}`]: 1, '--dim-strength': 1.8 } as CSSProperties}
-      >
+      <div className={styles.body} data-focus={project.slug}>
         <div className={styles.stage}>
           <GarageScene label={fill(ui.sceneAria, { title: project.title })} />
           <StageObjects locale={locale} projects={projects} current={project.slug} />

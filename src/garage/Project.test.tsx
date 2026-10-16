@@ -108,7 +108,6 @@ describe('страница пет-проекта', () => {
 
     const body = container.querySelector('main > div:last-child');
 
-    expect(body?.getAttribute('style')).toContain('--coffee-shop: 1');
-    expect(body).not.toHaveAttribute('data-live');
+    expect(body).toHaveAttribute('data-focus', 'coffee-shop');
   });
 });

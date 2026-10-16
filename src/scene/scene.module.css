@@ -518,6 +518,10 @@
   transition-delay: var(--motion-fly-in);
 }
 
+:global(body:has([data-room])) .viewport {
+  pointer-events: none;
+}
+
 :global(body[data-fly]) .viewport {
   z-index: 1;
   will-change: transform, opacity;
