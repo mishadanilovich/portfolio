@@ -4,6 +4,8 @@ import { defaultLocale, getContent, isLocale } from '@/content';
 import { Project } from '@/garage/Project';
 import { findProject } from '@/garage/projects';
 
+export const instant = false;
+
 export function generateStaticParams() {
   return getContent(defaultLocale).petProjects.map((project) => ({ slug: project.slug }));
 }

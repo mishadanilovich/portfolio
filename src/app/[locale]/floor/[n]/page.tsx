@@ -4,6 +4,8 @@ import { defaultLocale, getContent, isLocale } from '@/content';
 import { findApartment } from '@/room/apartment';
 import { Room } from '@/room/Room';
 
+export const instant = false;
+
 export function generateStaticParams() {
   return getContent(defaultLocale).floors.map((floor) => ({ n: String(floor.floor) }));
 }
