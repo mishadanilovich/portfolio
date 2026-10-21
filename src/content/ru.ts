@@ -280,6 +280,7 @@ export const ru: Content = {
   },
 
   ui: {
+    newTab: 'откроется в новой вкладке',
     header: {
       nav: 'Основная навигация',
       language: 'Язык',
@@ -332,7 +333,6 @@ export const ru: Content = {
       sign: 'ОТКРЫТ',
       signNote: 'к новым проектам',
       contacts: 'Контакты',
-      newTab: 'откроется в новой вкладке',
       copy: 'Скопировать email',
       copied: 'Email скопирован',
       call: 'Позвонить в домофон',

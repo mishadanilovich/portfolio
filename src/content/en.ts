@@ -280,6 +280,7 @@ export const en: Content = {
   },
 
   ui: {
+    newTab: 'opens in a new tab',
     header: {
       nav: 'Main navigation',
       language: 'Language',
@@ -332,7 +333,6 @@ export const en: Content = {
       sign: 'OPEN',
       signNote: 'to new projects',
       contacts: 'Contacts',
-      newTab: 'opens in a new tab',
       copy: 'Copy email',
       copied: 'Email copied',
       call: 'Ring the intercom',

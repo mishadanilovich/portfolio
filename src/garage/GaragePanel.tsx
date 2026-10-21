@@ -76,11 +76,13 @@ export function GaragePanel({
   projects,
   garage,
   github,
+  newTab,
 }: {
   locale: Locale;
   projects: PetProject[];
   garage: Ui['garage'];
   github: string;
+  newTab: string;
 }) {
   return (
     <aside className={styles.panel} aria-labelledby={GARAGE_TITLE_ID}>
@@ -96,8 +98,9 @@ export function GaragePanel({
         <ProjectCard key={project.slug} locale={locale} project={project} more={garage.more} />
       ))}
 
-      <a className={styles.github} href={github}>
+      <a className={styles.github} href={github} target="_blank" rel="noreferrer">
         {fill(garage.github, { handle: handleOf(github) })}
+        <span className={styles.announce}>{newTab}</span>
       </a>
     </aside>
   );

@@ -13,12 +13,14 @@ export function Garage({
   garage,
   scene,
   github,
+  newTab,
 }: {
   locale: Locale;
   projects: PetProject[];
   garage: Ui['garage'];
   scene: Ui['scene'];
   github: string;
+  newTab: string;
 }) {
   return (
     <SceneCover id="garage" className={styles.garage} labelledBy={GARAGE_TITLE_ID}>
@@ -37,7 +39,13 @@ export function Garage({
           <StageObjects locale={locale} projects={projects} />
         </div>
 
-        <GaragePanel locale={locale} projects={projects} garage={garage} github={github} />
+        <GaragePanel
+          locale={locale}
+          projects={projects}
+          garage={garage}
+          github={github}
+          newTab={newTab}
+        />
       </div>
     </SceneCover>
   );

@@ -12,6 +12,7 @@ export async function RoofCard() {
       contacts={content.contacts}
       cv={content.cv}
       ui={content.ui.roof}
+      newTab={content.ui.newTab}
     />
   );
 }

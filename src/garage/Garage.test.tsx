@@ -15,6 +15,7 @@ function show() {
       garage={ru.ui.garage}
       scene={ru.ui.scene}
       github={github}
+      newTab={ru.ui.newTab}
     />,
   );
 }
@@ -74,7 +75,12 @@ describe('гараж', () => {
     show();
 
     expect(screen.getByRole('link', { name: 'Выйти к дому' })).toHaveAttribute('href', '/ru');
-    expect(screen.getByRole('link', { name: /GitHub/ })).toHaveAttribute('href', github);
+
+    const code = screen.getByRole('link', { name: /GitHub/ });
+
+    expect(code).toHaveAttribute('href', github);
+    expect(code).toHaveAttribute('target', '_blank');
+    expect(code).toHaveAccessibleName(expect.stringContaining('откроется в новой вкладке'));
     expect(screen.getByText(/github\.com\/mishadanilovich/)).toBeInTheDocument();
   });
 });

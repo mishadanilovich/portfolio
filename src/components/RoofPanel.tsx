@@ -69,11 +69,13 @@ export function RoofPanel({
   contacts,
   cv,
   ui,
+  newTab,
 }: {
   roof: Roof;
   contacts: Contact[];
   cv: Cv;
   ui: Ui['roof'];
+  newTab: string;
 }) {
   const email = contacts.find((contact) => contact.kind === 'email');
   const rest = contacts.filter((contact) => contact.kind !== 'email');
@@ -105,14 +107,14 @@ export function RoofPanel({
             <ContactLink
               contact={contact}
               download={contact.kind === 'cv' ? cv.downloadName : undefined}
-              newTab={ui.newTab}
+              newTab={newTab}
             />
           </li>
         ))}
 
         {email !== undefined && (
           <li className={styles['email-row']}>
-            <ContactLink contact={email} newTab={ui.newTab} />
+            <ContactLink contact={email} newTab={newTab} />
             <CopyEmail email={email.label} copy={ui.copy} copied={ui.copied} />
           </li>
         )}

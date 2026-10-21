@@ -32,6 +32,7 @@ const FLY = 700;
 const FLY_SCALE = 2.2;
 const REDUCED_FADE = 150;
 const INERTIA_GUARD = 150;
+const TRAVEL_GUARD = 1200;
 const ROOM = '[data-room]';
 
 const WAKE_KEYS = new Set(['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', ' ', 'Spacebar']);
@@ -66,6 +67,8 @@ export function Camera({ children }: { children: ReactNode }) {
     if (viewport === null || camera === null) return;
 
     let mode: Mode = 'overview';
+    let travelling = false;
+    let travelTimer = 0;
     let unlockTimer = 0;
     let running: Animation | null = null;
     let flying: Animation | null = null;
@@ -238,6 +241,12 @@ export function Camera({ children }: { children: ReactNode }) {
       travel(overviewTransform(), focusTransform(), ZOOM_IN, unlockSoon);
     };
 
+    const endTravel = () => {
+      travelling = false;
+      window.clearTimeout(travelTimer);
+      travelTimer = 0;
+    };
+
     const goToLevel = (id: LevelId) => {
       if (mode === 'overview') {
         zoomIn(id);
@@ -246,6 +255,11 @@ export function Camera({ children }: { children: ReactNode }) {
 
       const anchor = findLevel(id)?.anchor;
       if (anchor === undefined) return;
+
+      setLevel(id);
+      travelling = true;
+      window.clearTimeout(travelTimer);
+      travelTimer = window.setTimeout(endTravel, TRAVEL_GUARD);
 
       viewport.scrollTo({
         top: scrollTopFor(anchor),
@@ -286,7 +300,7 @@ export function Camera({ children }: { children: ReactNode }) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (mode === 'overview') return;
+        if (mode !== 'focus' || travelling) return;
 
         for (const entry of entries) {
           const id = entry.target.getAttribute('data-band');
@@ -303,6 +317,7 @@ export function Camera({ children }: { children: ReactNode }) {
     const stopFlyIn = onFlyInRequest(flyIn);
     const stopFlyOut = onFlyOutRequest(flyOut);
 
+    viewport.addEventListener('scrollend', endTravel);
     viewport.addEventListener('wheel', onWheel, { passive: true });
     viewport.addEventListener('touchmove', onTouchMove, { passive: true });
     window.addEventListener('keydown', onKeyDown);
@@ -313,10 +328,12 @@ export function Camera({ children }: { children: ReactNode }) {
       stopFlyIn();
       stopFlyOut();
       observer.disconnect();
+      viewport.removeEventListener('scrollend', endTravel);
       viewport.removeEventListener('wheel', onWheel);
       viewport.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('keydown', onKeyDown);
       window.clearTimeout(unlockTimer);
+      window.clearTimeout(travelTimer);
       running?.cancel();
       flying?.cancel();
     };

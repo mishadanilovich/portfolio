@@ -69,6 +69,7 @@ export interface Cv {
 }
 
 export interface Ui {
+  newTab: string;
   header: {
     nav: string;
     language: string;
@@ -121,7 +122,6 @@ export interface Ui {
     sign: string;
     signNote: string;
     contacts: string;
-    newTab: string;
     copy: string;
     copied: string;
     call: string;

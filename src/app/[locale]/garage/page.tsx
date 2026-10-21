@@ -31,6 +31,7 @@ export default async function GaragePage({ params }: PageProps<'/[locale]/garage
       garage={content.ui.garage}
       scene={content.ui.scene}
       github={github}
+      newTab={content.ui.newTab}
     />
   );
 }

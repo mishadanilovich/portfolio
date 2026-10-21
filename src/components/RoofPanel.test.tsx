@@ -6,7 +6,15 @@ import { ru } from '@/content/ru';
 import { RoofPanel } from './RoofPanel';
 
 function show() {
-  return render(<RoofPanel roof={ru.roof} contacts={ru.contacts} cv={ru.cv} ui={ru.ui.roof} />);
+  return render(
+    <RoofPanel
+      roof={ru.roof}
+      contacts={ru.contacts}
+      cv={ru.cv}
+      ui={ru.ui.roof}
+      newTab={ru.ui.newTab}
+    />,
+  );
 }
 
 describe('карточка крыши', () => {
