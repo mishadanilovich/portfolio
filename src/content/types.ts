@@ -117,6 +117,14 @@ export interface Ui {
     achievements: string;
     windowAria: string;
   };
+  roof: {
+    sign: string;
+    signNote: string;
+    contacts: string;
+    copy: string;
+    copied: string;
+    call: string;
+  };
   project: {
     back: string;
     counter: string;

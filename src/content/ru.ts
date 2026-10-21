@@ -328,6 +328,14 @@ export const ru: Content = {
       achievements: 'Достижения',
       windowAria: 'Окно квартиры: дневное небо',
     },
+    roof: {
+      sign: 'ОТКРЫТ',
+      signNote: 'к новым проектам',
+      contacts: 'Контакты',
+      copy: 'Скопировать email',
+      copied: 'Email скопирован',
+      call: 'Позвонить в домофон',
+    },
     project: {
       back: 'Все пет-проекты',
       counter: 'Пет-проект {index} из {total}',

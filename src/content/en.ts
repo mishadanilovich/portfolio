@@ -328,6 +328,14 @@ export const en: Content = {
       achievements: 'Achievements',
       windowAria: 'Apartment window: daytime sky',
     },
+    roof: {
+      sign: 'OPEN',
+      signNote: 'to new projects',
+      contacts: 'Contacts',
+      copy: 'Copy email',
+      copied: 'Email copied',
+      call: 'Ring the intercom',
+    },
     project: {
       back: 'All pet projects',
       counter: 'Pet project {index} of {total}',
