@@ -121,6 +121,7 @@ export interface Ui {
     sign: string;
     signNote: string;
     contacts: string;
+    newTab: string;
     copy: string;
     copied: string;
     call: string;

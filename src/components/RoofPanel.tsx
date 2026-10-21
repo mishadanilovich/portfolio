@@ -38,11 +38,28 @@ function Icon({ kind }: { kind: ContactKind }) {
   );
 }
 
-function ContactLink({ contact, download }: { contact: Contact; download?: string }) {
+function ContactLink({
+  contact,
+  download,
+  newTab,
+}: {
+  contact: Contact;
+  download?: string;
+  newTab: string;
+}) {
+  const external = download === undefined && contact.href.startsWith('http');
+
   return (
-    <a className={styles.contact} href={contact.href} download={download}>
+    <a
+      className={styles.contact}
+      href={contact.href}
+      download={download}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noreferrer' : undefined}
+    >
       <Icon kind={contact.kind} />
       {contact.label}
+      {external && <span className={styles.announce}>{newTab}</span>}
     </a>
   );
 }
@@ -88,13 +105,14 @@ export function RoofPanel({
             <ContactLink
               contact={contact}
               download={contact.kind === 'cv' ? cv.downloadName : undefined}
+              newTab={ui.newTab}
             />
           </li>
         ))}
 
         {email !== undefined && (
           <li className={styles['email-row']}>
-            <ContactLink contact={email} />
+            <ContactLink contact={email} newTab={ui.newTab} />
             <CopyEmail email={email.label} copy={ui.copy} copied={ui.copied} />
           </li>
         )}

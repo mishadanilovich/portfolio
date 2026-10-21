@@ -332,6 +332,7 @@ export const en: Content = {
       sign: 'OPEN',
       signNote: 'to new projects',
       contacts: 'Contacts',
+      newTab: 'opens in a new tab',
       copy: 'Copy email',
       copied: 'Email copied',
       call: 'Ring the intercom',

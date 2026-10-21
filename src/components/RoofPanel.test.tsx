@@ -33,6 +33,27 @@ describe('карточка крыши', () => {
     );
   });
 
+  it('уводит внешние ссылки в новую вкладку и предупреждает об этом', () => {
+    show();
+
+    for (const name of ['@f0pp1', 'GitHub', 'LinkedIn']) {
+      const link = screen.getByRole('link', { name: new RegExp(name) });
+
+      expect(link, name).toHaveAttribute('target', '_blank');
+      expect(link, name).toHaveAttribute('rel', expect.stringContaining('noreferrer'));
+      expect(link, name).toHaveAccessibleName(expect.stringContaining('откроется в новой вкладке'));
+    }
+  });
+
+  it('резюме и почту оставляет в текущей вкладке', () => {
+    show();
+
+    expect(screen.getByRole('link', { name: 'Резюме, PDF' })).not.toHaveAttribute('target');
+    expect(screen.getByRole('link', { name: 'danilovich36misha@gmail.com' })).not.toHaveAttribute(
+      'target',
+    );
+  });
+
   it('отдаёт резюме на скачивание файлом своей локали', () => {
     show();
 
