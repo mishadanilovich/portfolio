@@ -527,6 +527,10 @@
   will-change: transform, opacity;
 }
 
+:global(body:has(dialog[open])) .viewport {
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   :global(body:has([data-room])) .layer,
   :global(body:has([data-room])) .plaques {

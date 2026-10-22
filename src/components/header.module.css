@@ -96,6 +96,27 @@
   background: var(--color-dark);
 }
 
+.call {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--spacing-touch-target);
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--color-lamp);
+  color: var(--color-on-lamp);
+  font-family: inherit;
+  font-size: var(--text-button);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.call:focus-visible {
+  outline: 2px solid var(--color-lamp-text);
+  outline-offset: 2px;
+}
+
 .link {
   display: flex;
   align-items: center;

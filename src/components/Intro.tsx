@@ -1,5 +1,6 @@
 import { locale } from 'next/root-params';
 import { defaultLocale, getContent, isLocale } from '@/content';
+import { CallButton } from '@/intercom/CallButton';
 import styles from './intro.module.css';
 
 export async function Intro() {
@@ -19,9 +20,7 @@ export async function Intro() {
         <p className={styles.lead}>{content.intro.lead}</p>
 
         <div className={styles.actions}>
-          <button type="button" className={styles.call}>
-            {content.ui.intro.callCta}
-          </button>
+          <CallButton className={styles.call}>{content.ui.intro.callCta}</CallButton>
           <a className={styles.cv} href={content.cv.href} download={content.cv.downloadName}>
             {content.ui.intro.cvCta}
           </a>

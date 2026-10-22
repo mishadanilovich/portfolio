@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { locale } from 'next/root-params';
 import { defaultLocale, getContent, isLocale } from '@/content';
 import { garagePath } from '@/garage/projects';
+import { CallButton } from '@/intercom/CallButton';
+import { CallIcon } from '@/intercom/CallIcon';
 import styles from './header.module.css';
 import { GarageLink } from './GarageLink';
 import { LanguageSwitch } from './LanguageSwitch';
@@ -33,6 +35,11 @@ export async function SiteHeader() {
         <a className={styles.link} href={content.cv.href} download={content.cv.downloadName}>
           {content.ui.header.cv}
         </a>
+
+        <CallButton className={styles.call}>
+          <CallIcon />
+          {content.ui.header.call}
+        </CallButton>
       </nav>
     </header>
   );

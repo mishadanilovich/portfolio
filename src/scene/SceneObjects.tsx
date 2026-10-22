@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState, type KeyboardEvent, type MouseEvent } from 'react';
+import { requestIntercom } from '@/intercom/events';
 import { isPlainClick } from '@/lib/click';
 import { useFocusTarget, type FocusTarget } from './FocusController';
 import { HOUSE, type LevelId } from './layout';
@@ -48,6 +49,16 @@ export function SceneObjects({
     }
 
     requestFlyIn(target.floor);
+  };
+
+  const ring = () => {
+    if (focused !== 'door') {
+      setHovered('door');
+      requestLevel('entrance');
+      return;
+    }
+
+    requestIntercom();
   };
 
   const enterGarage = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -100,6 +111,7 @@ export function SceneObjects({
         type="button"
         className={styles.object}
         aria-label={doorLabel}
+        onClick={ring}
         onPointerEnter={hover('door')}
         onPointerLeave={hover(null)}
         style={{

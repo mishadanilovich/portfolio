@@ -34,8 +34,10 @@ const REDUCED_FADE = 150;
 const INERTIA_GUARD = 150;
 const TRAVEL_GUARD = 1200;
 const ROOM = '[data-room]';
+const MODAL = 'dialog[open]';
 
 const WAKE_KEYS = new Set(['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', ' ', 'Spacebar']);
+const CONTROLS = ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'];
 
 type Mode = 'overview' | 'transition' | 'focus';
 
@@ -51,10 +53,14 @@ function inRoom(): boolean {
   return document.querySelector(ROOM) !== null;
 }
 
-function isTyping(target: EventTarget | null): boolean {
+function inModal(): boolean {
+  return document.querySelector(MODAL) !== null;
+}
+
+function handlesKey(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) return false;
 
-  return target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName);
+  return target.isContentEditable || CONTROLS.includes(target.tagName);
 }
 
 export function Camera({ children }: { children: ReactNode }) {
@@ -293,7 +299,7 @@ export function Camera({ children }: { children: ReactNode }) {
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (mode !== 'overview' || isTyping(event.target) || inRoom()) return;
+      if (mode !== 'overview' || handlesKey(event.target) || inRoom() || inModal()) return;
       if (!WAKE_KEYS.has(event.key)) return;
       zoomIn();
     };

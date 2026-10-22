@@ -126,6 +126,29 @@ export interface Ui {
     copied: string;
     call: string;
   };
+  intercom: {
+    title: string;
+    lead: string;
+    boardIdle: string;
+    direct: string;
+    telegram: string;
+    close: string;
+    group: string;
+    groupNote: string;
+    link: string;
+    linkPlaceholder: string;
+    or: string;
+    description: string;
+    descriptionPlaceholder: string;
+    company: string;
+    optional: string;
+    contact: string;
+    contactPlaceholder: string;
+    comment: string;
+    submit: string;
+    cancel: string;
+    required: string;
+  };
   project: {
     back: string;
     counter: string;

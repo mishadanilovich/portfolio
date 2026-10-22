@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getContent, isLocale, locales } from '@/content';
 import { MiniMap } from '@/components/MiniMap';
 import { SiteHeader } from '@/components/SiteHeader';
+import { Intercom } from '@/intercom/Intercom';
 import { LANDING_LEVEL } from '@/scene/layout';
 import { Scene } from '@/scene/Scene';
 import '../globals.css';
@@ -52,6 +53,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
         {children}
         <MiniMap />
         <Scene />
+        <Intercom />
       </body>
     </html>
   );
