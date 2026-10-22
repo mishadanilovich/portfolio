@@ -4,11 +4,13 @@ import { IntercomDialog } from './IntercomDialog';
 
 export async function Intercom() {
   const current = await locale();
-  const content = getContent(isLocale(current) ? current : defaultLocale);
+  const active = isLocale(current) ? current : defaultLocale;
+  const content = getContent(active);
 
   return (
     <IntercomDialog
       ui={content.ui.intercom}
+      locale={active}
       contacts={content.contacts}
       newTab={content.ui.newTab}
     />

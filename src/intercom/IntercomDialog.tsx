@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Contact, Ui } from '@/content';
+import type { Contact, Locale, Ui } from '@/content';
 import { onIntercomRequest } from './events';
 import styles from './intercom.module.css';
 
@@ -13,10 +13,12 @@ const IntercomBody = dynamic(() => import('./IntercomBody'), { ssr: false });
 
 export function IntercomDialog({
   ui,
+  locale,
   contacts,
   newTab,
 }: {
   ui: Ui['intercom'];
+  locale: Locale;
   contacts: Contact[];
   newTab: string;
 }) {
@@ -53,6 +55,7 @@ export function IntercomDialog({
       {mounted && (
         <IntercomBody
           ui={ui}
+          locale={locale}
           contacts={contacts}
           newTab={newTab}
           titleId={TITLE_ID}

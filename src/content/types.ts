@@ -157,6 +157,22 @@ export interface Ui {
     submit: string;
     cancel: string;
     required: string;
+    summary: string;
+    fields: Partial<Record<Intl.LDMLPluralRule, string>> & { other: string };
+    summaryVacancy: string;
+    summaryContact: string;
+    leadSending: string;
+    boardError: string;
+    boardSending: string;
+    sending: string;
+    sendingNote: string;
+    successTitle: string;
+    successText: string;
+    sentVacancy: string;
+    sentCompany: string;
+    sentContact: string;
+    successHome: string;
+    successAgain: string;
     errors: IntercomErrors;
   };
   project: {
