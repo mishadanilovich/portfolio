@@ -1,5 +1,6 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { Contact, Locale, Ui } from '@/content';
@@ -7,8 +8,7 @@ import { onIntercomRequest } from './events';
 import { IntercomFields } from './IntercomForm';
 import { IntercomPanel, type IntercomStatus } from './IntercomPanel';
 import { IntercomSuccess } from './IntercomSuccess';
-import { intercomResolver } from './resolver';
-import type { IntercomInput, IntercomValues } from './schema';
+import { intercomSchema, type IntercomInput, type IntercomValues } from './schema';
 import { sendIntercom } from './send';
 import styles from './intercom.module.css';
 
@@ -34,7 +34,7 @@ export default function IntercomBody({
   const [sent, setSent] = useState<IntercomValues | null>(null);
 
   const form = useForm<IntercomInput, unknown, IntercomValues>({
-    resolver: intercomResolver(ui.errors),
+    resolver: zodResolver(intercomSchema(ui.errors)),
     defaultValues: { locale, link: '', description: '', company: '', contact: '', comment: '' },
   });
 
