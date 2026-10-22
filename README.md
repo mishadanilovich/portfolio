@@ -37,6 +37,7 @@ npm run dev
 | `npm run stylelint` | Stylelint по CSS             |
 | `npm run typecheck` | `tsc --noEmit`               |
 | `npm run test`      | Vitest                       |
+| `npm run e2e`       | Playwright по `e2e/`         |
 | `npm run format`    | Prettier по всему проекту    |
 
 Переменные окружения понадобятся только для формы-домофона — см. [`.env.example`](.env.example). Без них сайт работает, форма пишет в консоль.
