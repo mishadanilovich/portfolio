@@ -68,6 +68,15 @@ export interface Cv {
   downloadName: string;
 }
 
+export interface IntercomErrors {
+  vacancy: string;
+  link: string;
+  contact: string;
+  long: string;
+  send: string;
+  rate: string;
+}
+
 export interface Ui {
   newTab: string;
   header: {
@@ -148,6 +157,7 @@ export interface Ui {
     submit: string;
     cancel: string;
     required: string;
+    errors: IntercomErrors;
   };
   project: {
     back: string;

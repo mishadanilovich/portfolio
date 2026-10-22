@@ -359,6 +359,14 @@ export const en: Content = {
       submit: 'Call',
       cancel: 'Cancel',
       required: 'required',
+      errors: {
+        vacancy: 'Add a job link or describe the role — one is enough.',
+        link: 'The link has to start with http:// or https://',
+        contact: 'Enter a full email or a Telegram @username',
+        long: 'Too long — please shorten it',
+        send: 'Couldn’t send it. Write to me directly: Telegram @f0pp1',
+        rate: 'Too many attempts in a row. Write to me directly: Telegram @f0pp1',
+      },
     },
     project: {
       back: 'All pet projects',
