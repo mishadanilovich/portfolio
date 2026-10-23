@@ -51,11 +51,11 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
     <html lang={locale} className={`${literata.variable} ${golos.variable}`}>
       <body data-camera="overview" data-level={LANDING_LEVEL}>
         <SiteHeader />
+        <Help />
         {children}
         <MiniMap />
         <Scene />
         <Intercom />
-        <Help />
       </body>
     </html>
   );

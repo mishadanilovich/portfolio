@@ -13,7 +13,7 @@ import { HelpScheme } from './HelpScheme';
 function show(ui: Ui = ru.ui) {
   return render(
     <>
-      <HelpButton label={ui.header.help} />
+      <HelpButton label={ui.help.open} />
       <HelpDialog ui={ui.help} scheme={<HelpScheme label={ui.help.scheme} />} />
     </>,
   );

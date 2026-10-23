@@ -91,7 +91,6 @@ export interface Ui {
     garage: string;
     cv: string;
     call: string;
-    help: string;
   };
   intro: {
     callCta: string;
@@ -105,6 +104,7 @@ export interface Ui {
     dismiss: string;
   };
   help: {
+    open: string;
     title: string;
     lead: string;
     close: string;

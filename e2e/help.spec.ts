@@ -10,9 +10,7 @@ function dialogOf(page: Page) {
 async function openHelp(page: Page) {
   await page.goto('/ru');
 
-  const trigger = page
-    .getByRole('navigation', { name: ru.ui.header.nav })
-    .getByRole('button', { name: ru.ui.header.help });
+  const trigger = page.getByRole('button', { name: ui.open });
   await expect(trigger).toBeVisible();
   await trigger.click();
 

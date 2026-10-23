@@ -288,7 +288,6 @@ export const en: Content = {
       garage: 'Garage',
       cv: 'Resume',
       call: 'Call',
-      help: 'How the site works',
     },
     intro: {
       callCta: 'Ring the intercom',
@@ -302,6 +301,7 @@ export const en: Content = {
       dismiss: 'Got it',
     },
     help: {
+      open: 'How the site works',
       title: 'How the house works',
       lead: 'Scroll up — the camera climbs from where it all began to today.',
       close: 'Close',
