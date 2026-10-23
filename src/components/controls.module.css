@@ -1,8 +1,5 @@
 .control {
   display: flex;
-  position: fixed;
-  z-index: 2;
-  right: 18px;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
@@ -24,17 +21,38 @@
 }
 
 .help {
+  position: fixed;
+  z-index: 2;
   top: 90px;
+  right: 18px;
+}
+
+.column {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
 }
 
 .overview {
-  top: 198px;
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+}
+
+@media (height <= 767px) {
+  .column {
+    top: 194px;
+    transform: none;
+  }
 }
 
 :global(body[data-camera='overview']) .overview {
   visibility: hidden;
 }
 
-:global(body:has([data-room])) .control {
+:global(body:has([data-room])) .column,
+:global(body:has([data-room])) .help {
   display: none;
 }

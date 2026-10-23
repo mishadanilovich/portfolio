@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { Golos_Text, Literata } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { getContent, isLocale, locales } from '@/content';
-import { MiniMap } from '@/components/MiniMap';
-import { OverviewButton } from '@/components/OverviewButton';
+import { SideControls } from '@/components/SideControls';
 import { SiteHeader } from '@/components/SiteHeader';
 import { Help } from '@/help/Help';
 import { Intercom } from '@/intercom/Intercom';
@@ -48,16 +47,13 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
 
-  const content = getContent(locale);
-
   return (
     <html lang={locale} className={`${literata.variable} ${golos.variable}`}>
       <body data-camera="overview" data-level={LANDING_LEVEL}>
         <SiteHeader />
         <Help />
-        <OverviewButton label={content.ui.scene.overview} />
         {children}
-        <MiniMap />
+        <SideControls />
         <Scene />
         <Intercom />
       </body>
