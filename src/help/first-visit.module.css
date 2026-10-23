@@ -1,0 +1,93 @@
+.card {
+  position: fixed;
+  z-index: 2;
+  top: 90px;
+  right: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 300px;
+  padding: 16px 18px;
+  border-radius: var(--radius-card);
+  background: var(--color-text-on-dark);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  transition:
+    opacity 300ms var(--ease-out),
+    transform 300ms var(--ease-out),
+    visibility 0s;
+}
+
+:global(body:not([data-camera='overview'])) .card {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(24px);
+  transition-delay: 0s, 0s, 300ms;
+  pointer-events: none;
+}
+
+.arrow {
+  position: absolute;
+  top: 16px;
+  right: -6px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-text-on-dark);
+  transform: rotate(45deg);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: normal;
+}
+
+.text {
+  margin: 0;
+  color: #3a4052;
+  font-size: var(--text-body);
+  line-height: var(--leading-caption);
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 2px;
+}
+
+.legend,
+.dismiss {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--text-caption);
+  line-height: normal;
+  cursor: pointer;
+}
+
+.legend {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.dismiss {
+  color: #4a5268;
+  font-weight: 500;
+}
+
+.legend:focus-visible,
+.dismiss:focus-visible {
+  outline: 2px solid var(--color-hover-outline);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
