@@ -301,6 +301,22 @@ export const en: Content = {
       legend: 'Show legend',
       dismiss: 'Got it',
     },
+    help: {
+      title: 'How the house works',
+      lead: 'Scroll up — the camera climbs from where it all began to today.',
+      close: 'Close',
+      scheme: 'House diagram with numbers',
+      items: [
+        { term: 'Roof', text: '— current status: location, work format and contacts.' },
+        { term: 'Floor', text: '— a project. Clickable: description and achievements inside.' },
+        { term: 'Basement', text: '— where it began: my education.' },
+        { term: 'Door and intercom', text: '— a form for employers: the role and a contact.' },
+        { term: 'Garage', text: '— pet projects.' },
+        { term: 'Mini-map', text: '— quick jump between floors.' },
+      ],
+      again: 'Open again with the “?” button in the top right corner.',
+      ok: 'Got it',
+    },
     scene: {
       exitHouse: 'Back to the house',
       floorPlaque: 'Floor {floor} · {period}',

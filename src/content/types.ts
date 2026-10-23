@@ -77,6 +77,11 @@ export interface IntercomErrors {
   rate: string;
 }
 
+export interface HelpItem {
+  term: string;
+  text: string;
+}
+
 export interface Ui {
   newTab: string;
   header: {
@@ -98,6 +103,15 @@ export interface Ui {
     text: string;
     legend: string;
     dismiss: string;
+  };
+  help: {
+    title: string;
+    lead: string;
+    close: string;
+    scheme: string;
+    items: HelpItem[];
+    again: string;
+    ok: string;
   };
   scene: {
     exitHouse: string;

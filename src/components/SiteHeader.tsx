@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { locale } from 'next/root-params';
 import { defaultLocale, getContent, isLocale } from '@/content';
 import { garagePath } from '@/garage/projects';
+import { HelpButton } from '@/help/HelpButton';
 import { CallButton } from '@/intercom/CallButton';
 import { CallIcon } from '@/intercom/CallIcon';
 import styles from './header.module.css';
@@ -40,6 +41,8 @@ export async function SiteHeader() {
           <CallIcon />
           {content.ui.header.call}
         </CallButton>
+
+        <HelpButton className={styles.help} label={content.ui.header.help} />
       </nav>
     </header>
   );
