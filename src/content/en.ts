@@ -349,7 +349,7 @@ export const en: Content = {
       contacts: 'Contacts',
       copy: 'Copy email',
       copied: 'Email copied',
-      call: 'Ring the intercom',
+      call: 'Leave a job opening',
     },
     intercom: {
       title: 'Intercom',

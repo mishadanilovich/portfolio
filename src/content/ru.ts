@@ -349,7 +349,7 @@ export const ru: Content = {
       contacts: 'Контакты',
       copy: 'Скопировать email',
       copied: 'Email скопирован',
-      call: 'Позвонить в домофон',
+      call: 'Оставить вакансию',
     },
     intercom: {
       title: 'Домофон',
