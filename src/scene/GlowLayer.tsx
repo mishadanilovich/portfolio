@@ -17,7 +17,9 @@ export function GlowLayer() {
             width: size(glow.width),
             height: size(glow.height),
           }}
-        />
+        >
+          <div className={styles['glow-light']} />
+        </div>
       ))}
     </div>
   );

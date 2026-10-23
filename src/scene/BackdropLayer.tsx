@@ -28,7 +28,13 @@ export function BackdropLayer() {
         </g>
         <g fill="#e9b25e" fillOpacity="0.55">
           {LIT_WINDOWS.map((window) => (
-            <rect key={`${window.x}-${window.y}`} {...window} width="5" height="7" />
+            <rect
+              key={`${window.x}-${window.y}`}
+              className={styles.ember}
+              {...window}
+              width="5"
+              height="7"
+            />
           ))}
         </g>
       </svg>

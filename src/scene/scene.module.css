@@ -104,6 +104,11 @@
 .glow {
   position: absolute;
   transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.glow-light {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background: radial-gradient(
     closest-side,
@@ -175,6 +180,88 @@
   .led {
     animation: blink var(--motion-intercom-pulse) ease-in-out infinite;
   }
+
+  .glow-light {
+    animation: breathe var(--motion-window-breath) var(--ease-in-out) infinite alternate;
+  }
+
+  .glow[data-floor='3'] .glow-light {
+    animation-delay: -1000ms;
+  }
+
+  .glow[data-floor='4'] .glow-light {
+    animation-delay: -2000ms;
+  }
+
+  .glow[data-floor='5'] .glow-light {
+    animation-delay: -3000ms;
+  }
+
+  .glow[data-floor='6'] .glow-light {
+    animation-delay: -4000ms;
+  }
+
+  .ember {
+    animation: flicker 4500ms var(--ease-in-out) infinite alternate;
+  }
+
+  .ember:nth-of-type(2) {
+    animation-duration: 5200ms;
+    animation-delay: -1700ms;
+  }
+
+  .ember:nth-of-type(3) {
+    animation-duration: 6000ms;
+    animation-delay: -3400ms;
+  }
+
+  .ember:nth-of-type(4) {
+    animation-duration: 4000ms;
+    animation-delay: -800ms;
+  }
+
+  .ember:nth-of-type(5) {
+    animation-duration: 5600ms;
+    animation-delay: -2600ms;
+  }
+
+  .puff {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: smoke 24s linear infinite;
+  }
+
+  .puff:nth-of-type(2) {
+    animation-delay: -8s;
+  }
+
+  .puff:nth-of-type(3) {
+    animation-delay: -16s;
+  }
+
+  .cloud {
+    animation: drift 54s linear infinite alternate;
+  }
+
+  .cloud:nth-of-type(2) {
+    animation-duration: 46s;
+    animation-delay: -9s;
+  }
+
+  .cloud:nth-of-type(3) {
+    animation-duration: 62s;
+    animation-delay: -21s;
+  }
+
+  .halo {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: lamplight 20s linear infinite alternate;
+  }
+
+  .sign-dot {
+    animation: beacon 20s linear infinite alternate;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -204,6 +291,76 @@
 
   50% {
     opacity: 0.35;
+  }
+}
+
+@keyframes breathe {
+  from {
+    opacity: 0.72;
+    transform: scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes flicker {
+  from {
+    opacity: 0.55;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes smoke {
+  0% {
+    opacity: 0;
+    transform: translate(0, 8px) scale(0.5);
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(7px, -30px) scale(1.8);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-20px);
+  }
+
+  to {
+    transform: translateX(20px);
+  }
+}
+
+@keyframes lamplight {
+  from {
+    opacity: 0.78;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes beacon {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 

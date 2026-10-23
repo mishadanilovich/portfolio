@@ -16,11 +16,15 @@ const DUSK_CLOUDS = [
 ];
 
 const DAY_CLOUDS = [
-  { x: 293.333, y: -158.667, rx: 73.333, ry: 13.333 },
-  { x: 320, y: -170.667, rx: 37.333, ry: 14.667 },
-  { x: 613.333, y: -38.667, rx: 60, ry: 9.333 },
-  { x: 630.667, y: -46.667, rx: 26.667, ry: 9.333 },
-  { x: 200, y: -58.667, rx: 46.667, ry: 7.333 },
+  [
+    { x: 293.333, y: -158.667, rx: 73.333, ry: 13.333 },
+    { x: 320, y: -170.667, rx: 37.333, ry: 14.667 },
+  ],
+  [
+    { x: 613.333, y: -38.667, rx: 60, ry: 9.333 },
+    { x: 630.667, y: -46.667, rx: 26.667, ry: 9.333 },
+  ],
+  [{ x: 200, y: -58.667, rx: 46.667, ry: 7.333 }],
 ];
 
 export function SkyLayer() {
@@ -42,6 +46,7 @@ export function SkyLayer() {
           {DUSK_CLOUDS.map((cloud) => (
             <ellipse
               key={`${cloud.x}-${cloud.y}`}
+              className={styles.cloud}
               cx={cloud.x}
               cy={cloud.y}
               rx={cloud.rx}
@@ -58,14 +63,18 @@ export function SkyLayer() {
           <circle cx="660" cy="-145.333" r="29.333" fill="#f7f1e1" />
           <circle cx="660" cy="-145.333" r="60" fill="var(--color-white)" fillOpacity="0.18" />
           <g fill="var(--color-white)" fillOpacity="0.9">
-            {DAY_CLOUDS.map((cloud) => (
-              <ellipse
-                key={`${cloud.x}-${cloud.y}`}
-                cx={cloud.x}
-                cy={cloud.y}
-                rx={cloud.rx}
-                ry={cloud.ry}
-              />
+            {DAY_CLOUDS.map((puffs) => (
+              <g key={`${puffs[0]?.x}-${puffs[0]?.y}`} className={styles.cloud}>
+                {puffs.map((puff) => (
+                  <ellipse
+                    key={`${puff.x}-${puff.y}`}
+                    cx={puff.x}
+                    cy={puff.y}
+                    rx={puff.rx}
+                    ry={puff.ry}
+                  />
+                ))}
+              </g>
             ))}
           </g>
           <g fill="none" stroke="#5a6378" strokeWidth="1.067" strokeLinecap="round">
