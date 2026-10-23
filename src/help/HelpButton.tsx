@@ -1,11 +1,16 @@
 'use client';
 
+import styles from '@/components/controls.module.css';
 import { requestHelp } from './events';
-import styles from './help.module.css';
 
 export function HelpButton({ label }: { label: string }) {
   return (
-    <button type="button" className={styles.button} aria-label={label} onClick={requestHelp}>
+    <button
+      type="button"
+      className={`${styles.control} ${styles.help}`}
+      aria-label={label}
+      onClick={requestHelp}
+    >
       ?
     </button>
   );

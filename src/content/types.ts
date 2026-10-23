@@ -87,8 +87,6 @@ export interface Ui {
   header: {
     nav: string;
     language: string;
-    overview: string;
-    garage: string;
     cv: string;
     call: string;
   };
@@ -113,6 +111,7 @@ export interface Ui {
     ok: string;
   };
   scene: {
+    overview: string;
     exitHouse: string;
     floorPlaque: string;
     floorAria: string;

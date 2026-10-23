@@ -284,10 +284,8 @@ export const en: Content = {
     header: {
       nav: 'Main navigation',
       language: 'Language',
-      overview: 'Whole house',
-      garage: 'Garage',
       cv: 'Resume',
-      call: 'Call',
+      call: 'Leave a job opening',
     },
     intro: {
       callCta: 'Ring the intercom',
@@ -317,6 +315,7 @@ export const en: Content = {
       ok: 'Got it',
     },
     scene: {
+      overview: 'Whole house',
       exitHouse: 'Back to the house',
       floorPlaque: 'Floor {floor} · {period}',
       floorAria: 'Floor {floor} — {title}, {period}',

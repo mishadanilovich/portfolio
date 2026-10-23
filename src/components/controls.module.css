@@ -1,0 +1,40 @@
+.control {
+  display: flex;
+  position: fixed;
+  z-index: 2;
+  right: 18px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--spacing-touch-target);
+  height: var(--spacing-touch-target);
+  border: 1px solid #3e4559;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-dark) 85%, transparent);
+  color: var(--color-text-on-dark-soft);
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--color-lamp-text);
+  outline-offset: 2px;
+}
+
+.help {
+  top: 90px;
+}
+
+.overview {
+  top: 198px;
+}
+
+:global(body[data-camera='overview']) .overview {
+  visibility: hidden;
+}
+
+:global(body:has([data-room])) .control {
+  display: none;
+}

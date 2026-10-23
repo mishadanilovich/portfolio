@@ -1,14 +1,11 @@
 import Link from 'next/link';
 import { locale } from 'next/root-params';
 import { defaultLocale, getContent, isLocale } from '@/content';
-import { garagePath } from '@/garage/projects';
 import { CallButton } from '@/intercom/CallButton';
 import { CallIcon } from '@/intercom/CallIcon';
 import styles from './header.module.css';
-import { GarageLink } from './GarageLink';
 import { LanguageSwitch } from './LanguageSwitch';
 import { Logo } from './Logo';
-import { OverviewButton } from './OverviewButton';
 
 export async function SiteHeader() {
   const current = await locale();
@@ -27,10 +24,6 @@ export async function SiteHeader() {
 
       <nav className={styles.nav} aria-label={content.ui.header.nav}>
         <LanguageSwitch label={content.ui.header.language} active={active} />
-
-        <OverviewButton label={content.ui.header.overview} />
-
-        <GarageLink href={garagePath(active)} label={content.ui.header.garage} />
 
         <a className={styles.link} href={content.cv.href} download={content.cv.downloadName}>
           {content.ui.header.cv}

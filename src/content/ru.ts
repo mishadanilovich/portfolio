@@ -284,10 +284,8 @@ export const ru: Content = {
     header: {
       nav: 'Основная навигация',
       language: 'Язык',
-      overview: 'Весь дом',
-      garage: 'Гараж',
       cv: 'Резюме',
-      call: 'Позвонить',
+      call: 'Оставить вакансию',
     },
     intro: {
       callCta: 'Позвонить в домофон',
@@ -317,6 +315,7 @@ export const ru: Content = {
       ok: 'Понятно',
     },
     scene: {
+      overview: 'Весь дом',
       exitHouse: 'Выйти к дому',
       floorPlaque: 'Этаж {floor} · {period}',
       floorAria: 'Этаж {floor} — {title}, {period}',
