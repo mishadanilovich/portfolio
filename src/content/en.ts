@@ -314,7 +314,6 @@ export const en: Content = {
         { term: 'Garage', text: '— pet projects.' },
         { term: 'Mini-map', text: '— quick jump between floors.' },
       ],
-      again: 'Open again with the “?” button in the top right corner.',
       ok: 'Got it',
     },
     scene: {

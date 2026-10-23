@@ -110,7 +110,6 @@ export interface Ui {
     close: string;
     scheme: string;
     items: HelpItem[];
-    again: string;
     ok: string;
   };
   scene: {

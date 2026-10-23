@@ -34,25 +34,24 @@ export function HelpDialog({ ui, scheme }: { ui: Ui['help']; scheme: ReactNode }
       <div className={styles.legend}>
         {scheme}
 
-        <ol className={styles.items}>
-          {ui.items.map((item, index) => (
-            <li key={item.term} className={styles.item}>
-              <span className={styles.badge} aria-hidden="true">
-                {index + 1}
-              </span>
-              <div className={styles.text}>
-                <b className={styles.term}>{item.term}</b> {item.text}
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
+        <div className={styles.aside}>
+          <ol className={styles.items}>
+            {ui.items.map((item, index) => (
+              <li key={item.term} className={styles.item}>
+                <span className={styles.badge} aria-hidden="true">
+                  {index + 1}
+                </span>
+                <div className={styles.text}>
+                  <b className={styles.term}>{item.term}</b> {item.text}
+                </div>
+              </li>
+            ))}
+          </ol>
 
-      <div className={styles.foot}>
-        <p className={styles.again}>{ui.again}</p>
-        <button type="button" className={styles.ok} onClick={close}>
-          {ui.ok}
-        </button>
+          <button type="button" className={styles.ok} onClick={close}>
+            {ui.ok}
+          </button>
+        </div>
       </div>
     </dialog>
   );

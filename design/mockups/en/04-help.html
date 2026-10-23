@@ -24,7 +24,7 @@ body{margin:0;background:#232938;font-family:'Golos Text',system-ui,sans-serif;c
 <rect x="0" y="0" width="1440" height="72" fill="#12151D" fill-opacity="0.62"></rect>
 </svg>
 
-<div role="dialog" aria-modal="true" aria-labelledby="help-title" style="position: absolute; left: 240px; top: 96px; width: 960px; box-sizing: border-box; padding: 36px 40px 32px; background: #F4F0E8; border-radius: 10px; box-shadow: 0 24px 60px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 24px">
+<div role="dialog" aria-modal="true" aria-labelledby="help-title" style="position: absolute; left: 240px; top: 50%; transform: translateY(-50%); width: 960px; box-sizing: border-box; padding: 36px 40px 32px; background: #F4F0E8; border-radius: 10px; box-shadow: 0 24px 60px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 24px">
 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px">
 <div style="display: flex; flex-direction: column; gap: 8px">
 <h2 id="help-title" style="margin: 0; font-family: Literata, Georgia, serif; font-size: 34px; font-weight: 500; line-height: 1.1">How the house works</h2>
@@ -67,7 +67,8 @@ body{margin:0;background:#232938;font-family:'Golos Text',system-ui,sans-serif;c
 </g>
 </svg>
 
-<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; flex-grow: 1; padding-top: 8px">
+<div style="display: flex; flex-direction: column; flex-grow: 1; align-self: stretch">
+<ol style="margin: 0; padding: 8px 0 0; list-style: none; display: flex; flex-direction: column; gap: 18px">
 <li style="display: flex; gap: 14px"><span style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 999px; background: #232938; color: #F4F0E8; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center">1</span><div style="font-size: 16px; line-height: 1.45"><b style="font-weight: 600">Roof</b> — current status: location, work format and contacts.</div></li>
 <li style="display: flex; gap: 14px"><span style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 999px; background: #232938; color: #F4F0E8; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center">2</span><div style="font-size: 16px; line-height: 1.45"><b style="font-weight: 600">Floor</b> — a project. Clickable: description and achievements inside.</div></li>
 <li style="display: flex; gap: 14px"><span style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 999px; background: #232938; color: #F4F0E8; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center">3</span><div style="font-size: 16px; line-height: 1.45"><b style="font-weight: 600">Basement</b> — where it began: my education.</div></li>
@@ -75,11 +76,8 @@ body{margin:0;background:#232938;font-family:'Golos Text',system-ui,sans-serif;c
 <li style="display: flex; gap: 14px"><span style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 999px; background: #232938; color: #F4F0E8; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center">5</span><div style="font-size: 16px; line-height: 1.45"><b style="font-weight: 600">Garage</b> — pet projects.</div></li>
 <li style="display: flex; gap: 14px"><span style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 999px; background: #232938; color: #F4F0E8; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center">6</span><div style="font-size: 16px; line-height: 1.45"><b style="font-weight: 600">Mini-map</b> — quick jump between floors.</div></li>
 </ol>
+<button type="button" style="align-self: flex-end; margin-top: auto; height: 48px; padding: 0 28px; border: 0; border-radius: 6px; background: #232938; color: #F4F0E8; font: 600 16px 'Golos Text', sans-serif">Got it</button>
 </div>
-
-<div style="display: flex; align-items: center; justify-content: space-between; padding-top: 20px; border-top: 1px solid #D8D1C4">
-<div style="font-size: 15px; color: #4A5060">Open again with the “?” button in the top right corner.</div>
-<button type="button" style="height: 48px; padding: 0 28px; border: 0; border-radius: 6px; background: #232938; color: #F4F0E8; font: 600 16px 'Golos Text', sans-serif">Got it</button>
 </div>
 </div>
 </div>
