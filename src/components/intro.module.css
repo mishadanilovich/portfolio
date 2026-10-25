@@ -103,3 +103,9 @@
   color: var(--color-text-on-dark);
   text-decoration: none;
 }
+
+.call:focus-visible,
+.cv:focus-visible {
+  outline: 2px solid var(--color-lamp-text);
+  outline-offset: 2px;
+}
