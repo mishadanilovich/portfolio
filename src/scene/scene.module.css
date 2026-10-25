@@ -280,37 +280,37 @@
   }
 
   .puff {
-    animation: smoke 24s linear infinite;
+    animation: smoke 18s linear infinite;
   }
 
   .puff:nth-of-type(2) {
-    animation-delay: -8s;
+    animation-delay: -6s;
   }
 
   .puff:nth-of-type(3) {
-    animation-delay: -16s;
+    animation-delay: -12s;
   }
 
   .cloud {
-    animation: drift 54s linear infinite alternate;
+    animation: drift 26s linear infinite alternate;
   }
 
   .cloud:nth-of-type(2) {
-    animation-duration: 46s;
+    animation-duration: 22s;
     animation-delay: -9s;
   }
 
   .cloud:nth-of-type(3) {
-    animation-duration: 62s;
+    animation-duration: 30s;
     animation-delay: -21s;
   }
 
   .halo {
-    animation: lamplight 20s linear infinite alternate;
+    animation: lamplight 14s linear infinite alternate;
   }
 
   .sign-dot {
-    animation: beacon 20s linear infinite alternate;
+    animation: beacon 14s linear infinite alternate;
   }
 }
 
@@ -346,19 +346,19 @@
 
 @keyframes breathe {
   from {
-    opacity: 0.72;
-    transform: scale(0.94);
+    opacity: 0.45;
+    transform: scale(0.86);
   }
 
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1.04);
   }
 }
 
 @keyframes flicker {
   from {
-    opacity: 0.55;
+    opacity: 0.25;
   }
 
   to {
@@ -369,7 +369,7 @@
 @keyframes smoke {
   0% {
     opacity: 0;
-    transform: translate(0, calc(8 * var(--u-focus))) scale(0.5);
+    transform: translate(0, calc(8 * var(--u-focus))) scale(0.4);
   }
 
   25% {
@@ -378,35 +378,35 @@
 
   100% {
     opacity: 0;
-    transform: translate(calc(7 * var(--u-focus)), calc(-30 * var(--u-focus))) scale(1.8);
+    transform: translate(calc(10 * var(--u-focus)), calc(-45 * var(--u-focus))) scale(2);
   }
 }
 
 @keyframes drift {
   from {
-    transform: translateX(calc(-20 * var(--u-focus)));
+    transform: translateX(calc(-30 * var(--u-focus)));
   }
 
   to {
-    transform: translateX(calc(20 * var(--u-focus)));
+    transform: translateX(calc(30 * var(--u-focus)));
   }
 }
 
 @keyframes lamplight {
   from {
     opacity: 0;
-    transform: scale(0.92);
+    transform: scale(0.9);
   }
 
   to {
-    opacity: 0.35;
-    transform: scale(1.1);
+    opacity: 0.5;
+    transform: scale(1.15);
   }
 }
 
 @keyframes beacon {
   from {
-    opacity: 0.5;
+    opacity: 0.35;
   }
 
   to {
