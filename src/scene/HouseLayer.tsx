@@ -10,9 +10,6 @@ const SMOKE = [
   { x: 566, y: 52, r: 10 },
 ];
 
-const LANTERN = { center: { x: 580, y: 698 }, radius: 24 };
-const LAMPS = [...HOUSE.entrance.lamps, LANTERN];
-
 const WINDOW_SYMBOL = {
   cold: '#scene-window-cold',
   blinds: '#scene-window-blinds',
@@ -347,16 +344,6 @@ export function HouseLayer() {
       <div className={styles.layer}>
         {SMOKE.map((puff) => (
           <div key={puff.y} className={styles.puff} style={spot(puff.x, puff.y, puff.r)} />
-        ))}
-      </div>
-
-      <div className={styles.layer}>
-        {LAMPS.map((lamp) => (
-          <div
-            key={lamp.center.x}
-            className={styles.halo}
-            style={spot(lamp.center.x, lamp.center.y, lamp.radius)}
-          />
         ))}
       </div>
     </div>

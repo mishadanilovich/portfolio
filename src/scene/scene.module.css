@@ -104,28 +104,12 @@
 .glow {
   position: absolute;
   transition: transform var(--motion-fast) var(--ease-out);
-}
-
-.glow-light {
-  width: 100%;
-  height: 100%;
   border-radius: 50%;
   background: radial-gradient(
     closest-side,
     color-mix(in srgb, var(--color-lamp-text) 55%, transparent),
     transparent
   );
-}
-
-.halo {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(
-    closest-side,
-    color-mix(in srgb, var(--color-lamp-text) 55%, transparent),
-    transparent
-  );
-  opacity: 0;
 }
 
 .pulse {
@@ -138,11 +122,6 @@
   position: absolute;
   border-radius: 50%;
   background: var(--color-lamp-bright);
-}
-
-.ember {
-  position: absolute;
-  background: color-mix(in srgb, #e9b25e 55%, transparent);
 }
 
 .cloud {
@@ -235,50 +214,6 @@
     animation: blink var(--motion-intercom-pulse) ease-in-out infinite;
   }
 
-  .glow-light {
-    animation: breathe var(--motion-window-breath) var(--ease-in-out) infinite alternate;
-  }
-
-  .glow[data-floor='3'] .glow-light {
-    animation-delay: -1000ms;
-  }
-
-  .glow[data-floor='4'] .glow-light {
-    animation-delay: -2000ms;
-  }
-
-  .glow[data-floor='5'] .glow-light {
-    animation-delay: -3000ms;
-  }
-
-  .glow[data-floor='6'] .glow-light {
-    animation-delay: -4000ms;
-  }
-
-  .ember {
-    animation: flicker 4500ms var(--ease-in-out) infinite alternate;
-  }
-
-  .ember:nth-of-type(2) {
-    animation-duration: 5200ms;
-    animation-delay: -1700ms;
-  }
-
-  .ember:nth-of-type(3) {
-    animation-duration: 6000ms;
-    animation-delay: -3400ms;
-  }
-
-  .ember:nth-of-type(4) {
-    animation-duration: 4000ms;
-    animation-delay: -800ms;
-  }
-
-  .ember:nth-of-type(5) {
-    animation-duration: 5600ms;
-    animation-delay: -2600ms;
-  }
-
   .puff {
     animation: smoke 18s linear infinite;
   }
@@ -303,14 +238,6 @@
   .cloud:nth-of-type(3) {
     animation-duration: 30s;
     animation-delay: -21s;
-  }
-
-  .halo {
-    animation: lamplight 14s linear infinite alternate;
-  }
-
-  .sign-dot {
-    animation: beacon 14s linear infinite alternate;
   }
 }
 
@@ -344,28 +271,6 @@
   }
 }
 
-@keyframes breathe {
-  from {
-    opacity: 0.45;
-    transform: scale(0.86);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1.04);
-  }
-}
-
-@keyframes flicker {
-  from {
-    opacity: 0.25;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes smoke {
   0% {
     opacity: 0;
@@ -389,28 +294,6 @@
 
   to {
     transform: translateX(calc(30 * var(--u-focus)));
-  }
-}
-
-@keyframes lamplight {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-
-  to {
-    opacity: 0.5;
-    transform: scale(1.15);
-  }
-}
-
-@keyframes beacon {
-  from {
-    opacity: 0.35;
-  }
-
-  to {
-    opacity: 1;
   }
 }
 
