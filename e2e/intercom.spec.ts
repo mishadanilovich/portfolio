@@ -61,7 +61,7 @@ test('не пускает пустую форму и ведёт из сводк�
   await expect(dialogOf(page).getByLabel(ui.link)).toBeFocused();
 });
 
-test('закрывается по Esc и возвращает фокус на кнопку', async ({ page }) => {
+test('закрывается по Esc, возвращает фокус на кнопку и открывается чистой', async ({ page }) => {
   const trigger = await openIntercom(page);
 
   await dialogOf(page).getByLabel(ui.company, { exact: false }).fill('Example Tech');
@@ -72,5 +72,19 @@ test('закрывается по Esc и возвращает фокус на к
 
   await trigger.click();
 
-  await expect(dialogOf(page).getByLabel(ui.company, { exact: false })).toHaveValue('Example Tech');
+  await expect(dialogOf(page).getByLabel(ui.company, { exact: false })).toHaveValue('');
+});
+
+test('не показывает прошлые ошибки при повторном открытии', async ({ page }) => {
+  const trigger = await openIntercom(page);
+
+  await dialogOf(page).getByRole('button', { name: ui.submit }).click();
+
+  await expect(dialogOf(page).getByRole('alert')).toBeVisible();
+
+  await page.keyboard.press('Escape');
+  await trigger.click();
+
+  await expect(dialogOf(page).getByRole('alert')).toBeHidden();
+  await expect(dialogOf(page).getByLabel(ui.company, { exact: false })).toHaveValue('');
 });

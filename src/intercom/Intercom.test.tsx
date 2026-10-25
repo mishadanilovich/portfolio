@@ -1,10 +1,11 @@
 // @vitest-environment jsdom
 
-import { render, screen, within } from '@testing-library/react';
+import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { en } from '@/content/en';
 import { ru } from '@/content/ru';
+import { requestIntercom } from './events';
 import IntercomBody from './IntercomBody';
 
 function show(onClose = () => {}) {
@@ -161,6 +162,47 @@ describe('состояния домофона', () => {
 
     await userEvent.click(screen.getByRole('button', { name: 'Отправить ещё одну' }));
 
+    expect(screen.getByLabelText('Ссылка на вакансию')).toHaveValue('');
+  });
+
+  it('повторное открытие очищает поля и прошлые ошибки', async () => {
+    show();
+
+    await userEvent.type(screen.getByLabelText(/Компания/), 'Example Tech');
+    await userEvent.click(screen.getByRole('button', { name: 'Позвонить' }));
+
+    expect(await screen.findByRole('alert')).toBeInTheDocument();
+
+    act(() => {
+      requestIntercom();
+    });
+
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(screen.getByLabelText(/Компания/)).toHaveValue('');
+    expect(screen.getByLabelText('Ссылка на вакансию')).not.toHaveAttribute('aria-invalid', 'true');
+  });
+
+  it('после успеха и повторного открытия показывает чистую форму, а не подтверждение', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => Response.json({ ok: true })),
+    );
+
+    show();
+
+    await userEvent.type(screen.getByLabelText('Ссылка на вакансию'), 'https://example.com/job');
+    await userEvent.type(screen.getByLabelText(/Контакт для связи/), '@anna_hr');
+    await userEvent.click(screen.getByRole('button', { name: 'Позвонить' }));
+
+    expect(await screen.findByRole('heading', { level: 3, name: 'Звонок принят' })).toBeVisible();
+
+    act(() => {
+      requestIntercom();
+    });
+
+    expect(
+      screen.queryByRole('heading', { level: 3, name: 'Звонок принят' }),
+    ).not.toBeInTheDocument();
     expect(screen.getByLabelText('Ссылка на вакансию')).toHaveValue('');
   });
 

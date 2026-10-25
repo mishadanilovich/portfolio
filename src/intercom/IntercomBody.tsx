@@ -71,12 +71,10 @@ export default function IntercomBody({
     () =>
       onIntercomRequest(() => {
         setFailure(null);
-        if (sent === null) return;
-
         form.reset();
         setSent(null);
       }),
-    [sent, form],
+    [form],
   );
 
   const invalid = Object.keys(form.formState.errors).length > 0 || failure !== null;
