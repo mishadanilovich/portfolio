@@ -142,6 +142,10 @@
   background: color-mix(in srgb, var(--color-white) 90%, transparent);
 }
 
+.smoke {
+  position: absolute;
+}
+
 .puff {
   position: absolute;
   border-radius: 50%;
@@ -619,6 +623,18 @@
 
 :global(body:has(dialog[open])) .viewport {
   pointer-events: none;
+}
+
+:global(body:has(dialog[open])) .cloud,
+:global(body:has(dialog[open])) .puff,
+:global(body:has(dialog[open])) .pulse,
+:global(body:has(dialog[open])) .led {
+  animation-play-state: paused;
+}
+
+.cloud[data-idle],
+.smoke[data-idle] .puff {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

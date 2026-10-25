@@ -45,7 +45,12 @@ function Clouds({ groups, tone }: { groups: Puff[][]; tone: string | undefined }
         const bottom = Math.max(...puffs.map((puff) => puff.y + puff.ry));
 
         return (
-          <div key={`${x}-${y}`} className={styles.cloud} style={box(x, y, right - x, bottom - y)}>
+          <div
+            key={`${x}-${y}`}
+            data-cycle=""
+            className={styles.cloud}
+            style={box(x, y, right - x, bottom - y)}
+          >
             {puffs.map((puff) => (
               <div
                 key={`${puff.x}-${puff.y}`}

@@ -318,6 +318,19 @@ export function Camera({ children }: { children: ReactNode }) {
 
     for (const element of viewport.querySelectorAll('[data-band]')) observer.observe(element);
 
+    const cycles = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!(entry.target instanceof HTMLElement)) continue;
+          if (entry.isIntersecting) delete entry.target.dataset.idle;
+          else entry.target.dataset.idle = '';
+        }
+      },
+      { root: viewport, rootMargin: '25% 0px 25% 0px' },
+    );
+
+    for (const element of viewport.querySelectorAll('[data-cycle]')) cycles.observe(element);
+
     const stopOverview = onOverviewRequest(zoomOut);
     const stopLevel = onLevelRequest(goToLevel);
     const stopFlyIn = onFlyInRequest(flyIn);
@@ -334,6 +347,7 @@ export function Camera({ children }: { children: ReactNode }) {
       stopFlyIn();
       stopFlyOut();
       observer.disconnect();
+      cycles.disconnect();
       viewport.removeEventListener('scrollend', endTravel);
       viewport.removeEventListener('wheel', onWheel);
       viewport.removeEventListener('touchmove', onTouchMove);

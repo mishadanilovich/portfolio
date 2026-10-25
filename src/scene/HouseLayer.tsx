@@ -2,13 +2,15 @@ import { GlowLayer } from './GlowLayer';
 import { GarageInterior } from './GarageInterior';
 import { HOUSE, SCENE_VIEW_BOX } from './layout';
 import styles from './scene.module.css';
-import { left, size, spot, top } from './units';
+import { box, left, size, top } from './units';
 
 const SMOKE = [
   { x: 549, y: 88, r: 6 },
   { x: 556, y: 72, r: 8 },
   { x: 566, y: 52, r: 10 },
 ];
+
+const SMOKE_BOX = { x: 539, y: -4, width: 52, height: 106 };
 
 const WINDOW_SYMBOL = {
   cold: '#scene-window-cold',
@@ -341,9 +343,22 @@ export function HouseLayer() {
         }}
       />
 
-      <div className={styles.layer}>
+      <div
+        data-cycle=""
+        className={styles.smoke}
+        style={box(SMOKE_BOX.x, SMOKE_BOX.y, SMOKE_BOX.width, SMOKE_BOX.height)}
+      >
         {SMOKE.map((puff) => (
-          <div key={puff.y} className={styles.puff} style={spot(puff.x, puff.y, puff.r)} />
+          <div
+            key={puff.y}
+            className={styles.puff}
+            style={{
+              left: size(puff.x - puff.r - SMOKE_BOX.x),
+              top: size(puff.y - puff.r - SMOKE_BOX.y),
+              width: size(puff.r * 2),
+              height: size(puff.r * 2),
+            }}
+          />
         ))}
       </div>
     </div>
