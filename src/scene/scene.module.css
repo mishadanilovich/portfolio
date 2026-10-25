@@ -117,6 +117,62 @@
   );
 }
 
+.halo {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-lamp-text) 55%, transparent),
+    transparent
+  );
+  opacity: 0;
+}
+
+.pulse {
+  position: absolute;
+  border: calc(1.2 * var(--u-focus)) solid var(--color-lamp-text);
+  border-radius: 50%;
+}
+
+.led {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-lamp-bright);
+}
+
+.ember {
+  position: absolute;
+  background: color-mix(in srgb, #e9b25e 55%, transparent);
+}
+
+.cloud {
+  position: absolute;
+}
+
+.cloud-dusk,
+.cloud-day {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cloud-dusk {
+  background: color-mix(in srgb, var(--color-white) 12%, transparent);
+}
+
+.cloud-day {
+  background: color-mix(in srgb, var(--color-white) 90%, transparent);
+}
+
+.puff {
+  position: absolute;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-white) 70%, transparent);
+}
+
+.puff:nth-of-type(3) {
+  background: color-mix(in srgb, var(--color-white) 45%, transparent);
+}
+
 .plaques {
   position: absolute;
   inset: 0;
@@ -168,8 +224,6 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .pulse {
-    transform-box: fill-box;
-    transform-origin: center;
     animation: pulse var(--motion-intercom-pulse) ease-out infinite;
   }
 
@@ -226,8 +280,6 @@
   }
 
   .puff {
-    transform-box: fill-box;
-    transform-origin: center;
     animation: smoke 24s linear infinite;
   }
 
@@ -254,8 +306,6 @@
   }
 
   .halo {
-    transform-box: fill-box;
-    transform-origin: center;
     animation: lamplight 20s linear infinite alternate;
   }
 
@@ -319,7 +369,7 @@
 @keyframes smoke {
   0% {
     opacity: 0;
-    transform: translate(0, 8px) scale(0.5);
+    transform: translate(0, calc(8 * var(--u-focus))) scale(0.5);
   }
 
   25% {
@@ -328,29 +378,29 @@
 
   100% {
     opacity: 0;
-    transform: translate(7px, -30px) scale(1.8);
+    transform: translate(calc(7 * var(--u-focus)), calc(-30 * var(--u-focus))) scale(1.8);
   }
 }
 
 @keyframes drift {
   from {
-    transform: translateX(-20px);
+    transform: translateX(calc(-20 * var(--u-focus)));
   }
 
   to {
-    transform: translateX(20px);
+    transform: translateX(calc(20 * var(--u-focus)));
   }
 }
 
 @keyframes lamplight {
   from {
-    opacity: 0.78;
-    transform: scale(0.95);
+    opacity: 0;
+    transform: scale(0.92);
   }
 
   to {
-    opacity: 1;
-    transform: scale(1.05);
+    opacity: 0.35;
+    transform: scale(1.1);
   }
 }
 

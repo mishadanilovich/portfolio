@@ -2,7 +2,16 @@ import { GlowLayer } from './GlowLayer';
 import { GarageInterior } from './GarageInterior';
 import { HOUSE, SCENE_VIEW_BOX } from './layout';
 import styles from './scene.module.css';
-import { left, size, top } from './units';
+import { left, size, spot, top } from './units';
+
+const SMOKE = [
+  { x: 549, y: 88, r: 6 },
+  { x: 556, y: 72, r: 8 },
+  { x: 566, y: 52, r: 10 },
+];
+
+const LANTERN = { center: { x: 580, y: 698 }, radius: 24 };
+const LAMPS = [...HOUSE.entrance.lamps, LANTERN];
 
 const WINDOW_SYMBOL = {
   cold: '#scene-window-cold',
@@ -170,13 +179,7 @@ function Entrance() {
 
       {lamps.map((lamp) => (
         <g key={lamp.center.x}>
-          <circle
-            className={styles.halo}
-            cx={lamp.center.x}
-            cy={lamp.center.y}
-            r={lamp.radius}
-            fill="url(#scene-halo)"
-          />
+          <circle cx={lamp.center.x} cy={lamp.center.y} r={lamp.radius} fill="url(#scene-halo)" />
           <rect
             x={lamp.center.x - 2}
             y={lamp.center.y - 4}
@@ -216,7 +219,7 @@ function Lantern() {
   return (
     <g>
       <line x1="580" y1="760" x2="580" y2="702" stroke="#1c202b" strokeWidth="2" />
-      <circle className={styles.halo} cx="580" cy="698" r="24" fill="url(#scene-halo)" />
+      <circle cx="580" cy="698" r="24" fill="url(#scene-halo)" />
       <path d="M573 702H587L584 694H576Z" fill="var(--color-lamp-text)" />
     </g>
   );
@@ -284,11 +287,6 @@ function Roof() {
       />
 
       <rect x="540" y="100" width="18" height="48" fill="#c9c1b3" />
-      <g fill="var(--color-white)" fillOpacity="0.7">
-        <circle className={styles.puff} cx="549" cy="88" r="6" />
-        <circle className={styles.puff} cx="556" cy="72" r="8" />
-        <circle className={styles.puff} cx="566" cy="52" r="10" fillOpacity="0.45" />
-      </g>
       <path d="M530 148V76M522 86H538M524 96H536" stroke="#5a5f70" strokeWidth="1.2" />
     </g>
   );
@@ -345,6 +343,22 @@ export function HouseLayer() {
           height: size(44),
         }}
       />
+
+      <div className={styles.layer}>
+        {SMOKE.map((puff) => (
+          <div key={puff.y} className={styles.puff} style={spot(puff.x, puff.y, puff.r)} />
+        ))}
+      </div>
+
+      <div className={styles.layer}>
+        {LAMPS.map((lamp) => (
+          <div
+            key={lamp.center.x}
+            className={styles.halo}
+            style={spot(lamp.center.x, lamp.center.y, lamp.radius)}
+          />
+        ))}
+      </div>
     </div>
   );
 }

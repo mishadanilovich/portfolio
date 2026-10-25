@@ -32,6 +32,21 @@ export function top(units: number): string {
   return size(units - SCENE_TOP);
 }
 
+interface Box {
+  left: string;
+  top: string;
+  width: string;
+  height: string;
+}
+
+export function box(x: number, y: number, width: number, height: number): Box {
+  return { left: left(x), top: top(y), width: size(width), height: size(height) };
+}
+
+export function spot(x: number, y: number, radius: number): Box {
+  return box(x - radius, y - radius, radius * 2, radius * 2);
+}
+
 export const OVERVIEW_SCALE = 1 / FOCUS_ZOOM;
 
 export function cameraVars(): Record<string, string> {

@@ -1,5 +1,6 @@
 import { SCENE_VIEW_BOX } from './layout';
 import styles from './scene.module.css';
+import { box } from './units';
 
 const BUILDINGS = [
   { x: -10, y: 640, width: 46, height: 120 },
@@ -26,18 +27,17 @@ export function BackdropLayer() {
             <rect key={`${building.x}-${building.y}`} {...building} />
           ))}
         </g>
-        <g fill="#e9b25e" fillOpacity="0.55">
-          {LIT_WINDOWS.map((window) => (
-            <rect
-              key={`${window.x}-${window.y}`}
-              className={styles.ember}
-              {...window}
-              width="5"
-              height="7"
-            />
-          ))}
-        </g>
       </svg>
+
+      <div className={styles.layer}>
+        {LIT_WINDOWS.map((window) => (
+          <div
+            key={`${window.x}-${window.y}`}
+            className={styles.ember}
+            style={box(window.x, window.y, 5, 7)}
+          />
+        ))}
+      </div>
     </div>
   );
 }
