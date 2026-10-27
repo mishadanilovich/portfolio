@@ -10,6 +10,7 @@ import {
 } from 'react';
 import { requestIntercom } from '@/intercom/events';
 import { isPlainClick } from '@/lib/click';
+import { hasLongWord } from '@/room/apartment';
 import { useFocusTarget, type FocusTarget } from './FocusController';
 import { CARD_WIDTH, HOUSE, PLAQUE, type LevelId } from './layout';
 import { onFlyOutRequest, requestFlyIn, requestLevel } from './camera-events';
@@ -124,7 +125,12 @@ export function SceneObjects({
               }
             >
               <span className={styles['card-kicker']}>{target.card.kicker}</span>
-              <span className={styles['card-title']}>{target.card.title}</span>
+              <span
+                className={styles['card-title']}
+                data-long={hasLongWord(target.card.title) ? '' : undefined}
+              >
+                {target.card.title}
+              </span>
               <span className={styles['card-role']}>{target.card.role}</span>
               <span className={styles['card-action']}>{target.card.action}</span>
             </span>

@@ -379,10 +379,15 @@
 }
 
 .card-title {
+  overflow-wrap: break-word;
   font-family: var(--font-display);
   font-size: calc(16 * var(--u-focus));
   font-weight: 500;
   line-height: 1.2;
+}
+
+.card-title[data-long] {
+  font-size: calc(13 * var(--u-focus));
 }
 
 .card-role {
