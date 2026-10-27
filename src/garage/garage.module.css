@@ -57,7 +57,7 @@
   --fridgemind: 0;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .body:has([data-project='fridgemind']:hover) {
     --fridgemind: 1;
     --coffee-shop: 0;
@@ -146,30 +146,11 @@
   line-height: var(--leading-body);
 }
 
-.card {
-  display: flex;
-  gap: 16px;
-  padding: 20px;
-  border: 1px solid
-    color-mix(
-      in srgb,
-      var(--color-hover-outline) calc(var(--active, 0) * 100%),
-      var(--color-border)
-    );
-  border-radius: var(--radius-card);
-  background: var(--color-white);
-  box-shadow: 0 8px 20px rgba(40, 30, 20, calc(0.12 * var(--active, 0)));
-  color: inherit;
-  text-decoration: none;
-}
-
-.card[data-project='fridgemind'],
-.tag[data-project='fridgemind'] {
+.body [data-project='fridgemind'] {
   --active: var(--fridgemind);
 }
 
-.card[data-project='coffee-shop'],
-.tag[data-project='coffee-shop'] {
+.body [data-project='coffee-shop'] {
   --active: var(--coffee-shop);
 }
 
@@ -183,11 +164,6 @@
   left: calc(50% - (480 - var(--x)) * var(--scale));
   width: calc(var(--w) * var(--scale));
   height: calc(var(--h) * var(--scale));
-}
-
-.hotspot:focus-visible {
-  outline: 2px solid var(--color-lamp-text);
-  outline-offset: 2px;
 }
 
 .stage [data-object='fridgemind'] {
@@ -237,17 +213,9 @@
     transition: transform var(--motion-medium) var(--ease-out);
   }
 
-  .card,
   .tag {
-    transition:
-      border-color var(--motion-fast) var(--ease-out),
-      box-shadow var(--motion-fast) var(--ease-out);
+    transition: border-color var(--motion-hover) var(--ease-out);
   }
-}
-
-.card:focus-visible {
-  outline: 2px solid var(--color-hover-outline);
-  outline-offset: 2px;
 }
 
 .card-icon {
@@ -303,14 +271,8 @@
   line-height: normal;
 }
 
-.card-arrow {
-  flex-shrink: 0;
-  align-self: center;
-}
-
 .github {
   margin-top: auto;
-  color: var(--color-copper-text);
   font-size: var(--text-body);
 }
 
@@ -321,16 +283,9 @@
 }
 
 .back {
-  display: flex;
   align-self: flex-start;
-  align-items: center;
-  gap: 8px;
-  height: var(--spacing-touch-target);
   margin-left: -8px;
   padding: 0 8px;
-  color: inherit;
-  font-size: var(--text-body);
-  text-decoration: none;
 }
 
 .project-title {
@@ -373,20 +328,6 @@
   margin-top: auto;
 }
 
-.open {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: var(--spacing-panel-cta);
-  border-radius: var(--radius-control);
-  background: var(--color-lamp);
-  color: var(--color-on-lamp);
-  font-size: 17px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
 .note {
   margin: 0;
   color: var(--color-text-muted);
@@ -403,23 +344,6 @@
 
 .sibling-next {
   margin-left: auto;
-}
-
-.sibling {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--color-copper-text);
-  font-size: var(--text-body);
-  text-decoration: none;
-}
-
-.back:focus-visible,
-.open:focus-visible,
-.sibling:focus-visible,
-.github:focus-visible {
-  outline: 2px solid var(--color-hover-outline);
-  outline-offset: 2px;
 }
 
 .tall .stage {

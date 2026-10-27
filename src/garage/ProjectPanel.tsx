@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { fill, handleOf, type Locale, type PetProject, type Ui } from '@/content';
 import { Shelves } from '@/components/Shelves';
+import { control } from '@/styles/controls';
 import { garagePath, placeOf, projectPath, PROJECT_TITLE_ID } from './projects';
 import styles from './garage.module.css';
 
@@ -36,7 +37,10 @@ export function ProjectPanel({
       className={`${styles.panel} ${styles['panel-project']}`}
       aria-labelledby={PROJECT_TITLE_ID}
     >
-      <Link className={styles.back} href={garagePath(locale)}>
+      <Link
+        className={`${styles.back} ${control('link-ink', 'arrow', 'arrow-back', 'ring-paper')}`}
+        href={garagePath(locale)}
+      >
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
           <path d="M11 3L5 9L11 15" stroke="currentColor" strokeWidth="1.6" />
         </svg>
@@ -72,7 +76,12 @@ export function ProjectPanel({
       />
 
       <div className={styles.cta}>
-        <a className={styles.open} href={project.href} target="_blank" rel="noreferrer">
+        <a
+          className={control('primary', 'primary-l', 'external', 'ring-paper')}
+          href={project.href}
+          target="_blank"
+          rel="noreferrer"
+        >
           {ui.open}
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M5 3H13V11M13 3L3 13" stroke="currentColor" strokeWidth="1.8" />
@@ -83,7 +92,10 @@ export function ProjectPanel({
 
       <div className={styles.siblings}>
         {place.prev !== null && (
-          <Link className={styles.sibling} href={projectPath(locale, place.prev.slug)}>
+          <Link
+            className={control('link-copper', 'arrow', 'arrow-back', 'ring-paper')}
+            href={projectPath(locale, place.prev.slug)}
+          >
             <Arrow back />
             {fill(ui.prev, { title: place.prev.title })}
           </Link>
@@ -91,7 +103,7 @@ export function ProjectPanel({
 
         {place.next !== null && (
           <Link
-            className={`${styles.sibling} ${styles['sibling-next']}`}
+            className={`${styles['sibling-next']} ${control('link-copper', 'arrow', 'ring-paper')}`}
             href={projectPath(locale, place.next.slug)}
           >
             {fill(ui.next, { title: place.next.title })}

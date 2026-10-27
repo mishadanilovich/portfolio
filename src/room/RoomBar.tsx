@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { fill, type Floor, type Locale, type Ui } from '@/content';
 import { SceneBar } from '@/components/SceneBar';
+import { control } from '@/styles/controls';
 import { apartmentPath } from './apartment';
 import styles from './room.module.css';
 
@@ -42,14 +43,22 @@ export function RoomBar({
     >
       <div className={styles['bar-moves']}>
         {below !== null && (
-          <Link className={styles['bar-move']} href={apartmentPath(locale, below.floor)}>
+          <Link
+            className={control('step', 'ring-dark')}
+            href={apartmentPath(locale, below.floor)}
+            data-dir="down"
+          >
             <Arrow />
             {fill(room.floor, { floor: below.floor })}
           </Link>
         )}
 
         {above !== null && (
-          <Link className={styles['bar-move']} href={apartmentPath(locale, above.floor)}>
+          <Link
+            className={control('step', 'ring-dark')}
+            href={apartmentPath(locale, above.floor)}
+            data-dir="up"
+          >
             {fill(room.floor, { floor: above.floor })}
             <Arrow up />
           </Link>

@@ -78,34 +78,3 @@
   gap: 12px;
   margin-top: 6px;
 }
-
-.call,
-.cv {
-  display: flex;
-  align-items: center;
-  height: var(--spacing-control);
-  padding: 0 22px;
-  border-radius: var(--radius-control);
-  font-family: inherit;
-  font-size: var(--text-button);
-}
-
-.call {
-  border: 0;
-  background: var(--color-lamp);
-  color: var(--color-on-lamp);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.cv {
-  border: 1px solid #8a92a8;
-  color: var(--color-text-on-dark);
-  text-decoration: none;
-}
-
-.call:focus-visible,
-.cv:focus-visible {
-  outline: 2px solid var(--color-lamp-text);
-  outline-offset: 2px;
-}

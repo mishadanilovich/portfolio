@@ -58,34 +58,6 @@
   margin-top: 2px;
 }
 
-.legend,
-.dismiss {
-  padding: 0;
-  border: 0;
-  background: transparent;
-  font-family: inherit;
-  font-size: var(--text-caption);
-  line-height: normal;
-  cursor: pointer;
-}
-
-.legend {
-  color: var(--color-text);
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.dismiss {
-  color: #4a5268;
-  font-weight: 500;
-}
-
-.legend:focus-visible,
-.dismiss:focus-visible {
-  outline: 2px solid var(--color-hover-outline);
-  outline-offset: 2px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .card {
     transition: none;

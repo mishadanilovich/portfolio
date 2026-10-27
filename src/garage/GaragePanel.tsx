@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { fill, handleOf, type Locale, type PetProject, type Ui } from '@/content';
+import { control } from '@/styles/controls';
 import { GARAGE_TITLE_ID, projectPath, stackPreview } from './projects';
 import styles from './garage.module.css';
 
@@ -36,7 +37,7 @@ function ProjectCard({
 
   return (
     <Link
-      className={styles.card}
+      className={control('card', 'ring-paper')}
       href={projectPath(locale, project.slug)}
       data-project={project.slug}
     >
@@ -58,7 +59,7 @@ function ProjectCard({
       </span>
 
       <svg
-        className={styles['card-arrow']}
+        className={control('card-arrow')}
         width="20"
         height="20"
         viewBox="0 0 20 20"
@@ -98,7 +99,12 @@ export function GaragePanel({
         <ProjectCard key={project.slug} locale={locale} project={project} more={garage.more} />
       ))}
 
-      <a className={styles.github} href={github} target="_blank" rel="noreferrer">
+      <a
+        className={`${styles.github} ${control('link-copper', 'ring-paper')}`}
+        href={github}
+        target="_blank"
+        rel="noreferrer"
+      >
         {fill(garage.github, { handle: handleOf(github) })}
         <span className={styles.announce}>{newTab}</span>
       </a>

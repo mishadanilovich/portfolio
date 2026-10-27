@@ -1,13 +1,14 @@
 'use client';
 
-import styles from '@/components/controls.module.css';
+import styles from '@/components/side-controls.module.css';
+import { control } from '@/styles/controls';
 import { requestHelp } from './events';
 
 export function HelpButton({ label }: { label: string }) {
   return (
     <button
       type="button"
-      className={`${styles.control} ${styles.help}`}
+      className={`${control('icon', 'ring-dark')} ${styles.help}`}
       aria-label={label}
       onClick={requestHelp}
     >

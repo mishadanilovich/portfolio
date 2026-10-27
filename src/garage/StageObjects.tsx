@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import type { Locale, PetProject } from '@/content';
+import { control } from '@/styles/controls';
 import { projectPath } from './projects';
 import styles from './garage.module.css';
 
@@ -40,7 +41,7 @@ export function StageObjects({
 
         {project.slug !== current && (
           <Link
-            className={styles.hotspot}
+            className={`${styles.hotspot} ${control('ring-dark')}`}
             href={projectPath(locale, project.slug)}
             aria-label={project.title}
             data-project={project.slug}

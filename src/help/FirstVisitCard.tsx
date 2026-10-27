@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from 'react';
 import type { Ui } from '@/content';
+import { control } from '@/styles/controls';
 import { requestHelp } from './events';
 import styles from './first-visit.module.css';
 
@@ -57,10 +58,14 @@ export function FirstVisitCard({ ui }: { ui: Ui['firstVisit'] }) {
       <p className={styles.text}>{ui.text}</p>
 
       <div className={styles.actions}>
-        <button type="button" className={styles.legend} onClick={openHelp}>
+        <button
+          type="button"
+          className={control('text', 'text-inline', 'ring-paper')}
+          onClick={openHelp}
+        >
           {ui.legend}
         </button>
-        <button type="button" className={styles.dismiss} onClick={remember}>
+        <button type="button" className={control('quiet', 'ring-paper')} onClick={remember}>
           {ui.dismiss}
         </button>
       </div>

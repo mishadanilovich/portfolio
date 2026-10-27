@@ -172,26 +172,9 @@
   text-transform: uppercase;
 }
 
-.contact {
-  position: relative;
-  color: var(--color-lamp-text);
-  font-size: var(--text-body);
-  line-height: normal;
-  text-decoration: none;
-}
-
 .mail {
   font-size: var(--text-caption);
   word-break: break-all;
-}
-
-.contact:hover {
-  color: var(--color-lamp-bright);
-}
-
-.contact:focus-visible {
-  outline: 2px solid var(--color-lamp-text);
-  outline-offset: 2px;
 }
 
 .announce {
@@ -220,18 +203,9 @@
 }
 
 .close {
-  display: flex;
   position: absolute;
   top: 20px;
   right: 20px;
-  align-items: center;
-  justify-content: center;
-  width: var(--spacing-touch-target);
-  height: var(--spacing-touch-target);
-  border: 1px solid #c9c1b3;
-  border-radius: var(--radius-pill);
-  background: transparent;
-  cursor: pointer;
 }
 
 .group {
@@ -261,39 +235,6 @@
   font-size: var(--text-body);
   font-weight: 500;
   line-height: normal;
-}
-
-.input,
-.area {
-  box-sizing: border-box;
-  border: 1px solid var(--color-input-border);
-  border-radius: var(--radius-control);
-  background: var(--color-white);
-  color: var(--color-text);
-  font-family: inherit;
-  font-size: var(--text-body);
-}
-
-.input {
-  height: var(--spacing-control);
-  padding: 0 14px;
-}
-
-.area {
-  padding: 12px 14px;
-  line-height: var(--leading-body);
-  resize: vertical;
-}
-
-.input::placeholder,
-.area::placeholder {
-  color: var(--color-placeholder);
-}
-
-.input:focus-visible,
-.area:focus-visible {
-  outline: 2px solid var(--color-hover-outline);
-  outline-offset: 1px;
 }
 
 .or {
@@ -329,46 +270,11 @@
   padding-top: 4px;
 }
 
-.submit {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: var(--spacing-control);
-  padding: 0 24px;
-  border: 0;
-  border-radius: var(--radius-control);
-  background: var(--color-lamp);
-  color: var(--color-on-lamp);
-  font-family: inherit;
-  font-size: var(--text-button);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.cancel {
-  height: var(--spacing-control);
-  padding: 0 18px;
-  border: 0;
-  background: transparent;
-  color: var(--color-text);
-  font-family: inherit;
-  font-size: var(--text-button);
-  font-weight: 500;
-  cursor: pointer;
-}
-
 .required {
   margin: 0 0 0 auto;
   color: var(--color-text-muted);
   font-size: var(--text-overline);
   line-height: normal;
-}
-
-.close:focus-visible,
-.submit:focus-visible,
-.cancel:focus-visible {
-  outline: 2px solid var(--color-hover-outline);
-  outline-offset: 2px;
 }
 
 .vacancy {
@@ -389,12 +295,6 @@
 .vacancy[data-invalid] .or::before,
 .vacancy[data-invalid] .or::after {
   background: #d9c3b6;
-}
-
-.input[aria-invalid='true'],
-.area[aria-invalid='true'] {
-  border-width: 2px;
-  border-color: var(--color-error);
 }
 
 .alert {
@@ -425,6 +325,10 @@
   color: var(--color-error-text);
 }
 
+.spinner {
+  transform-origin: 50% 50%;
+}
+
 .message {
   display: flex;
   align-items: flex-start;
@@ -453,26 +357,6 @@
 
 .form[data-sending] .label {
   color: var(--color-text-muted);
-}
-
-.input:disabled,
-.area:disabled {
-  border-color: #c9c1b3;
-  background: var(--color-input-disabled-bg);
-  color: #3a4052;
-}
-
-.area:disabled {
-  resize: none;
-}
-
-.submit:disabled {
-  background: var(--color-loading);
-  cursor: default;
-}
-
-.spinner {
-  transform-origin: 50% 50%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -530,37 +414,4 @@
 .sent-value {
   margin: 0;
   overflow-wrap: anywhere;
-}
-
-.home {
-  height: var(--spacing-control);
-  padding: 0 24px;
-  border: 0;
-  border-radius: var(--radius-control);
-  background: var(--color-dark);
-  color: var(--color-paper);
-  font-family: inherit;
-  font-size: var(--text-button);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.again {
-  height: var(--spacing-control);
-  padding: 0 18px;
-  border: 0;
-  background: transparent;
-  color: var(--color-text);
-  font-family: inherit;
-  font-size: var(--text-button);
-  font-weight: 500;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.home:focus-visible,
-.again:focus-visible,
-.alert-link:focus-visible {
-  outline: 2px solid var(--color-hover-outline);
-  outline-offset: 2px;
 }

@@ -1,13 +1,14 @@
 'use client';
 
 import { requestOverview } from '@/scene/camera-events';
-import styles from './controls.module.css';
+import { control } from '@/styles/controls';
+import styles from './side-controls.module.css';
 
 export function OverviewButton({ label }: { label: string }) {
   return (
     <button
       type="button"
-      className={`${styles.control} ${styles.overview}`}
+      className={`${control('icon', 'ring-dark')} ${styles.overview}`}
       aria-label={label}
       onClick={requestOverview}
     >

@@ -20,17 +20,21 @@ export async function MiniMap() {
 
   const items = LEVELS.reduce<MiniMapItem[]>((list, level) => {
     if (level.floor !== null) {
+      const label = fill(miniMap.floor, { floor: level.floor });
+      const title = content.floors.find((item) => item.floor === level.floor)?.title;
+
       list.push({
         id: level.id,
-        label: fill(miniMap.floor, { floor: level.floor }),
+        label,
         text: String(level.floor),
+        tip: title === undefined ? label : `${label} · ${title}`,
       });
 
       return list;
     }
 
     const label = placeLabel(level.id, miniMap);
-    if (label !== null) list.push({ id: level.id, label });
+    if (label !== null) list.push({ id: level.id, label, tip: label });
 
     return list;
   }, []);

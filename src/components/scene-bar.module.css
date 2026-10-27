@@ -25,21 +25,6 @@
   gap: 24px;
 }
 
-.exit {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: var(--spacing-touch-target);
-  color: inherit;
-  font-size: var(--text-body);
-  text-decoration: none;
-}
-
-.exit:focus-visible {
-  outline: 2px solid var(--color-lamp-text);
-  outline-offset: 2px;
-}
-
 .current {
   margin: 0;
   font-size: var(--text-body);

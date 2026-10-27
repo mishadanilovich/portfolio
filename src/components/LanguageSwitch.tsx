@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { locales, type Locale } from '@/content';
+import { control } from '@/styles/controls';
 import styles from './header.module.css';
 
 export function LanguageSwitch({ label, active }: { label: string; active: Locale }) {
@@ -15,7 +16,7 @@ export function LanguageSwitch({ label, active }: { label: string; active: Local
         <Link
           key={item}
           href={`/${item}${rest}`}
-          className={styles.lang}
+          className={control('segment', 'ring-dark')}
           aria-current={item === active ? 'true' : undefined}
         >
           {item.toUpperCase()}

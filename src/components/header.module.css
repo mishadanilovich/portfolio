@@ -55,66 +55,6 @@
   border-radius: 999px;
 }
 
-.lang {
-  display: flex;
-  align-items: center;
-  height: 34px;
-  padding: 0 14px;
-  border-radius: 999px;
-  color: var(--color-text-on-dark-soft);
-  font-size: var(--text-caption);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.lang[aria-current] {
-  background: var(--color-text-on-dark);
-  color: var(--color-text);
-}
-
 :global(body:has([data-room])) .header {
   background: var(--color-dark);
-}
-
-.call {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: var(--spacing-touch-target);
-  padding: 0 18px;
-  border: 0;
-  border-radius: var(--radius-control);
-  background: var(--color-lamp);
-  color: var(--color-on-lamp);
-  font-family: inherit;
-  font-size: var(--text-button);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.call:focus-visible {
-  outline: 2px solid var(--color-lamp-text);
-  outline-offset: 2px;
-}
-
-.link {
-  display: flex;
-  align-items: center;
-  height: var(--spacing-touch-target);
-  padding: 0 14px;
-  color: var(--color-text-on-dark);
-  font-size: var(--text-body);
-  text-decoration: none;
-}
-
-.link[aria-current] {
-  box-shadow: inset 0 -2px 0 var(--color-lamp-text);
-  color: var(--color-lamp-text);
-}
-
-.link:focus-visible,
-.home:focus-visible,
-.lang:focus-visible {
-  outline: 2px solid var(--color-lamp-text);
-  outline-offset: 2px;
 }

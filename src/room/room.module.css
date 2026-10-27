@@ -20,19 +20,6 @@
   gap: 8px;
 }
 
-.bar-move {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  height: 40px;
-  padding: 0 14px;
-  border: 1px solid var(--color-border-on-dark);
-  border-radius: var(--radius-control);
-  color: inherit;
-  font-size: var(--text-caption);
-  text-decoration: none;
-}
-
 .wall {
   position: relative;
   display: flex;
@@ -282,9 +269,4 @@
   position: absolute;
   bottom: 100%;
   left: 40px;
-}
-
-.bar-move:focus-visible {
-  outline: 2px solid var(--color-lamp-text);
-  outline-offset: 2px;
 }

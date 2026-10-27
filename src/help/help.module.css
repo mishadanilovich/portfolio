@@ -78,16 +78,7 @@
 }
 
 .close {
-  display: flex;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: var(--spacing-touch-target);
-  height: var(--spacing-touch-target);
-  border: 1px solid #c9c1b3;
-  border-radius: var(--radius-pill);
-  background: transparent;
-  cursor: pointer;
 }
 
 .legend {
@@ -155,20 +146,4 @@
 .ok {
   align-self: flex-end;
   margin-top: auto;
-  height: var(--spacing-control);
-  padding: 0 28px;
-  border: 0;
-  border-radius: var(--radius-control);
-  background: var(--color-dark);
-  color: var(--color-paper);
-  font-family: inherit;
-  font-size: var(--text-button);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.close:focus-visible,
-.ok:focus-visible {
-  outline: 2px solid var(--color-hover-outline);
-  outline-offset: 2px;
 }

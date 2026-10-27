@@ -5,6 +5,7 @@ import { useEffect, useState, type MouseEvent, type ReactNode } from 'react';
 import { isPlainClick } from '@/lib/click';
 import { onLevelChange, requestFlyIn, requestLevel } from '@/scene/camera-events';
 import { LANDING_LEVEL, type LevelId } from '@/scene/layout';
+import { control } from '@/styles/controls';
 import styles from './minimap.module.css';
 
 const ICONS: Record<string, ReactNode> = {
@@ -32,6 +33,7 @@ const ICONS: Record<string, ReactNode> = {
 export interface MiniMapItem {
   id: LevelId;
   label: string;
+  tip: string;
   text?: string;
 }
 
@@ -60,7 +62,7 @@ export function MiniMapNav({
         <button
           key={item.id}
           type="button"
-          className={styles.item}
+          className={control('level', 'ring-dark')}
           aria-label={item.label}
           aria-current={item.id === current ? 'true' : undefined}
           onClick={() => requestLevel(item.id)}
@@ -72,6 +74,9 @@ export function MiniMapNav({
               </g>
             </svg>
           )}
+          <span className={control('tip')} aria-hidden="true">
+            {item.tip}
+          </span>
         </button>
       ))}
 
@@ -79,7 +84,7 @@ export function MiniMapNav({
 
       <Link
         href={garageHref}
-        className={styles.item}
+        className={control('level', 'ring-dark')}
         aria-label={garageLabel}
         onClick={enterGarage}
       >
@@ -88,6 +93,9 @@ export function MiniMapNav({
             {ICONS.garage}
           </g>
         </svg>
+        <span className={control('tip')} aria-hidden="true">
+          {garageLabel}
+        </span>
       </Link>
     </nav>
   );

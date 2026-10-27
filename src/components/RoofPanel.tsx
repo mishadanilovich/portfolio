@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import type { Contact, ContactKind, Cv, Roof, Ui } from '@/content';
 import { CallButton } from '@/intercom/CallButton';
 import { CallIcon } from '@/intercom/CallIcon';
+import { control } from '@/styles/controls';
 import { CopyEmail } from './CopyEmail';
 import styles from './roof.module.css';
 
@@ -33,7 +34,7 @@ const ICONS: Record<ContactKind, ReactNode> = {
 function Icon({ kind }: { kind: ContactKind }) {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-      <g stroke="var(--color-dusk)" strokeWidth="1.6">
+      <g stroke="var(--icon)" strokeWidth="1.6">
         {ICONS[kind]}
       </g>
     </svg>
@@ -53,7 +54,7 @@ function ContactLink({
 
   return (
     <a
-      className={styles.contact}
+      className={`${styles.contact} ${control('tile', 'tile-line', 'ring-paper')}`}
       href={contact.href}
       download={download}
       target={external ? '_blank' : undefined}
@@ -122,7 +123,7 @@ export function RoofPanel({
         )}
       </ul>
 
-      <CallButton className={styles.call}>
+      <CallButton className={control('primary', 'primary-l', 'ring-paper')}>
         <CallIcon />
         {ui.call}
       </CallButton>

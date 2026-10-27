@@ -3,6 +3,7 @@ import { locale } from 'next/root-params';
 import { defaultLocale, getContent, isLocale } from '@/content';
 import { CallButton } from '@/intercom/CallButton';
 import { CallIcon } from '@/intercom/CallIcon';
+import { control } from '@/styles/controls';
 import styles from './header.module.css';
 import { LanguageSwitch } from './LanguageSwitch';
 import { Logo } from './Logo';
@@ -14,7 +15,7 @@ export async function SiteHeader() {
 
   return (
     <header className={styles.header}>
-      <Link href={`/${active}`} className={styles.home}>
+      <Link href={`/${active}`} className={`${styles.home} ${control('ring-dark')}`}>
         <Logo />
         <span className={styles.identity}>
           <span className={styles.name}>{content.person.name}</span>
@@ -25,11 +26,15 @@ export async function SiteHeader() {
       <nav className={styles.nav} aria-label={content.ui.header.nav}>
         <LanguageSwitch label={content.ui.header.language} active={active} />
 
-        <a className={styles.link} href={content.cv.href} download={content.cv.downloadName}>
+        <a
+          className={control('nav', 'ring-dark')}
+          href={content.cv.href}
+          download={content.cv.downloadName}
+        >
           {content.ui.header.cv}
         </a>
 
-        <CallButton className={styles.call}>
+        <CallButton className={control('primary', 'primary-s', 'ring-dark')}>
           <CallIcon />
           {content.ui.header.call}
         </CallButton>

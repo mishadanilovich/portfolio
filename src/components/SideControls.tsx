@@ -1,6 +1,6 @@
 import { locale } from 'next/root-params';
 import { defaultLocale, getContent, isLocale } from '@/content';
-import styles from './controls.module.css';
+import styles from './side-controls.module.css';
 import { MiniMap } from './MiniMap';
 import { OverviewButton } from './OverviewButton';
 

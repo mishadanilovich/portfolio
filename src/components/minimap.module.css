@@ -12,32 +12,6 @@
   font-family: var(--font-ui);
 }
 
-.item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--spacing-mini-map-item);
-  height: var(--spacing-mini-map-item);
-  border: 0;
-  border-radius: var(--radius-pill);
-  background: transparent;
-  color: var(--color-text-on-dark-soft);
-  font-family: inherit;
-  font-size: var(--text-caption);
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.item[aria-current] {
-  background: var(--color-lamp);
-  color: var(--color-on-lamp);
-}
-
-.item:focus-visible {
-  outline: 2px solid var(--color-lamp-text);
-  outline-offset: 2px;
-}
-
 .divider {
   width: 20px;
   height: 1px;

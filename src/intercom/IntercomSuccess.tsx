@@ -2,6 +2,7 @@
 
 import { Fragment } from 'react';
 import { handleOf, type Ui } from '@/content';
+import { control } from '@/styles/controls';
 import styles from './intercom.module.css';
 import type { IntercomValues } from './schema';
 
@@ -26,7 +27,12 @@ export function IntercomSuccess({
 
   return (
     <>
-      <button type="button" className={styles.close} aria-label={ui.close} onClick={onClose}>
+      <button
+        type="button"
+        className={`${styles.close} ${control('close', 'ring-paper')}`}
+        aria-label={ui.close}
+        onClick={onClose}
+      >
         <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
           <path d="M3 3L13 13M13 3L3 13" stroke="var(--color-text)" strokeWidth="1.8" />
         </svg>
@@ -59,10 +65,14 @@ export function IntercomSuccess({
       </dl>
 
       <div className={styles.actions}>
-        <button type="button" className={styles.home} onClick={onClose}>
+        <button type="button" className={control('dark', 'ring-paper')} onClick={onClose}>
           {ui.successHome}
         </button>
-        <button type="button" className={styles.again} onClick={onAgain}>
+        <button
+          type="button"
+          className={control('text', 'text-box', 'ring-paper')}
+          onClick={onAgain}
+        >
           {ui.successAgain}
         </button>
       </div>

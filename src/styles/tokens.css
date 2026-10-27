@@ -97,6 +97,9 @@
 }
 
 :root {
+  --motion-hover: 150ms;
+  --motion-shift: 200ms;
+  --motion-press: 80ms;
   --motion-fast: 200ms;
   --motion-base: 350ms;
   --motion-medium: 500ms;

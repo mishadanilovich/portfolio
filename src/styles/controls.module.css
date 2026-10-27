@@ -1,0 +1,841 @@
+/* Кольцо фокуса — по поверхности, а не по типу контрола. */
+
+.ring-dark:focus-visible {
+  outline: 2px solid var(--color-lamp-text);
+  outline-offset: 2px;
+}
+
+.ring-paper:focus-visible {
+  outline: 2px solid var(--color-dark);
+  outline-offset: 2px;
+}
+
+/* Главная тёплая: «Позвонить», «Позвонить в домофон», CTA. */
+
+.primary {
+  display: flex;
+  align-items: center;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, #f7c473 calc(var(--lit, 0) * 100%), var(--color-lamp));
+  box-shadow: 0 6px 18px rgba(242, 180, 92, calc(var(--lit, 0) * 0.35));
+  color: var(--color-on-lamp);
+  font-family: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(calc(var(--lit, 0) * var(--shift) * -1px));
+  transition:
+    background-color var(--motion-hover) ease-out,
+    box-shadow var(--motion-hover) ease-out,
+    transform var(--motion-shift) ease-out;
+  cursor: pointer;
+}
+
+.primary:active {
+  background: #e3a447;
+  box-shadow: none;
+  transform: none;
+  transition-duration: var(--motion-press);
+}
+
+.primary:disabled,
+.primary[aria-disabled='true'] {
+  background: var(--color-loading);
+  box-shadow: none;
+  color: #6b5a3e;
+  transform: none;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .primary:not(:disabled, [aria-disabled='true']):hover {
+    --lit: 1;
+  }
+}
+
+.primary:not(:disabled, [aria-disabled='true']):focus-visible {
+  --lit: 1;
+}
+
+.primary-s {
+  gap: 8px;
+  height: var(--spacing-touch-target);
+  padding: 0 18px;
+  font-size: var(--text-button);
+}
+
+.primary-m {
+  gap: 8px;
+  height: var(--spacing-control);
+  padding: 0 20px;
+  font-size: var(--text-button);
+}
+
+.primary-l {
+  justify-content: center;
+  gap: 10px;
+  height: var(--spacing-panel-cta);
+  font-size: 17px;
+}
+
+/* Внешняя ссылка: тёплая со стрелкой ↗. */
+
+.external svg {
+  transform: translate(
+    calc(var(--lit, 0) * var(--shift) * 2px),
+    calc(var(--lit, 0) * var(--shift) * -2px)
+  );
+  transition: transform var(--motion-shift) ease-out;
+}
+
+/* Контурная на тёмном: «Скачать резюме». */
+
+.outline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--spacing-control);
+  padding: 0 20px;
+  border: 1px solid
+    color-mix(in srgb, var(--color-text-on-dark) calc(var(--lit, 0) * 100%), #8a92a8);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--color-text-on-dark) calc(var(--lit, 0) * 8%), transparent);
+  color: var(--color-text-on-dark);
+  font-family: inherit;
+  font-size: var(--text-button);
+  text-decoration: none;
+  transition:
+    border-color var(--motion-hover) ease-out,
+    background-color var(--motion-hover) ease-out;
+  cursor: pointer;
+}
+
+.outline:active {
+  background: color-mix(in srgb, var(--color-text-on-dark) 16%, transparent);
+  transition-duration: var(--motion-press);
+}
+
+.outline:disabled,
+.outline[aria-disabled='true'] {
+  border-color: var(--color-border-on-dark);
+  background: transparent;
+  color: #7c8296;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .outline:not(:disabled, [aria-disabled='true']):hover {
+    --lit: 1;
+  }
+}
+
+.outline:not(:disabled, [aria-disabled='true']):focus-visible {
+  --lit: 1;
+}
+
+/* Тёмная на бумаге: «Понятно», «Вернуться к дому». */
+
+.dark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: var(--spacing-control);
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, #353d52 calc(var(--lit, 0) * 100%), var(--color-dark));
+  box-shadow: 0 6px 16px rgba(35, 41, 56, calc(var(--lit, 0) * 0.25));
+  color: var(--color-paper);
+  font-family: inherit;
+  font-size: var(--text-button);
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color var(--motion-hover) ease-out,
+    box-shadow var(--motion-hover) ease-out;
+  cursor: pointer;
+}
+
+.dark:active {
+  background: #161a24;
+  box-shadow: none;
+  transition-duration: var(--motion-press);
+}
+
+.dark:disabled,
+.dark[aria-disabled='true'] {
+  background: #b9b4aa;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dark:not(:disabled, [aria-disabled='true']):hover {
+    --lit: 1;
+  }
+}
+
+.dark:not(:disabled, [aria-disabled='true']):focus-visible {
+  --lit: 1;
+}
+
+/* Текстовая: «Отмена», «Отправить ещё одну», «Показать легенду». */
+
+.text {
+  border: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--color-copper-text) calc(var(--lit, 0) * 100%), var(--color-text));
+  font-family: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: calc(1px + var(--lit, 0) * 1px);
+  text-underline-offset: calc(3px + var(--lit, 0) * 2px);
+  transition:
+    color var(--motion-hover) ease-out,
+    text-decoration-thickness var(--motion-hover) ease-out,
+    text-underline-offset var(--motion-hover) ease-out;
+  cursor: pointer;
+}
+
+.text:active {
+  color: #5a2e08;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition-duration: var(--motion-press);
+}
+
+.text:disabled,
+.text[aria-disabled='true'] {
+  color: var(--color-input-border);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .text:not(:disabled, [aria-disabled='true']):hover {
+    --lit: 1;
+  }
+}
+
+.text:not(:disabled, [aria-disabled='true']):focus-visible {
+  --lit: 1;
+}
+
+.text-box {
+  height: var(--spacing-touch-target);
+  padding: 0 10px;
+  font-size: var(--text-button);
+  font-weight: 500;
+}
+
+.text-inline {
+  padding: 0;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  line-height: normal;
+}
+
+/* Тихая текстовая без подчёркивания: «Понятно» в карточке первого визита. */
+
+.quiet {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--color-copper-text) calc(var(--lit, 0) * 100%), #4a5268);
+  font-family: inherit;
+  font-size: var(--text-caption);
+  font-weight: 500;
+  line-height: normal;
+  transition: color var(--motion-hover) ease-out;
+  cursor: pointer;
+}
+
+.quiet:active {
+  color: #5a2e08;
+  transition-duration: var(--motion-press);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .quiet:hover {
+    --lit: 1;
+  }
+}
+
+.quiet:focus-visible {
+  --lit: 1;
+}
+
+/* Пункт навигации: «Резюме» в шапке. */
+
+.nav {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: var(--spacing-touch-target);
+  padding: 0 14px;
+  color: color-mix(
+    in srgb,
+    var(--color-lamp-text) calc(var(--lit, 0) * 100%),
+    var(--color-text-on-dark)
+  );
+  font-size: var(--text-body);
+  text-decoration: none;
+  transition: color var(--motion-hover) ease-out;
+}
+
+.nav::after {
+  position: absolute;
+  bottom: 6px;
+  left: 14px;
+  width: calc(100% - 28px);
+  height: 2px;
+  background: var(--color-lamp-text);
+  transform: scaleX(var(--lit, 0));
+  transition: transform var(--motion-shift) ease-out;
+  content: '';
+}
+
+.nav:active {
+  color: #fbda96;
+  transition-duration: var(--motion-press);
+}
+
+.nav[aria-current] {
+  --lit: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav:hover {
+    --lit: 1;
+  }
+}
+
+.nav:focus-visible {
+  --lit: 1;
+}
+
+/* Круглая иконка: «?» и «Весь дом». */
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-touch-target);
+  height: var(--spacing-touch-target);
+  border: 1px solid color-mix(in srgb, var(--color-lamp-text) calc(var(--lit, 0) * 100%), #3e4559);
+  border-radius: var(--radius-pill);
+  background: color-mix(
+    in srgb,
+    var(--color-lamp-text) calc(var(--lit, 0) * 12%),
+    color-mix(in srgb, var(--color-dark) 85%, transparent)
+  );
+  color: color-mix(
+    in srgb,
+    var(--color-lamp-text) calc(var(--lit, 0) * 100%),
+    var(--color-text-on-dark-soft)
+  );
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  transition:
+    border-color var(--motion-hover) ease-out,
+    background-color var(--motion-hover) ease-out,
+    color var(--motion-hover) ease-out;
+  cursor: pointer;
+}
+
+.icon:active {
+  background: color-mix(
+    in srgb,
+    var(--color-lamp-text) 22%,
+    color-mix(in srgb, var(--color-dark) 85%, transparent)
+  );
+  color: #fbda96;
+  transition-duration: var(--motion-press);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .icon:hover {
+    --lit: 1;
+  }
+}
+
+.icon:focus-visible {
+  --lit: 1;
+}
+
+/* Закрыть: «×» в модалках. */
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-touch-target);
+  height: var(--spacing-touch-target);
+  border: 1px solid color-mix(in srgb, var(--color-dark) calc(var(--lit, 0) * 100%), #c9c1b3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-dark) calc(var(--lit, 0) * 6%), transparent);
+  transition:
+    border-color var(--motion-hover) ease-out,
+    background-color var(--motion-hover) ease-out;
+  cursor: pointer;
+}
+
+.close svg {
+  transform: rotate(calc(var(--lit, 0) * var(--shift) * 90deg));
+  transition: transform var(--motion-shift) ease-out;
+}
+
+.close:active {
+  background: color-mix(in srgb, var(--color-dark) 12%, transparent);
+  transition-duration: var(--motion-press);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .close:hover {
+    --lit: 1;
+  }
+}
+
+.close:focus-visible {
+  --lit: 1;
+}
+
+/* Сегмент переключателя языка. */
+
+.segment {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-text-on-dark) calc(var(--lit, 0) * 12%), transparent);
+  color: color-mix(
+    in srgb,
+    var(--color-text-on-dark) calc(var(--lit, 0) * 100%),
+    var(--color-text-on-dark-soft)
+  );
+  font-size: var(--text-caption);
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color var(--motion-hover) ease-out,
+    color var(--motion-hover) ease-out;
+}
+
+.segment:not([aria-current]):active {
+  background: color-mix(in srgb, var(--color-text-on-dark) 20%, transparent);
+  color: var(--color-text-on-dark-soft);
+  transition-duration: var(--motion-press);
+}
+
+.segment[aria-current] {
+  background: var(--color-text-on-dark);
+  color: var(--color-text);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .segment:not([aria-current]):hover {
+    --lit: 1;
+  }
+}
+
+.segment:not([aria-current]):focus-visible {
+  --lit: 1;
+}
+
+/* Пункт мини-карты с тултипом слева. */
+
+.level {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-mini-map-item);
+  height: var(--spacing-mini-map-item);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-lamp) calc(var(--lit, 0) * 18%), transparent);
+  color: color-mix(
+    in srgb,
+    var(--color-lamp-text) calc(var(--lit, 0) * 100%),
+    var(--color-text-on-dark-soft)
+  );
+  font-family: inherit;
+  font-size: var(--text-caption);
+  font-weight: 500;
+  transition:
+    background-color var(--motion-hover) ease-out,
+    color var(--motion-hover) ease-out;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .level:hover {
+    --tip: 1;
+  }
+}
+
+.level:focus-visible {
+  --tip: 1;
+}
+
+.level:not([aria-current]):active {
+  background: color-mix(in srgb, var(--color-lamp) 30%, transparent);
+  color: #fbda96;
+  transition-duration: var(--motion-press);
+}
+
+.level[aria-current] {
+  background: var(--color-lamp);
+  color: var(--color-on-lamp);
+}
+
+.tip {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 12px);
+  padding: 4px 10px;
+  border: 1px solid var(--color-hover-outline);
+  border-radius: 4px;
+  background: var(--color-dark);
+  color: var(--color-text-on-dark);
+  font-size: var(--text-overline);
+  font-weight: 400;
+  line-height: normal;
+  white-space: nowrap;
+  opacity: var(--tip, 0);
+  transform: translateY(-50%);
+  transition: opacity var(--motion-hover) ease-out;
+  transition-delay: calc(var(--tip, 0) * 300ms);
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .level:not([aria-current]):hover {
+    --lit: 1;
+  }
+}
+
+.level:not([aria-current]):focus-visible {
+  --lit: 1;
+}
+
+/* Плитка контакта: Telegram, GitHub, LinkedIn, резюме, «скопировать». */
+
+.tile {
+  --icon: color-mix(
+    in srgb,
+    var(--color-copper-text) calc(var(--lit, 0) * 100%),
+    var(--color-dusk)
+  );
+
+  display: flex;
+  align-items: center;
+  height: var(--spacing-control);
+  border: 1px solid
+    color-mix(in srgb, var(--color-hover-outline) calc(var(--lit, 0) * 100%), var(--color-border));
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, #fffdf8 calc(var(--lit, 0) * 100%), var(--color-white));
+  box-shadow: 0 6px 16px rgba(40, 30, 20, calc(var(--lit, 0) * 0.12));
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--text-body);
+  text-decoration: none;
+  transform: translateY(calc(var(--lit, 0) * var(--shift) * -1px));
+  transition:
+    border-color var(--motion-hover) ease-out,
+    background-color var(--motion-hover) ease-out,
+    box-shadow var(--motion-hover) ease-out,
+    transform var(--motion-shift) ease-out;
+  cursor: pointer;
+}
+
+.tile g {
+  transition: stroke var(--motion-hover) ease-out;
+}
+
+.tile:active {
+  --icon: #5a2e08;
+
+  background: #f7f0e3;
+  box-shadow: none;
+  transform: none;
+  transition-duration: var(--motion-press);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tile:hover {
+    --lit: 1;
+  }
+}
+
+.tile:focus-visible {
+  --lit: 1;
+}
+
+.tile-line {
+  gap: 10px;
+  padding: 0 12px;
+}
+
+.tile-square {
+  justify-content: center;
+  width: var(--spacing-control);
+}
+
+/* Цвет ссылки — по поверхности. */
+
+.link-copper,
+.link-light,
+.link-ink {
+  text-decoration: none;
+  transition: color var(--motion-hover) ease-out;
+  cursor: pointer;
+}
+
+.link-ink {
+  color: color-mix(in srgb, var(--color-copper-text) calc(var(--lit, 0) * 100%), var(--color-text));
+}
+
+.link-ink:active {
+  color: #5a2e08;
+  transition-duration: var(--motion-press);
+}
+
+.link-copper {
+  color: color-mix(in srgb, #5a2e08 calc(var(--lit, 0) * 100%), var(--color-copper-text));
+}
+
+.link-light {
+  color: color-mix(
+    in srgb,
+    var(--color-lamp-text) calc(var(--lit, 0) * 100%),
+    var(--color-text-on-dark)
+  );
+}
+
+.link-copper:active {
+  color: #5a2e08;
+  transition-duration: var(--motion-press);
+}
+
+.link-light:active {
+  color: #fbda96;
+  transition-duration: var(--motion-press);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link-copper:hover,
+  .link-light:hover,
+  .link-ink:hover {
+    --lit: 1;
+  }
+}
+
+.link-copper:focus-visible,
+.link-light:focus-visible,
+.link-ink:focus-visible {
+  --lit: 1;
+}
+
+/* Раскладка ссылки со стрелкой: стрелка уезжает в сторону перехода. */
+
+.arrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--spacing-touch-target);
+  font-size: var(--text-body);
+}
+
+.arrow svg {
+  transform: translateX(calc(var(--lit, 0) * var(--shift) * 4px));
+  transition: transform var(--motion-shift) ease-out;
+}
+
+.arrow-back svg {
+  transform: translateX(calc(var(--lit, 0) * var(--shift) * -4px));
+}
+
+/* Кнопка этажа: «↓ Этаж 5», «Крыша ↑». Направление — в data-dir. */
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--color-text-on-dark) calc(var(--lit, 0) * 100%),
+      var(--color-border-on-dark)
+    );
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--color-text-on-dark) calc(var(--lit, 0) * 8%), transparent);
+  color: var(--color-text-on-dark);
+  font-size: var(--text-caption);
+  text-decoration: none;
+  transition:
+    border-color var(--motion-hover) ease-out,
+    background-color var(--motion-hover) ease-out;
+  cursor: pointer;
+}
+
+.step svg {
+  transform: translateY(calc(var(--lit, 0) * var(--shift) * var(--dir, 1) * 2px));
+  transition: transform var(--motion-shift) ease-out;
+}
+
+.step[data-dir='up'] {
+  --dir: -1;
+}
+
+.step:active {
+  background: color-mix(in srgb, var(--color-text-on-dark) 16%, transparent);
+  transition-duration: var(--motion-press);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .step:hover {
+    --lit: 1;
+  }
+}
+
+.step:focus-visible {
+  --lit: 1;
+}
+
+/* Карточка проекта. Подсветку поднимает гараж через --active. */
+
+.card {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--color-hover-outline) calc(var(--active, 0) * 100%),
+      var(--color-border)
+    );
+  border-radius: var(--radius-card);
+  background: var(--color-white);
+  box-shadow: 0 8px 20px rgba(40, 30, 20, calc(var(--active, 0) * 0.12));
+  color: var(--color-text);
+  text-decoration: none;
+  transform: translateY(calc(var(--active, 0) * var(--shift) * -2px));
+  transition:
+    border-color var(--motion-hover) var(--ease-out),
+    box-shadow var(--motion-hover) var(--ease-out),
+    transform var(--motion-shift) var(--ease-out);
+}
+
+.card-arrow {
+  flex-shrink: 0;
+  align-self: center;
+  transform: translateX(calc(var(--active, 0) * var(--shift) * 4px));
+  transition: transform var(--motion-shift) var(--ease-out);
+}
+
+/* Строчная ссылка: наследует цвет, растёт только подчёркивание. */
+
+.link {
+  text-decoration-thickness: calc(1px + var(--lit, 0) * 1px);
+  text-underline-offset: calc(3px + var(--lit, 0) * 2px);
+  transition:
+    text-decoration-thickness var(--motion-hover) ease-out,
+    text-underline-offset var(--motion-hover) ease-out;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    --lit: 1;
+  }
+}
+
+.link:focus-visible {
+  --lit: 1;
+}
+
+/* Тёплая ссылка на тёмном: контакты в панели домофона. */
+
+.link-lamp {
+  position: relative;
+  color: color-mix(
+    in srgb,
+    var(--color-lamp-bright) calc(var(--lit, 0) * 100%),
+    var(--color-lamp-text)
+  );
+  font-size: var(--text-body);
+  line-height: normal;
+  text-decoration: none;
+  transition: color var(--motion-hover) ease-out;
+}
+
+.link-lamp:active {
+  color: var(--color-lamp-text);
+  transition-duration: var(--motion-press);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link-lamp:hover {
+    --lit: 1;
+  }
+}
+
+.link-lamp:focus-visible {
+  --lit: 1;
+}
+
+/* Поля формы. */
+
+.input {
+  box-sizing: border-box;
+  border: 1px solid
+    color-mix(in srgb, var(--color-dark) calc(var(--lit, 0) * 100%), var(--color-input-border));
+  border-radius: var(--radius-control);
+  background: var(--color-white);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--text-body);
+  transition: border-color var(--motion-hover) ease-out;
+}
+
+.input::placeholder {
+  color: var(--color-placeholder);
+}
+
+.input[aria-invalid='true'] {
+  border-width: 2px;
+  border-color: var(--color-error);
+}
+
+.input:disabled {
+  border-color: #c9c1b3;
+  background: var(--color-input-disabled-bg);
+  color: #3a4052;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .input:not(:disabled):hover {
+    --lit: 1;
+  }
+}
+
+.input-line {
+  height: var(--spacing-control);
+  padding: 0 14px;
+}
+
+.input-area {
+  padding: 12px 14px;
+  line-height: var(--leading-body);
+  resize: vertical;
+}
+
+.input-area:disabled {
+  resize: none;
+}

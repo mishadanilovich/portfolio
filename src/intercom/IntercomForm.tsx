@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 import { fill, type Locale, type Ui } from '@/content';
+import { control } from '@/styles/controls';
 import { CallIcon } from './CallIcon';
 import styles from './intercom.module.css';
 import type { IntercomInput, IntercomValues } from './schema';
@@ -105,7 +106,7 @@ export function IntercomFields({
         <button
           ref={closeRef}
           type="button"
-          className={styles.close}
+          className={`${styles.close} ${control('close', 'ring-paper')}`}
           aria-label={ui.close}
           onClick={onClose}
         >
@@ -124,7 +125,7 @@ export function IntercomFields({
               <span key={entry.field}>
                 {' '}
                 <a
-                  className={styles['alert-link']}
+                  className={`${styles['alert-link']} ${control('link', 'ring-paper')}`}
                   href={`#intercom-${entry.field}`}
                   onClick={(event) => {
                     event.preventDefault();
@@ -151,7 +152,7 @@ export function IntercomFields({
           </label>
           <input
             {...form.register('link')}
-            className={styles.input}
+            className={control('input', 'input-line', 'ring-paper')}
             id="intercom-link"
             type="url"
             placeholder={ui.linkPlaceholder}
@@ -169,7 +170,7 @@ export function IntercomFields({
           </label>
           <textarea
             {...form.register('description')}
-            className={styles.area}
+            className={control('input', 'input-area', 'ring-paper')}
             id="intercom-description"
             rows={3}
             placeholder={ui.descriptionPlaceholder}
@@ -189,7 +190,7 @@ export function IntercomFields({
           </label>
           <input
             {...form.register('company')}
-            className={styles.input}
+            className={control('input', 'input-line', 'ring-paper')}
             id="intercom-company"
             type="text"
             disabled={sending}
@@ -205,7 +206,7 @@ export function IntercomFields({
           </label>
           <input
             {...form.register('contact')}
-            className={styles.input}
+            className={control('input', 'input-line', 'ring-paper')}
             id="intercom-contact"
             type="text"
             placeholder={ui.contactPlaceholder}
@@ -223,7 +224,7 @@ export function IntercomFields({
         </label>
         <textarea
           {...form.register('comment')}
-          className={styles.area}
+          className={control('input', 'input-area', 'ring-paper')}
           id="intercom-comment"
           rows={2}
           disabled={sending}
@@ -240,7 +241,11 @@ export function IntercomFields({
       />
 
       <div className={styles.actions}>
-        <button type="submit" className={styles.submit} disabled={sending}>
+        <button
+          type="submit"
+          className={control('primary', 'primary-m', 'ring-paper')}
+          disabled={sending}
+        >
           {sending ? <Spinner /> : <CallIcon />}
           {sending ? ui.sending : ui.submit}
         </button>
@@ -251,7 +256,11 @@ export function IntercomFields({
           </p>
         ) : (
           <>
-            <button type="button" className={styles.cancel} onClick={onClose}>
+            <button
+              type="button"
+              className={control('text', 'text-box', 'ring-paper')}
+              onClick={onClose}
+            >
               {ui.cancel}
             </button>
             <p className={styles.required}>

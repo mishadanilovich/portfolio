@@ -2,6 +2,7 @@
 
 import { type ReactNode, useCallback, useEffect, useRef } from 'react';
 import type { Ui } from '@/content';
+import { control } from '@/styles/controls';
 import { onHelpRequest } from './events';
 import styles from './help.module.css';
 
@@ -24,7 +25,12 @@ export function HelpDialog({ ui, scheme }: { ui: Ui['help']; scheme: ReactNode }
           <p className={styles.lead}>{ui.lead}</p>
         </div>
 
-        <button type="button" className={styles.close} aria-label={ui.close} onClick={close}>
+        <button
+          type="button"
+          className={`${styles.close} ${control('close', 'ring-paper')}`}
+          aria-label={ui.close}
+          onClick={close}
+        >
           <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
             <path d="M3 3L13 13M13 3L3 13" stroke="var(--color-text)" strokeWidth="1.8" />
           </svg>
@@ -48,7 +54,11 @@ export function HelpDialog({ ui, scheme }: { ui: Ui['help']; scheme: ReactNode }
             ))}
           </ol>
 
-          <button type="button" className={styles.ok} onClick={close}>
+          <button
+            type="button"
+            className={`${styles.ok} ${control('dark', 'ring-paper')}`}
+            onClick={close}
+          >
             {ui.ok}
           </button>
         </div>

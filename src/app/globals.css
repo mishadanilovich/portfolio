@@ -6,6 +6,10 @@
   --font-ui: var(--font-golos), system-ui, sans-serif;
 }
 
+:root {
+  --shift: 1;
+}
+
 body {
   background: var(--color-dusk);
   color: var(--color-text-on-dark);
@@ -17,6 +21,10 @@ body:has([data-room]) {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  :root {
+    --shift: 0;
+  }
+
   *,
   *::before,
   *::after {

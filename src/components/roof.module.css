@@ -99,21 +99,6 @@
   list-style: none;
 }
 
-.contact {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-sizing: border-box;
-  height: var(--spacing-control);
-  padding: 0 12px;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  background: var(--color-white);
-  color: inherit;
-  font-size: var(--text-body);
-  text-decoration: none;
-}
-
 .email-row {
   display: flex;
   grid-column: 1 / -1;
@@ -126,16 +111,7 @@
 }
 
 .copy {
-  display: flex;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  width: var(--spacing-control);
-  height: var(--spacing-control);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-control);
-  background: var(--color-white);
-  cursor: pointer;
 }
 
 .announce {
@@ -146,27 +122,4 @@
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-.call {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: var(--spacing-panel-cta);
-  border: 0;
-  border-radius: var(--radius-control);
-  background: var(--color-lamp);
-  color: var(--color-on-lamp);
-  font-family: inherit;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.contact:focus-visible,
-.copy:focus-visible,
-.call:focus-visible {
-  outline: 2px solid var(--color-hover-outline);
-  outline-offset: 2px;
 }

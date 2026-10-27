@@ -1,4 +1,5 @@
 import { fill, type Contact, type Ui } from '@/content';
+import { control } from '@/styles/controls';
 import styles from './intercom.module.css';
 
 export type IntercomStatus = 'idle' | 'error' | 'sending' | 'success';
@@ -102,14 +103,19 @@ export function IntercomPanel({
         <p className={styles.overline}>{ui.direct}</p>
 
         {telegram !== undefined && (
-          <a className={styles.contact} href={telegram.href} target="_blank" rel="noreferrer">
+          <a
+            className={control('link-lamp', 'ring-dark')}
+            href={telegram.href}
+            target="_blank"
+            rel="noreferrer"
+          >
             {fill(ui.telegram, { handle: telegram.label })}
             <span className={styles.announce}>{newTab}</span>
           </a>
         )}
 
         {email !== undefined && (
-          <a className={`${styles.contact} ${styles.mail}`} href={email.href}>
+          <a className={`${control('link-lamp', 'ring-dark')} ${styles.mail}`} href={email.href}>
             {email.label}
           </a>
         )}
