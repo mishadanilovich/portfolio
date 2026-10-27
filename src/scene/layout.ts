@@ -181,6 +181,7 @@ export const CARD_WIDTH = 148;
 
 export const PLAQUE = {
   width: PLAQUE_WIDTH,
+  groundWidth: CARD_WIDTH,
   gap: PLAQUE_GAP,
   bracketX: FACADE_X + FACADE_WIDTH,
   anchorX: FACADE_X + FACADE_WIDTH + PLAQUE_GAP,
@@ -218,10 +219,10 @@ function slabOf(floor: number): Rect {
   };
 }
 
-function plaqueAt(midline: number): Plaque {
+function plaqueAt(midline: number, width: number = PLAQUE.width): Plaque {
   return {
     anchor: { x: PLAQUE.anchorX, y: midline },
-    width: PLAQUE.width,
+    width,
     bracket: { x1: PLAQUE.bracketX, x2: PLAQUE.anchorX, y: midline },
   };
 }
@@ -312,7 +313,7 @@ function buildEntrance(): EntranceGeometry {
 function buildBasement(): BasementGeometry {
   const rect: Rect = { x: FACADE_X, y: GROUND_Y, width: FACADE_WIDTH, height: 86 };
 
-  return { rect, plaque: plaqueAt(rect.y + rect.height / 2) };
+  return { rect, plaque: plaqueAt(rect.y + rect.height / 2, PLAQUE.groundWidth) };
 }
 
 function buildGarage(): GarageGeometry {

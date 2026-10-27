@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { dictionaries } from '@/content';
 import {
+  CARD_WIDTH,
   createSceneLayout,
   findFloor,
   HOUSE,
@@ -138,6 +139,11 @@ describe('таблички', () => {
   it('ставят табличку подвала на середину разреза', () => {
     expect(HOUSE.basement.rect).toEqual({ x: 200, y: 760, width: 360, height: 86 });
     expect(HOUSE.basement.plaque.anchor.y).toBe(803);
+  });
+
+  it('не дают полной табличке подвала уйти правее карточки этажа', () => {
+    expect(HOUSE.basement.plaque.width).toBe(CARD_WIDTH);
+    expect(HOUSE.basement.plaque.width).toBeGreaterThan(PLAQUE.width);
   });
 });
 

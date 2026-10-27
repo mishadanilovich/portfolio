@@ -1,5 +1,5 @@
 import { locale } from 'next/root-params';
-import { defaultLocale, fill, getContent, isLocale, shortPeriod } from '@/content';
+import { defaultLocale, fill, getContent, isLocale, shortPeriod, type Basement } from '@/content';
 import { HOUSE, PLAQUE } from './layout';
 import styles from './scene.module.css';
 import { left, size, top } from './units';
@@ -8,27 +8,62 @@ interface PlaqueProps {
   midline: number;
   kicker: string;
   title: string;
-  ground?: boolean;
-  floor?: number;
+  floor: number;
 }
 
-function Plaque({ midline, kicker, title, ground = false, floor }: PlaqueProps) {
+function Bracket({ midline, ground = false }: { midline: number; ground?: boolean }) {
+  return (
+    <div
+      className={`${styles.bracket} ${ground ? styles['bracket-ground'] : ''}`}
+      style={{
+        left: left(PLAQUE.bracketX),
+        top: top(midline),
+        width: size(PLAQUE.anchorX - PLAQUE.bracketX),
+      }}
+    />
+  );
+}
+
+function Plaque({ midline, kicker, title, floor }: PlaqueProps) {
   return (
     <div data-floor={floor} data-state="idle">
+      <Bracket midline={midline} />
       <div
-        className={`${styles.bracket} ${ground ? styles['bracket-ground'] : ''}`}
-        style={{
-          left: left(PLAQUE.bracketX),
-          top: top(midline),
-          width: size(PLAQUE.anchorX - PLAQUE.bracketX),
-        }}
-      />
-      <div
-        className={`${styles.plaque} ${ground ? styles['plaque-ground'] : ''}`}
+        className={styles.plaque}
         style={{ left: left(PLAQUE.anchorX), top: top(midline), width: size(PLAQUE.width) }}
       >
         <span className={styles['plaque-kicker']}>{kicker}</span>
         <span className={styles['plaque-title']}>{title}</span>
+      </div>
+    </div>
+  );
+}
+
+function BasementPlaque({ basement, brief }: { basement: Basement; brief: string }) {
+  const { anchor, width } = HOUSE.basement.plaque;
+  const place = { left: left(PLAQUE.anchorX), top: top(anchor.y) };
+
+  return (
+    <div>
+      <Bracket ground midline={anchor.y} />
+
+      <div
+        className={`${styles.plaque} ${styles['plaque-ground']} ${styles['plaque-brief']}`}
+        style={{ ...place, width: size(PLAQUE.width) }}
+        aria-hidden="true"
+      >
+        <span className={styles['plaque-kicker']}>{brief}</span>
+        <span className={styles['plaque-title']}>{basement.kicker}</span>
+      </div>
+
+      <div
+        className={`${styles.plaque} ${styles['plaque-ground']} ${styles['plaque-study']}`}
+        style={{ ...place, width: size(width) }}
+      >
+        <span className={styles['plaque-kicker']}>{basement.kicker}</span>
+        <span className={styles['plaque-title']}>{basement.institution}</span>
+        <span className={styles['plaque-line']}>{basement.faculty}</span>
+        <span className={styles['plaque-line']}>{basement.period}</span>
       </div>
     </div>
   );
@@ -71,13 +106,11 @@ export async function Plaques() {
         <span className={styles['tooltip-title']}>{content.ui.scene.garageTooltip}</span>
       </div>
 
-      <Plaque
-        ground
-        midline={HOUSE.basement.plaque.anchor.y}
-        kicker={fill(content.ui.scene.basementPlaque, {
+      <BasementPlaque
+        basement={content.basement}
+        brief={fill(content.ui.scene.basementPlaque, {
           period: shortPeriod(content.basement.period),
         })}
-        title={content.basement.kicker}
       />
     </div>
   );
