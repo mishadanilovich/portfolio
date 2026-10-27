@@ -260,30 +260,34 @@ function Roof() {
       <rect {...sign} rx="3" fill="var(--color-dusk)" />
       <rect {...sign} rx="3" fill="url(#scene-halo)" fillOpacity="0.35" />
 
-      <g stroke="#3a3f4d" strokeWidth="1.4" fill="none">
-        <path d="M328 148L320 128M328 148L336 128M328 148V130" />
+      <g stroke="#3a3f4d" strokeWidth="1.6" strokeLinecap="round" fill="none">
+        <path d="M334 131L326.5 148M334 131L341.5 148M334 131L335.5 147" />
+        <path d="M329 140.5H340" strokeWidth="1.1" />
       </g>
-      <rect
-        x="318"
-        y="114"
-        width="26"
-        height="7"
-        rx="3"
-        fill="#3a3f4d"
-        transform="rotate(-30 328 122)"
-      />
+      <rect x="330.5" y="126" width="7" height="6" rx="1.5" fill="#2e3548" />
+      <g transform="rotate(-34 334 123)">
+        <rect x="323" y="119.5" width="22" height="7" rx="3.5" fill="#4a5265" />
+        <rect x="343" y="118.5" width="5" height="9" rx="2" fill="#2e3548" />
+        <rect x="319.5" y="121" width="4" height="4" rx="1.3" fill="#2e3548" />
+        <rect x="327" y="116.5" width="9" height="3.5" rx="1.75" fill="#3a3f4d" />
+      </g>
 
       <path d="M300 148L302 136H316L318 148Z" fill="var(--color-slab)" />
       <path
         d="M309 136C305 126 300 124 296 122C302 122 306 126 308 130C308 124 312 118 320 116C314 122 311 128 310 136Z"
         fill="#5e7d5e"
       />
-      <path
-        d="M392 148V136H462V148M396 136V128H458V136"
-        fill="none"
-        stroke="#6b5440"
-        strokeWidth="2.5"
-      />
+      <g fill="#5a4636">
+        <rect x="396" y="138" width="4" height="10" />
+        <rect x="454" y="138" width="4" height="10" />
+        <rect x="396" y="127" width="4" height="9" />
+        <rect x="454" y="127" width="4" height="9" />
+      </g>
+      <g fill="#7a6048">
+        <rect x="392" y="127" width="70" height="3" rx="1" />
+        <rect x="392" y="131.5" width="70" height="2.5" rx="1" />
+        <rect x="390" y="134.5" width="74" height="4" rx="1" />
+      </g>
 
       <rect x="540" y="100" width="18" height="48" fill="#c9c1b3" />
       <path d="M530 148V76M522 86H538M524 96H536" stroke="#5a5f70" strokeWidth="1.2" />
