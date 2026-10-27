@@ -1,11 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState, type KeyboardEvent, type MouseEvent } from 'react';
+import {
+  useEffect,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type MouseEvent,
+} from 'react';
 import { requestIntercom } from '@/intercom/events';
 import { isPlainClick } from '@/lib/click';
 import { useFocusTarget, type FocusTarget } from './FocusController';
-import { HOUSE, type LevelId } from './layout';
+import { CARD_WIDTH, HOUSE, PLAQUE, type LevelId } from './layout';
 import { onFlyOutRequest, requestFlyIn, requestLevel } from './camera-events';
 import styles from './scene.module.css';
 import { left, size, top } from './units';
@@ -15,6 +21,7 @@ export interface FloorTarget {
   level: LevelId;
   label: string;
   href: string;
+  card: { kicker: string; title: string; role: string; action: string };
 }
 
 export function SceneObjects({
@@ -93,6 +100,8 @@ export function SceneObjects({
             href={target.href}
             className={styles.object}
             aria-label={target.label}
+            data-floor={target.floor}
+            data-state="idle"
             onClick={enter(target)}
             onKeyDown={activate}
             onPointerEnter={hover(target.level)}
@@ -103,7 +112,23 @@ export function SceneObjects({
               width: size(geometry.rect.width),
               height: size(geometry.rect.height),
             }}
-          />
+          >
+            <span
+              className={styles.card}
+              aria-hidden="true"
+              style={
+                {
+                  '--card-gap': size(PLAQUE.gap),
+                  width: size(CARD_WIDTH),
+                } as CSSProperties
+              }
+            >
+              <span className={styles['card-kicker']}>{target.card.kicker}</span>
+              <span className={styles['card-title']}>{target.card.title}</span>
+              <span className={styles['card-role']}>{target.card.role}</span>
+              <span className={styles['card-action']}>{target.card.action}</span>
+            </span>
+          </Link>
         );
       })}
 

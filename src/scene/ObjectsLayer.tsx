@@ -24,6 +24,15 @@ export async function ObjectsLayer() {
         title: data.title,
         period: shortPeriod(data.period),
       }),
+      card: {
+        kicker: fill(scene.floorPlaque, {
+          floor: level.floor,
+          period: shortPeriod(data.period),
+        }),
+        title: data.title,
+        role: data.role,
+        action: scene.enterApartment,
+      },
     });
 
     return list;

@@ -181,6 +181,7 @@ export const CARD_WIDTH = 148;
 
 export const PLAQUE = {
   width: PLAQUE_WIDTH,
+  gap: PLAQUE_GAP,
   bracketX: FACADE_X + FACADE_WIDTH,
   anchorX: FACADE_X + FACADE_WIDTH + PLAQUE_GAP,
 } as const;

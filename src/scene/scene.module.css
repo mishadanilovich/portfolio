@@ -343,6 +343,8 @@
 
 .card {
   position: absolute;
+  top: 50%;
+  left: calc(100% + var(--card-gap));
   display: flex;
   flex-direction: column;
   gap: calc(2 * var(--u-focus));
@@ -357,6 +359,15 @@
     opacity var(--motion-fast) var(--ease-out),
     transform var(--motion-fast) var(--ease-out);
   pointer-events: none;
+}
+
+.card::before {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: var(--card-gap);
+  height: 100%;
+  content: '';
 }
 
 .card-kicker {
@@ -382,10 +393,15 @@
 
 .card-action {
   margin-top: calc(3 * var(--u-focus));
-  color: var(--color-lamp-text);
+  color: color-mix(
+    in srgb,
+    var(--color-lamp-bright) calc(var(--lit, 0) * 100%),
+    var(--color-lamp-text)
+  );
   font-size: calc(12 * var(--u-focus));
   font-weight: 500;
   line-height: normal;
+  transition: color var(--motion-hover) ease-out;
 }
 
 [data-state='focused'] .plaque {
@@ -395,6 +411,13 @@
 [data-state='focused'] .card {
   opacity: 1;
   transform: translateY(-50%) scaleY(1);
+  pointer-events: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    --lit: 1;
+  }
 }
 
 .glow[data-state='focused'] {
