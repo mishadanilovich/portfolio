@@ -94,60 +94,78 @@ function Door() {
         />
         <ellipse cx="380" cy="710.83" rx="3.78" ry="1.1" fill="#fff4d6" />
         <ellipse cx="380" cy="747.75" rx="17.0" ry="1.5" fill="#fff4d6" fillOpacity="0.35" />
-        <path d="M346.0 702L362.06 704.72V752.28L346.0 755Z" fill="#6b5440" />
-        <path d="M346.0 702L362.06 704.72V752.28L346.0 755Z" fill="#000000" fillOpacity="0.12" />
+        <path d="M346.0 702.0 L362.06 704.72 L362.06 752.29 L346.0 755.0Z" fill="#6b5440" />
         <path
-          d="M348.83 705.17L359.22 707.21V726.91L348.83 728.27Z"
+          d="M346.0 702.0 L362.06 704.72 L362.06 752.29 L346.0 755.0Z"
+          fill="#000000"
+          fillOpacity="0.12"
+        />
+        <path
+          d="M348.13 704.63 L359.93 706.46 L359.93 726.32 L348.13 726.13Z"
           fill="var(--color-lamp)"
           fillOpacity="0.55"
         />
         <path
-          d="M348.83 705.17L359.22 707.21V726.91L348.83 728.27Z"
+          d="M348.13 704.63 L359.93 706.46 L359.93 726.32 L348.13 726.13Z"
           fill="none"
           stroke="var(--color-frame-wood)"
-          strokeWidth="1.2"
+          strokeWidth="1"
         />
         <path
-          d="M354.03 706.19V727.59M348.83 716.72L359.22 717.06"
+          d="M354.03 705.54 L354.03 726.23M348.13 715.38 L359.93 716.39"
           stroke="var(--color-frame-wood)"
-          strokeWidth="0.9"
+          strokeWidth="1"
         />
         <path
-          d="M348.83 731.9L359.22 732.35V749.56L348.83 750.92Z"
+          d="M348.13 729.59 L359.93 729.51 L359.93 749.37 L348.13 751.09Z"
           fill="none"
           stroke="var(--color-frame-wood)"
-          strokeWidth="1.2"
+          strokeWidth="1"
         />
-        <path d="M362.06 704.72L363.94 704.94V752.06L362.06 752.28Z" fill="#3e3024" />
-        <rect x="358.04" y="727.37" width="1.42" height="8.15" rx="0.7" fill="#c9a060" />
-        <path d="M414.0 702L397.94 704.72V752.28L414.0 755Z" fill="#6b5440" />
-        <path d="M414.0 702L397.94 704.72V752.28L414.0 755Z" fill="#000000" fillOpacity="0.12" />
         <path
-          d="M411.17 705.17L400.78 707.21V726.91L411.17 728.27Z"
+          d="M349.5 732.41 L358.56 732.18 L358.56 746.9 L349.5 748.06Z"
+          fill="none"
+          stroke="#6b5440"
+          strokeWidth="0.6"
+        />
+        <path d="M362.06 704.72 L363.94 704.94 L363.94 752.06 L362.06 752.29Z" fill="#3e3024" />
+        <path d="M360.64 724.61 L361.59 724.63 L361.59 736.07 L360.64 736.12Z" fill="#c9a060" />
+        <path d="M414.0 702.0 L397.94 704.72 L397.94 752.29 L414.0 755.0Z" fill="#6b5440" />
+        <path
+          d="M414.0 702.0 L397.94 704.72 L397.94 752.29 L414.0 755.0Z"
+          fill="#000000"
+          fillOpacity="0.12"
+        />
+        <path
+          d="M411.87 704.63 L400.07 706.46 L400.07 726.32 L411.87 726.13Z"
           fill="var(--color-lamp)"
           fillOpacity="0.55"
         />
         <path
-          d="M411.17 705.17L400.78 707.21V726.91L411.17 728.27Z"
+          d="M411.87 704.63 L400.07 706.46 L400.07 726.32 L411.87 726.13Z"
           fill="none"
           stroke="var(--color-frame-wood)"
-          strokeWidth="1.2"
+          strokeWidth="1"
         />
         <path
-          d="M405.97 706.19V727.59M411.17 716.72L400.78 717.06"
+          d="M405.97 705.54 L405.97 726.23M411.87 715.38 L400.07 716.39"
           stroke="var(--color-frame-wood)"
-          strokeWidth="0.9"
+          strokeWidth="1"
         />
         <path
-          d="M411.17 731.9L400.78 732.35V749.56L411.17 750.92Z"
+          d="M411.87 729.59 L400.07 729.51 L400.07 749.37 L411.87 751.09Z"
           fill="none"
           stroke="var(--color-frame-wood)"
-          strokeWidth="1.2"
+          strokeWidth="1"
         />
-        <path d="M397.94 704.72L396.06 704.94V752.06L397.94 752.28Z" fill="#3e3024" />
-        <rect x="400.54" y="727.37" width="1.42" height="8.15" rx="0.7" fill="#c9a060" />
-        <rect x="326" y="755" width="108" height="1" fill="#e8cc90" />
-        <rect x="336" y="757" width="88" height="0.8" fill="#e8cc90" />
+        <path
+          d="M410.5 732.41 L401.44 732.18 L401.44 746.9 L410.5 748.06Z"
+          fill="none"
+          stroke="#6b5440"
+          strokeWidth="0.6"
+        />
+        <path d="M397.94 704.72 L396.06 704.94 L396.06 752.06 L397.94 752.29Z" fill="#3e3024" />
+        <path d="M399.36 724.61 L398.41 724.63 L398.41 736.07 L399.36 736.12Z" fill="#c9a060" />
       </g>
 
       <circle

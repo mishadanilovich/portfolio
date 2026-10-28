@@ -166,41 +166,41 @@ function DoorLeaf({ x, handle }: { x: number; handle: number }) {
   return (
     <g>
       <rect
-        x={x + 3.9}
+        x={x + 4.5}
         y="704.3"
-        width="26.2"
-        height="23.6"
+        width="25"
+        height="21.8"
         fill="var(--color-lamp)"
         fillOpacity="0.45"
       />
       <rect
-        x={x + 3.9}
+        x={x + 4.5}
         y="704.3"
-        width="26.2"
-        height="23.6"
+        width="25"
+        height="21.8"
         fill="none"
         stroke="var(--color-frame-wood)"
         strokeWidth="1.4"
       />
       <path
-        d={`M${x + 17} 704.3V727.9M${x + 3.9} 716H${x + 30.1}`}
+        d={`M${x + 17} 704.3V726.1M${x + 4.5} 715.2H${x + 29.5}`}
         stroke="var(--color-frame-wood)"
         strokeWidth="1.4"
       />
       <rect
-        x={x + 4.9}
-        y="731.4"
-        width="24.2"
-        height="19.9"
+        x={x + 4.5}
+        y="729.6"
+        width="25"
+        height="21.8"
         fill="none"
         stroke="var(--color-frame-wood)"
         strokeWidth="1.4"
       />
       <rect
-        x={x + 7.8}
-        y="732.8"
-        width="18.5"
-        height="17.2"
+        x={x + 7.4}
+        y="732.5"
+        width="19.2"
+        height="16"
         fill="none"
         stroke="#6b5440"
         strokeWidth="0.8"
