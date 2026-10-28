@@ -389,6 +389,7 @@ export const en: Content = {
       sentContact: 'Contact',
       successHome: 'Back to the house',
       successAgain: 'Send another one',
+      successDoor: 'The door is open, warm light and stairs inside',
       errors: {
         vacancy: 'Add a job link or describe the role — one is enough.',
         link: 'The link has to start with http:// or https://',

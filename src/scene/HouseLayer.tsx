@@ -113,6 +113,96 @@ function Windows() {
   );
 }
 
+function WallLantern({ x, y, radius }: { x: number; y: number; radius: number }) {
+  return (
+    <g>
+      <circle cx={x} cy={y} r={radius} fill="url(#scene-halo)" />
+      <rect x={x - 2} y={y - 14.5} width="4" height="1.5" fill="var(--color-dusk)" />
+      <path d={`M${x} ${y - 13}V${y - 9.5}`} stroke="var(--color-dusk)" strokeWidth="1.1" />
+      <path
+        d={`M${x - 2.6} ${y - 8}L${x} ${y - 11.5}L${x + 2.6} ${y - 8}Z`}
+        fill="var(--color-dusk)"
+      />
+      <path
+        d={`M${x - 4.6} ${y - 8}H${x + 4.6}L${x + 3.3} ${y + 8}H${x - 3.3}Z`}
+        fill="var(--color-dusk)"
+      />
+      <path
+        d={`M${x - 2.9} ${y - 6}H${x + 2.9}L${x + 2.1} ${y + 6}H${x - 2.1}Z`}
+        fill="var(--color-lamp-text)"
+      />
+      <rect x={x - 5} y={y + 8} width="10" height="1.7" fill="var(--color-dusk)" />
+    </g>
+  );
+}
+
+function Pilaster({ x }: { x: number }) {
+  return (
+    <g>
+      <rect x={x} y="692" width="12" height="62" fill="var(--color-facade)" />
+      <path
+        d={`M${x + 4} 696V750M${x + 8} 696V750`}
+        stroke="var(--color-lobby)"
+        strokeWidth="0.8"
+      />
+      <rect x={x - 2} y="689" width="16" height="3" fill="var(--color-border)" />
+      <rect x={x - 2} y="754" width="16" height="3" fill="var(--color-border)" />
+    </g>
+  );
+}
+
+function Planter({ x }: { x: number }) {
+  return (
+    <g>
+      <path d={`M${x - 8.5} 750H${x + 8.5}L${x + 7} 760H${x - 7}Z`} fill="#6b5440" />
+      <rect x={x - 9} y="748.2" width="18" height="1.8" fill="#5c4632" />
+      <ellipse cx={x} cy="741" rx="9.5" ry="8.5" fill="#4e6b4e" />
+      <ellipse cx={x - 3} cy="738" rx="4.2" ry="4.2" fill="#5e7d5e" />
+    </g>
+  );
+}
+
+function DoorLeaf({ x, handle }: { x: number; handle: number }) {
+  return (
+    <g>
+      <rect x={x + 4} y="705" width="26" height="25" fill="var(--color-lamp)" fillOpacity="0.45" />
+      <rect
+        x={x + 4}
+        y="705"
+        width="26"
+        height="25"
+        fill="none"
+        stroke="var(--color-frame-wood)"
+        strokeWidth="1.4"
+      />
+      <path
+        d={`M${x + 17} 705V730M${x + 4} 717.5H${x + 30}`}
+        stroke="var(--color-frame-wood)"
+        strokeWidth="1.4"
+      />
+      <rect
+        x={x + 5}
+        y="734"
+        width="24"
+        height="22"
+        fill="none"
+        stroke="var(--color-frame-wood)"
+        strokeWidth="1.4"
+      />
+      <rect
+        x={x + 7.5}
+        y="735.5"
+        width="19"
+        height="19"
+        fill="none"
+        stroke="#6b5440"
+        strokeWidth="0.8"
+      />
+      <rect x={handle} y="726" width="2" height="14" rx="1" fill="#c9a060" />
+    </g>
+  );
+}
+
 function Entrance() {
   const { rect, door, canopy, porch, houseNumber, lamps, intercom, windows } = HOUSE.entrance;
 
@@ -135,6 +225,7 @@ function Entrance() {
       />
       <line x1="289" y1="686" x2="289" y2="696" stroke="#3b3730" />
       <circle cx="289" cy="698" r="3" fill="#d9cdb0" />
+      <rect x="224" y="742" width="92" height="4" fill="var(--color-facade)" />
 
       <rect {...windows[1]} fill="#3e3024" />
       <rect x="452" y="686" width="76" height="52" fill="var(--color-lobby-glass)" />
@@ -147,18 +238,29 @@ function Entrance() {
         <rect x="468" y="726" width="8" height="6" />
         <rect x="478" y="726" width="8" height="6" />
       </g>
+      <rect x="444" y="742" width="92" height="4" fill="var(--color-facade)" />
+
+      <path d="M344 666L330 677M416 666L430 677" stroke="var(--color-dusk)" strokeWidth="1.6" />
+      <rect x="342" y="664" width="4" height="3" fill="var(--color-dusk)" />
+      <rect x="414" y="664" width="4" height="3" fill="var(--color-dusk)" />
+      <rect {...canopy} fill="var(--color-dusk)" />
+      <rect x="331" y="682" width="98" height="1.2" fill="var(--color-lobby-glass)" />
+
+      <Pilaster x={328} />
+      <Pilaster x={420} />
 
       <rect {...door} fill="#3e3024" />
-      <rect x="346" y="690" width="68" height="10" fill="var(--color-lamp)" fillOpacity="0.75" />
-      <rect x="346" y="702" width="68" height="58" fill="#5a4636" />
-      <line x1="380" y1="702" x2="380" y2="760" stroke="#3e3024" strokeWidth="2" />
-      <rect x="352" y="708" width="22" height="22" fill="var(--color-lamp)" fillOpacity="0.45" />
-      <rect x="386" y="708" width="22" height="22" fill="var(--color-lamp)" fillOpacity="0.45" />
-      <circle cx="376" cy="738" r="1.5" fill="#c9a060" />
-      <circle cx="384" cy="738" r="1.5" fill="#c9a060" />
+      <rect x="330" y="683" width="100" height="6" fill="var(--color-facade)" />
+      <rect x="330" y="683" width="100" height="1.5" fill="var(--color-border)" />
 
-      <rect {...canopy} fill="var(--color-dusk)" />
-      <path d="M332 682L340 690M428 682L420 690" stroke="var(--color-dusk)" strokeWidth="1.5" />
+      <rect x="346" y="690" width="68" height="10" fill="var(--color-lamp)" fillOpacity="0.75" />
+      <path d="M369 690V700M391 690V700" stroke="#3e3024" strokeWidth="1.5" />
+
+      <rect x="346" y="702" width="68" height="58" fill="#5a4636" />
+      <DoorLeaf x={346} handle={377} />
+      <DoorLeaf x={380} handle={381} />
+      <line x1="380" y1="702" x2="380" y2="760" stroke="#3e3024" strokeWidth="2" />
+
       <circle
         cx={houseNumber.center.x}
         cy={houseNumber.center.y}
@@ -177,26 +279,28 @@ function Entrance() {
       </text>
 
       {lamps.map((lamp) => (
-        <g key={lamp.center.x}>
-          <circle cx={lamp.center.x} cy={lamp.center.y} r={lamp.radius} fill="url(#scene-halo)" />
-          <rect
-            x={lamp.center.x - 2}
-            y={lamp.center.y - 4}
-            width="4"
-            height="7"
-            rx="1"
-            fill="var(--color-lamp-text)"
-          />
-        </g>
+        <WallLantern key={lamp.center.x} x={lamp.center.x} y={lamp.center.y} radius={lamp.radius} />
       ))}
 
-      <rect {...intercom.panel} rx="1" fill="var(--color-dusk)" />
+      <rect {...intercom.panel} rx="1.5" fill="var(--color-dusk)" />
+      <rect x="435.5" y="717" width="7" height="2.2" rx="0.4" fill="var(--color-lobby-glass)" />
+      <g fill="#5a6075">
+        <circle cx="436.4" cy="727.5" r="0.55" />
+        <circle cx="439" cy="727.5" r="0.55" />
+        <circle cx="441.6" cy="727.5" r="0.55" />
+        <circle cx="436.4" cy="730" r="0.55" />
+        <circle cx="439" cy="730" r="0.55" />
+        <circle cx="441.6" cy="730" r="0.55" />
+      </g>
+
+      <rect x="326" y="755" width="108" height="5" fill="#a89f90" />
+      <rect x="326" y="755" width="108" height="1" fill="#c9c1b3" />
       <rect {...porch} fill="var(--color-slab)" />
-      <path d="M314 760L316 748H330L332 760Z" fill="var(--color-window-life)" />
-      <path
-        d="M323 748C319 740 316 738 312 737C317 736 321 740 322 744C323 738 327 734 333 733C328 737 325 742 324 748Z"
-        fill="#4e6b4e"
-      />
+      <rect x={porch.x} y={porch.y} width={porch.width} height="0.8" fill="#c9c1b3" />
+      <rect x="360" y="757.8" width="40" height="2.2" rx="0.5" fill="#6e5a48" />
+
+      <Planter x={320} />
+      <Planter x={441} />
     </g>
   );
 }

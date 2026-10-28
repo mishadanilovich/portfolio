@@ -36,6 +36,7 @@ test('отправляет вакансию и показывает подтве
   await expect(
     dialogOf(page).getByRole('heading', { level: 3, name: ui.successTitle }),
   ).toBeVisible();
+  await expect(dialogOf(page).getByRole('img', { name: ui.successDoor })).toBeVisible();
   await expect(dialogOf(page).getByText('careers.example.com/senior-frontend')).toBeVisible();
   await expect(dialogOf(page).getByText('@anna_hr')).toBeVisible();
 

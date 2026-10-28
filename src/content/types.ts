@@ -185,6 +185,7 @@ export interface Ui {
     sentContact: string;
     successHome: string;
     successAgain: string;
+    successDoor: string;
     errors: IntercomErrors;
   };
   project: {

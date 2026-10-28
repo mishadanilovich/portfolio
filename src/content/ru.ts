@@ -389,6 +389,7 @@ export const ru: Content = {
       sentContact: 'Контакт',
       successHome: 'Вернуться к дому',
       successAgain: 'Отправить ещё одну',
+      successDoor: 'Дверь открыта, внутри свет и лестница',
       errors: {
         vacancy: 'Добавьте ссылку на вакансию или опишите её — хватит одного.',
         link: 'Ссылка должна начинаться с http:// или https://',
