@@ -290,7 +290,7 @@ export const ru: Content = {
     intro: {
       callCta: 'Позвонить в домофон',
       cvCta: 'Скачать резюме',
-      scrollHint: 'Листайте вверх — камера поднимется по этажам',
+      scrollHint: 'Листайте — камера подъедет к дому',
     },
     firstVisit: {
       title: 'Впервые здесь?',

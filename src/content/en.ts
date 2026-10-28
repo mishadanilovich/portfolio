@@ -290,7 +290,7 @@ export const en: Content = {
     intro: {
       callCta: 'Ring the intercom',
       cvCta: 'Download resume',
-      scrollHint: 'Scroll up — the camera climbs the floors',
+      scrollHint: 'Scroll — the camera moves in on the house',
     },
     firstVisit: {
       title: 'First time here?',
