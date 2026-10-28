@@ -32,6 +32,7 @@ const FLY = 700;
 const FLY_SCALE = 2.2;
 const REDUCED_FADE = 150;
 const INERTIA_GUARD = 150;
+const INERTIA_CAP = 500;
 const TRAVEL_GUARD = 1200;
 const ROOM = '[data-room]';
 const MODAL = 'dialog[open]';
@@ -76,6 +77,8 @@ export function Camera({ children }: { children: ReactNode }) {
     let travelling = false;
     let travelTimer = 0;
     let unlockTimer = 0;
+    let guardStart = 0;
+    let lastDelta = Infinity;
     let running: Animation | null = null;
     let flying: Animation | null = null;
 
@@ -92,6 +95,13 @@ export function Camera({ children }: { children: ReactNode }) {
 
       document.body.dataset.level = id;
       emitLevelChange(id);
+    };
+
+    const resetGuard = () => {
+      window.clearTimeout(unlockTimer);
+      unlockTimer = 0;
+      guardStart = 0;
+      lastDelta = Infinity;
     };
 
     const setMode = (next: Mode) => {
@@ -142,8 +152,7 @@ export function Camera({ children }: { children: ReactNode }) {
     };
 
     const settleAt = (id: LevelId) => {
-      window.clearTimeout(unlockTimer);
-      unlockTimer = 0;
+      resetGuard();
       setMode('focus');
 
       const anchor = findLevel(id)?.anchor;
@@ -215,12 +224,23 @@ export function Camera({ children }: { children: ReactNode }) {
       if (origin !== null) fly('out', zoomed, origin);
     };
 
+    const unlock = () => {
+      resetGuard();
+      setMode('focus');
+    };
+
     const unlockSoon = () => {
       window.clearTimeout(unlockTimer);
-      unlockTimer = window.setTimeout(() => {
-        unlockTimer = 0;
-        setMode('focus');
-      }, INERTIA_GUARD);
+      if (guardStart === 0) guardStart = performance.now();
+
+      const left = Math.min(INERTIA_GUARD, guardStart + INERTIA_CAP - performance.now());
+
+      if (left <= 0) {
+        unlock();
+        return;
+      }
+
+      unlockTimer = window.setTimeout(unlock, left);
     };
 
     const keepFocusVisible = () => {
@@ -235,6 +255,7 @@ export function Camera({ children }: { children: ReactNode }) {
 
     const zoomIn = (target: LevelId = LANDING_LEVEL) => {
       keepFocusVisible();
+      resetGuard();
       setMode('transition');
       viewport.scrollTop = scrollTopFor(findLevel(target)?.anchor ?? 0);
       setLevel(target);
@@ -276,8 +297,7 @@ export function Camera({ children }: { children: ReactNode }) {
     const zoomOut = () => {
       if (mode === 'overview') return;
 
-      window.clearTimeout(unlockTimer);
-      unlockTimer = 0;
+      resetGuard();
       setMode('transition');
 
       if (reduced.matches) {
@@ -288,10 +308,25 @@ export function Camera({ children }: { children: ReactNode }) {
       travel(focusTransform(), overviewTransform(), ZOOM_OUT, () => setMode('overview'));
     };
 
-    const onWheel = () => {
+    const onWheel = (event: WheelEvent) => {
       if (inRoom()) return;
-      if (mode === 'overview') zoomIn();
-      else if (mode === 'transition' && unlockTimer !== 0) unlockSoon();
+
+      if (mode === 'overview') {
+        zoomIn();
+        return;
+      }
+
+      if (mode !== 'transition' || unlockTimer === 0) return;
+
+      const delta = Math.abs(event.deltaY);
+
+      if (delta >= lastDelta) {
+        unlock();
+        return;
+      }
+
+      lastDelta = delta;
+      unlockSoon();
     };
 
     const onTouchMove = () => {
