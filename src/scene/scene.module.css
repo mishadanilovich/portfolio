@@ -14,6 +14,7 @@
 
 .camera {
   --u-focus: calc(var(--u) * var(--zoom));
+  --soil-deep: #1e222c;
 
   position: relative;
   width: var(--scene-w);
@@ -42,7 +43,7 @@
   left: 0;
   width: 100%;
   height: var(--below-h);
-  background: var(--color-ground);
+  background: var(--soil-deep);
 }
 
 :global(body[data-camera='overview']) .below {
@@ -156,6 +157,17 @@
   background: color-mix(in srgb, var(--color-white) 45%, transparent);
 }
 
+.packets {
+  position: absolute;
+}
+
+.packet {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--color-lamp-text);
+  opacity: 0;
+}
+
 .plaques {
   position: absolute;
   inset: 0;
@@ -256,6 +268,10 @@
     animation-duration: 30s;
     animation-delay: -21s;
   }
+
+  .packet {
+    animation: packet var(--packet-cycle) linear var(--packet-delay) infinite;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -301,6 +317,23 @@
   100% {
     opacity: 0;
     transform: translate(calc(10 * var(--u-focus)), calc(-45 * var(--u-focus))) scale(2);
+  }
+}
+
+@keyframes packet {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  3.43%,
+  94.86% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(var(--packet-run));
   }
 }
 
@@ -619,12 +652,14 @@
 :global(body:has(dialog[open])) .cloud,
 :global(body:has(dialog[open])) .puff,
 :global(body:has(dialog[open])) .pulse,
-:global(body:has(dialog[open])) .led {
+:global(body:has(dialog[open])) .led,
+:global(body:has(dialog[open])) .packet {
   animation-play-state: paused;
 }
 
 .cloud[data-idle],
-.smoke[data-idle] .puff {
+.smoke[data-idle] .puff,
+.packets[data-idle] .packet {
   animation-play-state: paused;
 }
 

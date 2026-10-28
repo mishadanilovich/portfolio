@@ -373,7 +373,7 @@ export function Camera({ children }: { children: ReactNode }) {
           />
         ))}
 
-        <div className={styles.below} style={{ top: `var(--scene-h)` }} />
+        <div className={`${styles.below} ${styles.wide}`} style={{ top: `var(--scene-h)` }} />
       </div>
     </div>
   );

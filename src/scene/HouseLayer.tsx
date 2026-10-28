@@ -2,6 +2,7 @@ import { GlowLayer } from './GlowLayer';
 import { GarageInterior } from './GarageInterior';
 import { HOUSE, SCENE_VIEW_BOX } from './layout';
 import styles from './scene.module.css';
+import { UndergroundLayer } from './UndergroundLayer';
 import { box, left, size, top } from './units';
 
 const SMOKE = [
@@ -410,6 +411,8 @@ export function HouseLayer() {
   return (
     <div className={styles.layer}>
       <div className={`${styles.layer} ${styles.wide} ${styles.ground}`} />
+
+      <UndergroundLayer />
 
       <svg className={styles.layer} viewBox={SCENE_VIEW_BOX} aria-hidden="true">
         <Basement />
