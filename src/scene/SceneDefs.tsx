@@ -12,6 +12,11 @@ export function SceneDefs() {
           <stop offset="1" stopColor="#efa94e" />
         </radialGradient>
 
+        <linearGradient id="scene-lobby" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="var(--color-lamp-bright)" />
+          <stop offset="1" stopColor="#efa94e" />
+        </linearGradient>
+
         <clipPath id="scene-garage-opening">
           <rect x="76" y="702" width="92" height="58" />
         </clipPath>
