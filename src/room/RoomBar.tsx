@@ -39,7 +39,6 @@ export function RoomBar({
       exit={scene.exitHouse}
       kicker={fill(room.floor, { floor: floor.floor })}
       title={floor.title}
-      sticky
     >
       <div className={styles['bar-moves']}>
         {below !== null && (

@@ -76,6 +76,23 @@ describe('квартира', () => {
     expect(screen.getByRole('link', { name: 'Этаж 3' })).toHaveAttribute('href', '/ru/floor/3');
   });
 
+  it('окна в комнате нет: камера смотрит на противоположную стену', () => {
+    show('6');
+
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
+  });
+
+  it('выделяет цифру-метрику в рамке достижения', () => {
+    show('6');
+
+    expect(screen.getByRole('heading', { level: 3, name: '75% → 83%' })).toHaveAttribute(
+      'data-metric',
+    );
+    expect(screen.getByRole('heading', { level: 3, name: 'AI-код-ревью' })).not.toHaveAttribute(
+      'data-metric',
+    );
+  });
+
   it('помечает комнату для сцены и держит фокус в ней', () => {
     show('6');
 

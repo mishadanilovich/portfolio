@@ -4,7 +4,6 @@ import { Poster } from './Poster';
 import { RoomBar } from './RoomBar';
 import { SceneCover } from '@/components/SceneCover';
 import { Shelves } from '@/components/Shelves';
-import { RoomWindow } from './RoomWindow';
 import { Whiteboard } from './Whiteboard';
 import styles from './room.module.css';
 
@@ -12,16 +11,17 @@ function Lamp() {
   return (
     <svg
       className={styles.lamp}
-      width="80"
-      height="96"
-      viewBox="0 0 80 96"
+      width="120"
+      height="80"
+      viewBox="0 0 120 80"
       fill="none"
       aria-hidden="true"
     >
-      <circle cx="40" cy="62" r="40" fill="var(--color-lamp-text)" fillOpacity="0.35" />
-      <line x1="40" y1="0" x2="40" y2="44" stroke="var(--color-silhouette)" strokeWidth="1.5" />
-      <path d="M24 60L30 44H50L56 60Z" fill="var(--color-dusk)" />
-      <ellipse cx="40" cy="61" rx="7" ry="3" fill="var(--color-lamp-bright)" />
+      <ellipse cx="60" cy="70" rx="60" ry="14" fill="var(--color-lamp-text)" fillOpacity="0.22" />
+      <line x1="60" y1="0" x2="60" y2="22" stroke="var(--color-silhouette)" strokeWidth="1.5" />
+      <path d="M44 40Q44 24 60 22Q76 24 76 40Z" fill="var(--color-dusk)" />
+      <ellipse cx="60" cy="40" rx="16" ry="3" fill="var(--color-dark)" />
+      <ellipse cx="60" cy="41" rx="6" ry="2.5" fill="var(--color-lamp-bright)" />
     </svg>
   );
 }
@@ -30,18 +30,17 @@ function Plant() {
   return (
     <svg
       className={styles.plant}
-      width="120"
-      height="150"
-      viewBox="0 0 120 150"
+      width="70"
+      height="110"
+      viewBox="0 0 70 110"
       fill="none"
       aria-hidden="true"
     >
-      <path d="M34 150L28 96H92L86 150Z" fill="var(--color-slab)" />
+      <path d="M20 110L16 76H54L50 110Z" fill="var(--color-slab)" />
       <path
-        d="M60 96C50 60 30 50 12 44C34 40 52 56 58 74C58 44 70 18 98 8C80 30 68 56 64 96Z"
+        d="M35 76C29 52 18 46 6 42C20 40 30 50 33 60C33 40 41 24 58 18C46 32 39 50 38 76Z"
         fill="#4e6b4e"
       />
-      <path d="M62 96C70 70 86 62 108 60C92 70 76 82 70 96Z" fill="#3f5a40" />
     </svg>
   );
 }
@@ -74,36 +73,27 @@ export function Room({
       />
 
       <div className={styles.wall}>
-        <div className={`${styles.band} ${solo ? styles['band-solo'] : ''}`}>
-          <Lamp />
+        <div className={styles.cornice} />
 
-          {solo ? (
-            <div className={`${styles.row} ${styles['row-solo']}`}>
-              <Poster floor={floor} room={room} />
-              <RoomWindow label={room.windowAria} />
-            </div>
-          ) : (
-            <>
-              <div className={styles.row}>
-                <Poster floor={floor} room={room} />
-                <Whiteboard title={room.responsibilities} items={floor.responsibilities} />
-              </div>
+        <div className={styles.stage}>
+          <div className={styles.band} data-solo={solo ? '' : undefined}>
+            <Lamp />
+            <Poster floor={floor} room={room} />
 
-              <div className={`${styles.row} ${styles['row-bottom']}`}>
+            {!solo && (
+              <div className={styles.column}>
                 <Shelves
                   title={room.achievements}
                   titleId={ACHIEVEMENTS_TITLE_ID}
                   items={floor.achievements}
                 />
-                <RoomWindow label={room.windowAria} />
+                <Whiteboard title={room.responsibilities} items={floor.responsibilities} />
               </div>
-            </>
-          )}
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className={styles.parquet}>
-        <div className={styles['parquet-band']}>
+        <div className={styles.parquet}>
           <Plant />
         </div>
       </div>

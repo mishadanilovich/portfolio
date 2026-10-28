@@ -137,7 +137,6 @@ export interface Ui {
     stack: string;
     responsibilities: string;
     achievements: string;
-    windowAria: string;
   };
   roof: {
     sign: string;

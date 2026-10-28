@@ -341,7 +341,6 @@ export const en: Content = {
       stack: 'Stack',
       responsibilities: 'Responsibilities',
       achievements: 'Achievements',
-      windowAria: 'Apartment window: daytime sky',
     },
     roof: {
       sign: 'OPEN',

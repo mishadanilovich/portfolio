@@ -3,6 +3,12 @@ import styles from './shelves.module.css';
 
 const CAPACITY = 2;
 
+const METRIC = /^[^\p{L}]+$/u;
+
+export function isMetric(title: string): boolean {
+  return METRIC.test(title);
+}
+
 export function shelves(achievements: Achievement[]): Achievement[][] {
   const rows: Achievement[][] = [];
 
@@ -36,7 +42,12 @@ export function Shelves({
             {row.map((item) => (
               <div key={item.text} className={styles.frame}>
                 {item.title !== undefined && (
-                  <h3 className={styles['frame-title']}>{item.title}</h3>
+                  <h3
+                    className={styles['frame-title']}
+                    data-metric={isMetric(item.title) ? '' : undefined}
+                  >
+                    {item.title}
+                  </h3>
                 )}
                 <p className={styles['frame-text']}>{item.text}</p>
               </div>

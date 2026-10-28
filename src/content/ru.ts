@@ -341,7 +341,6 @@ export const ru: Content = {
       stack: 'Стек',
       responsibilities: 'Обязанности',
       achievements: 'Достижения',
-      windowAria: 'Окно квартиры: дневное небо',
     },
     roof: {
       sign: 'ОТКРЫТ',
