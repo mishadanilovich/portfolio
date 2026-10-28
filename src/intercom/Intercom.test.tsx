@@ -2,7 +2,7 @@
 
 import { act, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { en } from '@/content/en';
 import { ru } from '@/content/ru';
 import { requestIntercom } from './events';
@@ -22,6 +22,11 @@ function show(onClose = () => {}) {
 }
 
 describe('домофон', () => {
+  beforeAll(() => {
+    Object.defineProperty(SVGElement.prototype, 'getComputedTextLength', { value: () => 0 });
+    Object.defineProperty(document, 'fonts', { value: { ready: Promise.resolve() } });
+  });
+
   it('подписывает модалку заголовком колонки', () => {
     show();
 

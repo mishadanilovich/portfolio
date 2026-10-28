@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from 'react';
 import { fill, type Contact, type Ui } from '@/content';
 import { control } from '@/styles/controls';
 import { OpenEntrance } from './OpenEntrance';
@@ -8,11 +9,56 @@ export type IntercomStatus = 'idle' | 'error' | 'sending' | 'success';
 const KEYS_X = [100, 112, 124, 136];
 const KEYS_Y = [72, 82, 92];
 
+const SCREEN = { x: 80, width: 76, pad: 4 };
+const BOARD_FIT = SCREEN.width - SCREEN.pad * 2;
+
 function boardOf(ui: Ui['intercom'], status: IntercomStatus): string {
   if (status === 'error') return ui.boardError;
   if (status === 'sending') return ui.boardSending;
 
   return ui.boardIdle;
+}
+
+function Board({ text, status }: { text: string; status: IntercomStatus }) {
+  const ref = useRef<SVGTextElement>(null);
+
+  useLayoutEffect(() => {
+    const node = ref.current;
+
+    if (node === null) return;
+
+    let live = true;
+
+    const fit = () => {
+      if (!live) return;
+
+      node.removeAttribute('textLength');
+
+      if (node.getComputedTextLength() > BOARD_FIT) {
+        node.setAttribute('textLength', String(BOARD_FIT));
+      }
+    };
+
+    fit();
+    void document.fonts.ready.then(fit);
+
+    return () => {
+      live = false;
+    };
+  }, [text, status]);
+
+  return (
+    <text
+      ref={ref}
+      className={styles.board}
+      x="118"
+      y="47"
+      textAnchor="middle"
+      lengthAdjust="spacingAndGlyphs"
+    >
+      {text}
+    </text>
+  );
 }
 
 function Device({ ui, status }: { ui: Ui['intercom']; status: IntercomStatus }) {
@@ -33,10 +79,8 @@ function Device({ ui, status }: { ui: Ui['intercom']; status: IntercomStatus }) 
       </g>
 
       <rect x="72" y="16" width="92" height="168" rx="10" fill="#1f2430" />
-      <rect className={styles.screen} x="84" y="30" width="68" height="24" rx="3" />
-      <text className={styles.board} x="118" y="47" textAnchor="middle">
-        {boardOf(ui, status)}
-      </text>
+      <rect className={styles.screen} x={SCREEN.x} y="30" width={SCREEN.width} height="24" rx="3" />
+      <Board text={boardOf(ui, status)} status={status} />
 
       <g fill="#5a6075">
         {KEYS_Y.map((y) => KEYS_X.map((x) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2" />))}
