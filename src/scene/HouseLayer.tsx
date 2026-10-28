@@ -165,40 +165,47 @@ function Planter({ x }: { x: number }) {
 function DoorLeaf({ x, handle }: { x: number; handle: number }) {
   return (
     <g>
-      <rect x={x + 4} y="705" width="26" height="25" fill="var(--color-lamp)" fillOpacity="0.45" />
       <rect
-        x={x + 4}
-        y="705"
-        width="26"
-        height="25"
+        x={x + 3.9}
+        y="704.3"
+        width="26.2"
+        height="23.6"
+        fill="var(--color-lamp)"
+        fillOpacity="0.45"
+      />
+      <rect
+        x={x + 3.9}
+        y="704.3"
+        width="26.2"
+        height="23.6"
         fill="none"
         stroke="var(--color-frame-wood)"
         strokeWidth="1.4"
       />
       <path
-        d={`M${x + 17} 705V730M${x + 4} 717.5H${x + 30}`}
+        d={`M${x + 17} 704.3V727.9M${x + 3.9} 716H${x + 30.1}`}
         stroke="var(--color-frame-wood)"
         strokeWidth="1.4"
       />
       <rect
-        x={x + 5}
-        y="734"
-        width="24"
-        height="22"
+        x={x + 4.9}
+        y="731.4"
+        width="24.2"
+        height="19.9"
         fill="none"
         stroke="var(--color-frame-wood)"
         strokeWidth="1.4"
       />
       <rect
-        x={x + 7.5}
-        y="735.5"
-        width="19"
-        height="19"
+        x={x + 7.8}
+        y="732.8"
+        width="18.5"
+        height="17.2"
         fill="none"
         stroke="#6b5440"
         strokeWidth="0.8"
       />
-      <rect x={handle} y="726" width="2" height="14" rx="1" fill="#c9a060" />
+      <rect x={handle} y="724.2" width="2" height="12.7" rx="1" fill="#c9a060" />
     </g>
   );
 }
