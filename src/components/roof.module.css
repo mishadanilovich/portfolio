@@ -99,13 +99,16 @@
   list-style: none;
 }
 
-.email-row {
+.copy-row {
   display: flex;
-  grid-column: 1 / -1;
-  gap: 8px;
+  gap: 4px;
 }
 
-.email-row .contact {
+.email-row {
+  grid-column: 1 / -1;
+}
+
+.copy-row .contact {
   flex-grow: 1;
   min-width: 0;
 }

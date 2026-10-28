@@ -143,8 +143,10 @@ export interface Ui {
     sign: string;
     signNote: string;
     contacts: string;
-    copy: string;
-    copied: string;
+    copyEmail: string;
+    copiedEmail: string;
+    copyTelegram: string;
+    copiedTelegram: string;
     call: string;
   };
   intercom: {

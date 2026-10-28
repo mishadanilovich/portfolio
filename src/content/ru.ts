@@ -347,8 +347,10 @@ export const ru: Content = {
       sign: 'ОТКРЫТ',
       signNote: 'к новым проектам',
       contacts: 'Контакты',
-      copy: 'Скопировать email',
-      copied: 'Email скопирован',
+      copyEmail: 'Скопировать email',
+      copiedEmail: 'Email скопирован',
+      copyTelegram: 'Скопировать Telegram',
+      copiedTelegram: 'Telegram скопирован',
       call: 'Оставить вакансию',
     },
     intercom: {

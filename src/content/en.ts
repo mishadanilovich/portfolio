@@ -347,8 +347,10 @@ export const en: Content = {
       sign: 'OPEN',
       signNote: 'to new projects',
       contacts: 'Contacts',
-      copy: 'Copy email',
-      copied: 'Email copied',
+      copyEmail: 'Copy email',
+      copiedEmail: 'Email copied',
+      copyTelegram: 'Copy Telegram',
+      copiedTelegram: 'Telegram copied',
       call: 'Leave a job opening',
     },
     intercom: {

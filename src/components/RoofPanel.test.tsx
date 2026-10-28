@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ru } from '@/content/ru';
 import { RoofPanel } from './RoofPanel';
@@ -15,6 +15,14 @@ function show() {
       newTab={ru.ui.newTab}
     />,
   );
+}
+
+function rowOf(button: string) {
+  const row = screen.getByRole('button', { name: button }).closest('li');
+
+  if (row === null) throw new Error(`Кнопка «${button}» вне строки контакта`);
+
+  return within(row).getByRole('status');
 }
 
 describe('карточка крыши', () => {
@@ -71,21 +79,30 @@ describe('карточка крыши', () => {
     );
   });
 
-  it('копирует email и сообщает об этом', async () => {
+  it.each([
+    ['email', 'Скопировать email', 'Email скопирован', 'danilovich36misha@gmail.com'],
+    ['Telegram', 'Скопировать Telegram', 'Telegram скопирован', '@f0pp1'],
+  ])('копирует %s и сообщает об этом', async (_kind, copy, copied, value) => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText } });
     show();
 
-    fireEvent.click(screen.getByRole('button', { name: 'Скопировать email' }));
+    fireEvent.click(screen.getByRole('button', { name: copy }));
 
     await waitFor(() => {
-      expect(screen.getByRole('button', { name: 'Email скопирован' })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: copied })).toBeInTheDocument();
     });
 
-    expect(writeText).toHaveBeenCalledWith('danilovich36misha@gmail.com');
-    expect(screen.getByRole('status')).toHaveTextContent('Email скопирован');
+    expect(writeText).toHaveBeenCalledWith(value);
+    expect(rowOf(copied)).toHaveTextContent(copied);
 
     vi.unstubAllGlobals();
+  });
+
+  it('держит у каждой кнопки свою область объявлений', () => {
+    show();
+
+    expect(screen.getAllByRole('status')).toHaveLength(2);
   });
 
   it('молчит, когда буфер обмена недоступен', async () => {
@@ -99,7 +116,7 @@ describe('карточка крыши', () => {
       expect(writeText).toHaveBeenCalled();
     });
 
-    expect(screen.getByRole('status')).toBeEmptyDOMElement();
+    expect(rowOf('Скопировать email')).toBeEmptyDOMElement();
     expect(screen.getByRole('button', { name: 'Скопировать email' })).toBeInTheDocument();
 
     vi.unstubAllGlobals();

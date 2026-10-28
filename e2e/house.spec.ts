@@ -43,7 +43,8 @@ test('подъём доводит камеру до крыши и показыв
     'aria-current',
     'true',
   );
-  await expect(page.getByRole('button', { name: ru.ui.roof.copy })).toBeVisible();
+  await expect(page.getByRole('button', { name: ru.ui.roof.copyEmail })).toBeVisible();
+  await expect(page.getByRole('button', { name: ru.ui.roof.copyTelegram })).toBeVisible();
 });
 
 test('этаж открывает квартиру и возвращает к дому', async ({ page }) => {

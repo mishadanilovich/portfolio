@@ -6,12 +6,12 @@ import styles from './roof.module.css';
 
 const FEEDBACK = 2000;
 
-export function CopyEmail({
-  email,
+export function CopyContact({
+  value,
   copy,
   copied,
 }: {
-  email: string;
+  value: string;
   copy: string;
   copied: string;
 }) {
@@ -22,7 +22,7 @@ export function CopyEmail({
 
   const write = async () => {
     try {
-      await navigator.clipboard.writeText(email);
+      await navigator.clipboard.writeText(value);
     } catch {
       return;
     }

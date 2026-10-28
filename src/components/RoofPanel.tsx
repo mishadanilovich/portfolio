@@ -3,7 +3,7 @@ import type { Contact, ContactKind, Cv, Roof, Ui } from '@/content';
 import { CallButton } from '@/intercom/CallButton';
 import { CallIcon } from '@/intercom/CallIcon';
 import { control } from '@/styles/controls';
-import { CopyEmail } from './CopyEmail';
+import { CopyContact } from './CopyContact';
 import styles from './roof.module.css';
 
 const STATUS_ID = 'roof-status';
@@ -106,19 +106,29 @@ export function RoofPanel({
 
       <ul className={styles.contacts} aria-label={ui.contacts}>
         {rest.map((contact) => (
-          <li key={contact.kind}>
+          <li
+            key={contact.kind}
+            className={contact.kind === 'telegram' ? styles['copy-row'] : undefined}
+          >
             <ContactLink
               contact={contact}
               download={contact.kind === 'cv' ? cv.downloadName : undefined}
               newTab={newTab}
             />
+            {contact.kind === 'telegram' && (
+              <CopyContact
+                value={contact.label}
+                copy={ui.copyTelegram}
+                copied={ui.copiedTelegram}
+              />
+            )}
           </li>
         ))}
 
         {email !== undefined && (
-          <li className={styles['email-row']}>
+          <li className={`${styles['copy-row']} ${styles['email-row']}`}>
             <ContactLink contact={email} newTab={newTab} />
-            <CopyEmail email={email.label} copy={ui.copy} copied={ui.copied} />
+            <CopyContact value={email.label} copy={ui.copyEmail} copied={ui.copiedEmail} />
           </li>
         )}
       </ul>
