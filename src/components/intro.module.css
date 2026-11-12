@@ -55,7 +55,7 @@
   width: 8px;
   height: 8px;
   border-radius: var(--radius-pill);
-  background: var(--color-online);
+  background: var(--color-lamp);
 }
 
 .title {

@@ -58,7 +58,7 @@
   width: 8px;
   height: 8px;
   border-radius: var(--radius-pill);
-  background: #3e8a5a;
+  background: var(--color-lamp);
 }
 
 .status {
