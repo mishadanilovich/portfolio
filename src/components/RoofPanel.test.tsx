@@ -29,9 +29,7 @@ describe('карточка крыши', () => {
   it('подписана статусом и показывает все факты', () => {
     show();
 
-    expect(
-      screen.getByRole('heading', { level: 1, name: 'Открыт к новым проектам' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: ru.roof.status })).toBeInTheDocument();
 
     for (const fact of ru.roof.facts) {
       expect(screen.getByText(fact.label)).toBeInTheDocument();

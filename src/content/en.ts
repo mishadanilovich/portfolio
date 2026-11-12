@@ -9,7 +9,7 @@ export const en: Content = {
   },
 
   intro: {
-    status: 'Open to new projects',
+    status: 'Considering opportunities',
     title: 'Portfolio house',
     lead: '5+ years of commercial frontend development experience.',
   },
@@ -248,7 +248,7 @@ export const en: Content = {
 
   roof: {
     kicker: 'Roof · status',
-    status: 'Open to new projects',
+    status: 'Considering opportunities',
     facts: [
       { label: 'Location', value: 'Belarus (Minsk), open to relocation' },
       { label: 'Format', value: 'Office, remote, hybrid' },
@@ -344,7 +344,7 @@ export const en: Content = {
     },
     roof: {
       sign: 'OPEN',
-      signNote: 'to new projects',
+      signNote: 'to opportunities',
       contacts: 'Contacts',
       copyEmail: 'Copy email',
       copiedEmail: 'Email copied',

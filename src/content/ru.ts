@@ -9,7 +9,7 @@ export const ru: Content = {
   },
 
   intro: {
-    status: 'Открыт к новым проектам',
+    status: 'Рассматриваю предложения',
     title: 'Дом-портфолио',
     lead: '5+ лет опыта в коммерческой frontend-разработке.',
   },
@@ -248,7 +248,7 @@ export const ru: Content = {
 
   roof: {
     kicker: 'Крыша · статус',
-    status: 'Открыт к новым проектам',
+    status: 'Рассматриваю предложения',
     facts: [
       { label: 'Локация', value: 'Беларусь (Минск), возможна релокация' },
       { label: 'Формат', value: 'Офис, удалёнка, гибрид' },
@@ -344,7 +344,7 @@ export const ru: Content = {
     },
     roof: {
       sign: 'ОТКРЫТ',
-      signNote: 'к новым проектам',
+      signNote: 'к предложениям',
       contacts: 'Контакты',
       copyEmail: 'Скопировать email',
       copiedEmail: 'Email скопирован',
