@@ -579,7 +579,15 @@ README — краткое описание проекта и запуск. Де�
 
 `SITE_URL` — основной origin без пути, параметров и фрагмента. Локально задан в `.env` как `http://localhost:3000`, это же значение используется при отсутствии переменной. Перед production-сборкой задать реальный HTTPS-домен в окружении деплоя. Шаблон — в `.env.example`, `.env` не коммитится.
 
-Превью общие для сайта, по одному на язык: `public/og/ru.png` и `en.png`, 1200×630. Для обновления запустить production-сервер, затем `node scripts/generate-og.mjs http://localhost:3000`. Скрипт снимает первый экран в установленном Chrome без элементов управления. После генерации нужна новая сборка. E2E проверяет метаданные всех страниц и доступность картинок; для сборки тестового сервера задаётся отдельный `SITE_URL=https://portfolio.example`.
+Превью общие для сайта, по одному на язык: `public/og/ru.png` и `en.png`, 1200×630. Это снимки первого экрана без элементов управления. Скрипты генерации удалены по просьбе владельца. E2E проверяет метаданные всех страниц и доступность картинок; для сборки тестового сервера задаётся отдельный `SITE_URL=https://portfolio.example`.
+
+## Публикация
+
+Production: `https://mishadanilovich.vercel.app`, проект Vercel `site` в `mishadanilovichs-projects`, Node.js 24. В production заданы `SITE_URL` с этим origin и серверные `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`. Локальная привязка хранится в игнорируемой `.vercel/`. Не перезаписывать `.env.local` через `vercel env pull` без сохранения локальных настроек Telegram.
+
+Деплой проверен 12 ноября 2026: `site-av9y3swex-mishadanilovichs-projects.vercel.app`. Предыдущий production для отката: `site-tzzeym2ru-mishadanilovichs-projects.vercel.app` (`vercel rollback <url>`). Для следующих публикаций можно собрать `vercel deploy --prod --skip-domain`, проверить сборку и переключить основной адрес командой `vercel promote <url>`.
+
+Иконки приложения — `src/app/favicon.ico`, `icon.svg` и `apple-icon.png`. Рисунок повторяет логотип шапки из `src/components/Logo.tsx`: контур дома и шесть окон, одно жёлтое. ICO содержит PNG 32×32, Apple icon — PNG 180×180 на фоне `#2f3546`.
 
 ## Секреты
 
