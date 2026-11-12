@@ -589,6 +589,10 @@ Production: `https://mishadanilovich.vercel.app`, проект Vercel `site` в 
 
 Иконки приложения — `src/app/favicon.ico`, `icon.svg` и `apple-icon.png`. Рисунок повторяет логотип шапки из `src/components/Logo.tsx`: контур дома и шесть окон, одно жёлтое. ICO содержит PNG 32×32, Apple icon — PNG 180×180 на фоне `#2f3546`.
 
+## Аналитика
+
+Vercel Web Analytics включена в проекте `site`. Компонент `Analytics` из `@vercel/analytics/next` подключён один раз в общем layout `src/app/[locale]/layout.tsx` и отслеживает просмотры страниц обеих локалей, включая клиентские переходы. Отчёты: `https://vercel.com/mishadanilovichs-projects/site/analytics`. Данные формы в аналитику не отправляются.
+
 ## Секреты
 
 Репозиторий публичный. `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID` — только в `.env.local` и в env Vercel. В `.gitignore` стоит `.env*` с явным исключением для `.env.example`.

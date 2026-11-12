@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { Golos_Text, Literata } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { getContent, isLocale, locales } from '@/content';
@@ -57,6 +58,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
         <SideControls />
         <Scene />
         <Intercom />
+        <Analytics />
       </body>
     </html>
   );
