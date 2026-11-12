@@ -22,6 +22,6 @@ export default defineConfig({
     url: baseURL,
     reuseExistingServer: process.env.CI === undefined,
     timeout: 180_000,
-    env: { TELEGRAM_BOT_TOKEN: '', TELEGRAM_CHAT_ID: '' },
+    env: { TELEGRAM_BOT_TOKEN: '', TELEGRAM_CHAT_ID: '', SITE_URL: 'https://portfolio.example' },
   },
 });

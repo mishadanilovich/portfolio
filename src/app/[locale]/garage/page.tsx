@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getContent, isLocale } from '@/content';
 import { Garage } from '@/garage/Garage';
+import { pageMetadata } from '@/lib/metadata';
 
 export async function generateMetadata({
   params,
@@ -11,10 +12,12 @@ export async function generateMetadata({
 
   const content = getContent(locale);
 
-  return {
-    title: `${content.ui.garage.title} — ${content.person.name}`,
-    description: content.ui.garage.lead,
-  };
+  return pageMetadata(
+    locale,
+    '/garage',
+    `${content.ui.garage.title} — ${content.person.name}`,
+    content.ui.garage.lead,
+  );
 }
 
 export default async function GaragePage({ params }: PageProps<'/[locale]/garage'>) {

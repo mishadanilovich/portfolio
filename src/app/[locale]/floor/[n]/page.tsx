@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { defaultLocale, getContent, isLocale } from '@/content';
 import { findApartment } from '@/room/apartment';
 import { Room } from '@/room/Room';
+import { pageMetadata } from '@/lib/metadata';
 
 export const instant = false;
 
@@ -20,10 +21,12 @@ export async function generateMetadata({
   const floor = findApartment(content.floors, n);
   if (floor === undefined) notFound();
 
-  return {
-    title: `${floor.title} — ${content.person.name}`,
-    description: floor.description,
-  };
+  return pageMetadata(
+    locale,
+    `/floor/${floor.floor}`,
+    `${floor.title} — ${content.person.name}`,
+    floor.description,
+  );
 }
 
 export default async function FloorPage({ params }: PageProps<'/[locale]/floor/[n]'>) {

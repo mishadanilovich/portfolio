@@ -8,6 +8,7 @@ import { Help } from '@/help/Help';
 import { Intercom } from '@/intercom/Intercom';
 import { LANDING_LEVEL } from '@/scene/layout';
 import { Scene } from '@/scene/Scene';
+import { getSiteUrl } from '@/lib/metadata';
 import '../globals.css';
 
 const literata = Literata({
@@ -38,8 +39,8 @@ export async function generateMetadata({
   const content = getContent(locale);
 
   return {
-    title: `${content.person.name} — ${content.person.role}`,
-    description: content.intro.lead,
+    metadataBase: getSiteUrl(),
+    authors: [{ name: content.person.name }],
   };
 }
 

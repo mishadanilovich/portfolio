@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { defaultLocale, getContent, isLocale } from '@/content';
 import { Project } from '@/garage/Project';
 import { findProject } from '@/garage/projects';
+import { pageMetadata } from '@/lib/metadata';
 
 export const instant = false;
 
@@ -20,10 +21,12 @@ export async function generateMetadata({
   const project = findProject(content.petProjects, slug);
   if (project === undefined) notFound();
 
-  return {
-    title: `${project.title} — ${content.person.name}`,
-    description: project.description,
-  };
+  return pageMetadata(
+    locale,
+    `/garage/${project.slug}`,
+    `${project.title} — ${content.person.name}`,
+    project.description,
+  );
 }
 
 export default async function ProjectPage({ params }: PageProps<'/[locale]/garage/[slug]'>) {

@@ -90,7 +90,7 @@
 | Отправка    | Route Handler → Telegram Bot API, honeypot + in-memory rate limit (best-effort, осознанно)                                               |
 | Тесты       | Vitest с первого кода, Playwright перед стадией домофона                                                                                 |
 | Репозиторий | Публичный на GitHub                                                                                                                      |
-| Коммиты     | Conventional Commits, без commitlint. Коммиты от Claude Code несут строку `Co-Authored-By`                                               |
+| Коммиты     | Conventional Commits на английском, только заголовок, без тела и атрибуции; без commitlint                                               |
 
 ---
 
@@ -315,6 +315,10 @@ Playwright: к семи сценариям добавлены четыре — �
 ## Стадия 11 — Деплой
 
 Vercel, env-переменные, PDF на месте, OG-метаданные и favicon, проверка `/ru` и `/en` на прод-домене.
+
+- [x] Метаданные всех 18 страниц RU/EN: canonical, hreflang, Open Graph, Twitter Card; общий origin через `SITE_URL`.
+- [x] Две PNG-картинки превью 1200×630 из первого экрана, скрипт повторной генерации и E2E-проверка метаданных.
+- [ ] Задать production `SITE_URL` и Telegram env, выполнить деплой и проверку на основном домене; сверить финальный favicon.
 
 **Отдельно:** перед публикацией ссылки на Coffee Shop проверить README бэкенда — в `portfolio-content.md` помечено, что там была стандартная заготовка NestJS.
 
