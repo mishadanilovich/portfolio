@@ -17,7 +17,6 @@ function Lamp() {
       fill="none"
       aria-hidden="true"
     >
-      <ellipse cx="60" cy="70" rx="60" ry="14" fill="var(--color-lamp-text)" fillOpacity="0.22" />
       <line x1="60" y1="0" x2="60" y2="22" stroke="var(--color-silhouette)" strokeWidth="1.5" />
       <path d="M44 40Q44 24 60 22Q76 24 76 40Z" fill="var(--color-dusk)" />
       <ellipse cx="60" cy="40" rx="16" ry="3" fill="var(--color-dark)" />
